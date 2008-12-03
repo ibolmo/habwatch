@@ -1,0 +1,21 @@
+    # Be sure to only have this line once in your configuration
+    NameVirtualHost 127.0.0.1:80
+
+    # This is the configuration for merhab
+    Listen 127.0.0.1:80
+
+    <VirtualHost 127.0.0.1:80>
+      ServerName merhab.localhost
+      DocumentRoot "C:\www\merhab\web"
+      DirectoryIndex index.php
+      <Directory "C:\www\merhab\web">
+        AllowOverride All
+        Allow from All
+      </Directory>
+
+      Alias /sf "C:\www\merhab\data\web\sf"
+      <Directory "C:\www\merhab\data\web\sf">
+        AllowOverride All
+        Allow from All
+      </Directory>
+    </VirtualHost>
