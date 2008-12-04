@@ -1,0 +1,139 @@
+@import "blueprintcss/reset.css";
+@import "blueprintcss/plugins/liquid.css";
+@import "blueprintcss/typography.css";
+@import "blueprintcss/forms.css";
+@import "blueprintcss/plugins/fancy-type.css";
+@import "blueprintcss/plugins/tabs.css";
+@import "boilerplatecss/plugins.css";
+
+.grid { background: url(../images/grid.png); }
+.container {
+	min-width: 790px;
+	width: 80%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+body {
+	margin:1.5em 0;
+	font-family: tahoma, trebuchet ms, arial, sans serif;
+}
+
+a, .link { color: #0078CC; text-decoration: none; cursor: pointer; }
+a:hover, .link:hover { color: #000; }
+h2 { border-bottom: 1px dotted #ccc; margin-top:0.5em; }
+
+#logo {
+	background: url(../images/NetworkedNaturalist.png) no-repeat;
+	width: 708px;
+	height: 94px;
+}
+
+#logo a {
+	display: block;
+	width: 708px;
+	height: 94px;
+	text-indent: -100000px;
+}
+
+#header .tabs {
+	padding: 5px 0px 0px 0px;	
+	color: #222;
+	border-bottom: solid 1px #DADADA;
+	background-color: #F5F5F5;
+}
+#header .tabs li {
+	border: solid 1px #dadada;
+	background-color: #e5e5e5;
+	border-bottom: 0px;
+	margin-right: 5px;
+}
+#header .tabs a {
+	padding: 5px 10px 8px 10px;
+	color: #333333;
+	text-decoration: none;
+}
+
+#header .tabs a:hover {
+	background-color: #fff;
+	text-decoration: underline;
+	color: #333333;
+}
+
+#header .tabs a.active {
+	border-bottom: 1px solid #fff;
+	margin-bottom: -1px;
+	background-color: #fff;
+	color: #333;
+}
+
+#header .tabs a.active a:hover {
+	text-decoration: underline;
+}
+
+#top_nav {
+	 margin-top: 78px;
+}
+
+#site_plant_listing td {
+	vertical-align: top;
+	border-bottom: 1px solid #ddd;
+}
+
+#site_plant_listing {
+	border: 1px solid #ccc;
+	border-bottom: 0px;
+}
+
+.box { padding-bottom: 0; }
+.plant_info, .plant_observation, .plant_comment { border-bottom: 1px solid #eee !important; }
+.center { text-align: center; }
+.right { text-align: right; }
+.quiet a { color: #004f80; }
+.quiet a:hover { color: #000; }
+th { background-color: #ccc; }
+
+p + p  { margin-top: 1.5em; text-indent:0; }
+
+.plant_image img { width: 100%; }
+.plant_box_info { font-size: 0.80em;}
+.note { color: #f00; }
+.invisible { visibility: hidden; position: absolute; width:0; height:0; margin:0; padding:0; top:0; left:0; }
+
+
+#sms_demo_phone {
+	background: url(../images/bigphone.jpg) no-repeat;
+	height: 448px;
+}
+
+#sms_demo_phone_message {
+	margin-top: 125px;
+	margin-left: 50px;
+	font-size: 1.0em;
+	line-height: 1.0em;
+	width: 150px;
+	height: 175px;
+	white-space: pre;
+	white-space: -moz-pre-wrap;
+	word-wrap: break-word;
+	overflow-y: hidden;
+}
+
+.thumbnail {
+	background: #fff;
+	border: 1px solid #ccc;
+	height: 90px;
+	text-align: center;
+}
+
+.thumbnail img {
+	border: 0;
+	height: 100%;
+}
+
+.settings_table { margin-bottom: 0; }
+.settings_table td { vertical-align: top; padding-left: 0; }
+.settings_table td input { width: 100%; }
+
+.disabled { color: #ccc; }
+ul.log li { list-style: none }

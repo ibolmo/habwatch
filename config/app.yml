@@ -1,7 +1,9 @@
 <?php require 'app.php'; ?>
 
-# default values
-all:    
+all:
+    project:
+        name: 'Merhab'
+        contact_email: 'olmo.maldonado@gmail.com'
     smtp:
         username: <?php echo $SMTP_USERNAME; ?>
         password: <?php echo $SMTP_PASSWORD; ?>
