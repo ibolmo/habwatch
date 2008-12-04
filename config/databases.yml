@@ -1,21 +1,5 @@
-dev:
-  propel:
-    param:
-      classname:  DebugPDO
-
-test:
-  propel:
-    param:
-      classname:  DebugPDO
-
 all:
-  propel:
-    class:        sfPropelDatabase
-    param:
-      classname:  PropelPDO
-      dsn:        mysql:dbname=merhab;host=localhost
-      username:   root
-      password:   
-      encoding:   utf8
-      persistent: true
-      pooling:    true
+    doctrine:
+        class: sfDoctrineDatabase
+        param:
+            dsn: <?php echo sfConfig::get('app_doctrine_db_dsn') ?>

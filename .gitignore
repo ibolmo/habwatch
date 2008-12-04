@@ -2,3 +2,5 @@
 /web/sf
 cache/*
 log/*
+
+config/app.php

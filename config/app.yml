@@ -1,0 +1,10 @@
+<?php require 'app.php'; ?>
+
+# default values
+all:    
+    smtp:
+        username: <?php echo $SMTP_USERNAME; ?>
+        password: <?php echo $SMTP_PASSWORD; ?>
+        
+    doctrine:
+        db_dsn: <?php echo $DOCTRINE_DB_DSN; ?>
