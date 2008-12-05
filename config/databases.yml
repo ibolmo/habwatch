@@ -2,4 +2,4 @@ all:
     doctrine:
         class: sfDoctrineDatabase
         param:
-            dsn: <?php echo sfConfig::get('app_doctrine_db_dsn') ?>
+            dsn: 'pgsql://merhab:_5#epIgrAph@localhost:5432/merhab'

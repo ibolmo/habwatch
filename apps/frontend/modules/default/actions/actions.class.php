@@ -22,7 +22,8 @@ class defaultActions extends sfActions
 	
 	public function executeContact()
 	{
-	    $this->getResponse()->addJavascript('email', sfWebResponse::LAST);
+	    $this->getResponse()->addJavascript('mootools');
+	    $this->getResponse()->addJavascript('email');
 	}
 	
 	public function executeTerms()
@@ -32,6 +33,5 @@ class defaultActions extends sfActions
 	
 	public function executeInstructions(sfWebRequest $request)
 	{
-	    
 	}
 }
