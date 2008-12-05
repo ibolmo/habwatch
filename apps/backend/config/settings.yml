@@ -1,6 +1,6 @@
 prod:
   .settings:
-    no_script_name:         on
+    no_script_name:         off
     logging_enabled:        off
 
 dev:
@@ -10,7 +10,6 @@ dev:
     cache:                  off
     no_script_name:         off
     etag:                   off
-    logging_enabled:        on
 
 test:
   .settings:
@@ -29,6 +28,7 @@ all:
     escaping_strategy:      false            # Determines how variables are made available to templates. Accepted values: on, off.
     escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
 
+    enabled_modules:        [default, sfGuardUser, sfGuardGroup, sfGuardPermissions]
 #all:
 #  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised

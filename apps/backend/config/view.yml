@@ -1,0 +1,15 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Merhab
+    description:  Merhab, Monitor Event Response Harmful Algal Bloom
+    keywords:     merhab, hab, participatory sensing, urban sensing, cens
+    language:     en
+    robots:       noindex, nofollow
+
+  stylesheets:    [main]
+
+  has_layout:     on
+  layout:         layout
