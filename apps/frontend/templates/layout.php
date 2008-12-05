@@ -14,13 +14,13 @@
 		<div class="container">
 	    	<div id="header" class="block">
 	    		<div class="column span-21">
-	    			<h1 id="logo"><?php echo sfConfig::get('app_project_name') ?></h1>
+	    			<h1 id="logo"><?php echo sfContext::getInstance()->getResponse()->getTitle() ?></h1>
 	    		</div>
 		    	<div id="top_nav" class="column span-3 right">
 		    	    <?php include_partial('default/top_nav')?>
 	    		</div>
 	    		<div class="column span-24">
-	    			<?php //$this->load->view('partials/menu.tpl.php') ?>
+	    		    <?php include_component('default', 'menu') ?>
 	    		</div>
 	    	</div>
 		    <div id="body" class="block">	

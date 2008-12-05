@@ -52,6 +52,18 @@ about:
     url: /about
     param: { module: default, action: about }
 
+contact:
+    url: /contact
+    param: { module: default, action: contact }
+    
+terms:
+    url: /terms
+    param: { module: default, action: terms }
+    
+instructions:
+    url: /instructions
+    param: { module: default, action: instructions }
+
 ###
 
 default_symfony:
