@@ -10,6 +10,8 @@ dev:
     cache:                  off
     no_script_name:         off
     etag:                   off
+    logging_enabled:        off
+
 
 test:
   .settings:
