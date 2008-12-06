@@ -1,4 +1,5 @@
-CREATE TABLE profile (id BIGSERIAL, sf_guard_user_id INT, first_name VARCHAR(255), middle_name VARCHAR(255), last_name VARCHAR(255), PRIMARY KEY(id));
+CREATE TABLE email (id BIGSERIAL, address VARCHAR(100) UNIQUE, profile_id BIGINT, PRIMARY KEY(id));
+CREATE TABLE profile (id BIGSERIAL, first_name VARCHAR(255), middle_name VARCHAR(255), last_name VARCHAR(255), sf_guard_user_id INT, PRIMARY KEY(id));
 CREATE TABLE sf_guard_group (id SERIAL, name VARCHAR(255) UNIQUE, description VARCHAR(1000), created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(group_id, permission_id));
 CREATE TABLE sf_guard_permission (id SERIAL, name VARCHAR(255) UNIQUE, description VARCHAR(1000), created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
@@ -7,6 +8,7 @@ CREATE TABLE sf_guard_user (id SERIAL, username VARCHAR(128) NOT NULL UNIQUE, al
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(user_id, group_id));
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(user_id, permission_id));
 CREATE INDEX is_active_idx ON sf_guard_user (is_active);
+ALTER TABLE email ADD FOREIGN KEY (profile_id) REFERENCES profile(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE profile ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;

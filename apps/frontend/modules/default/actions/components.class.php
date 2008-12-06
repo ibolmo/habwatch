@@ -10,7 +10,8 @@ class defaultComponents extends sfComponents
                 'text' => 'Home'    
             ),
             '@instructions' => array(
-                'text' => 'Instructions'    
+                'text' => 'Instructions',
+                'invisible' => $this->getUser()->isAuthenticated()
             )
         );
     }

@@ -14,17 +14,17 @@ class BaseProfileFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'first_name'       => new sfWidgetFormFilterInput(),
       'middle_name'      => new sfWidgetFormFilterInput(),
       'last_name'        => new sfWidgetFormFilterInput(),
+      'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'first_name'       => new sfValidatorPass(array('required' => false)),
       'middle_name'      => new sfValidatorPass(array('required' => false)),
       'last_name'        => new sfValidatorPass(array('required' => false)),
+      'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('profile_filters[%s]');
@@ -43,10 +43,10 @@ class BaseProfileFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'               => 'Number',
-      'sf_guard_user_id' => 'ForeignKey',
       'first_name'       => 'Text',
       'middle_name'      => 'Text',
       'last_name'        => 'Text',
+      'sf_guard_user_id' => 'ForeignKey',
     );
   }
 }

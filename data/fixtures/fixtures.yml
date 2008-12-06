@@ -8,3 +8,10 @@ sfGuardUser:
       first_name: Olmo
       middle_name: Fabian
       last_name: Maldonado
+      
+      Emails:
+          primary:
+              address: olmo.maldonado@gmail.com
+          secondary:
+              address: ibolmo@ucla.edu
+    

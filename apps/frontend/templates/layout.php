@@ -14,7 +14,7 @@
 		<div class="container">
 	    	<div id="header" class="block">
 	    		<div class="column span-21">
-	    			<h1 id="logo"><?php echo sfContext::getInstance()->getResponse()->getTitle() ?></h1>
+	    			<h1 id="logo"><?php echo link_to(sfConfig::get('app_project_name'), '@homepage') ?></h1>
 	    		</div>
 		    	<div id="top_nav" class="column span-3 right">
 		    	    <?php include_partial('default/top_nav')?>
@@ -23,10 +23,7 @@
 	    		    <?php include_component('default', 'menu') ?>
 	    		</div>
 	    	</div>
-		    <div id="body" class="block">	
-    			<?php if (@$heading): ?>
-    			<h2><?php echo $heading ?></h2>
-    			<?php endif ?>
+		    <div id="body" class="block">
     			<?php foreach (array('errors' => 'error', 'notices' => 'notice', 'successes' => 'success') as $type => $class): ?>		
     			<?php if (@${$type}): ?>
     				<ul id="page_<?php echo $type ?>" class="log <?php echo $class ?>">

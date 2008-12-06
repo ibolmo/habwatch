@@ -1,0 +1,1 @@
+<?php include_partial('send_register_complete') ?>

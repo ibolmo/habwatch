@@ -33,7 +33,7 @@ h2 { border-bottom: 1px dotted #ccc; margin-top:0.5em; }
 	display: block;
 	width: 708px;
 	height: 94px;
-	text-indent: -100000px;
+	/* text-indent: -100000px; */
 }
 
 #header .tabs {
