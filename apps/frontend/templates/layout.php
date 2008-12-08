@@ -3,7 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <?php include_title() ?>
+        <title>
+            <?php if (!include_slot('title')): ?>
+                <?php echo sfConfig::get('app_project_name') ?>
+            <?php endif ?>
+        </title>
         <?php include_http_metas() ?>
         <?php include_metas() ?>
         <?php include_stylesheets() ?>
@@ -12,6 +16,7 @@
 	</head>
 	<body>
 		<div class="container">
+		    
 	    	<div id="header" class="block">
 	    		<div class="column span-21">
 	    			<h1 id="logo"><?php echo link_to(sfConfig::get('app_project_name'), '@homepage') ?></h1>
@@ -23,23 +28,24 @@
 	    		    <?php include_component('default', 'menu') ?>
 	    		</div>
 	    	</div>
+	    	
 		    <div id="body" class="block">
-    			<?php foreach (array('errors' => 'error', 'notices' => 'notice', 'successes' => 'success') as $type => $class): ?>		
-    			<?php if (@${$type}): ?>
-    				<ul id="page_<?php echo $type ?>" class="log <?php echo $class ?>">
-    					<?php foreach (${$type} as $item): ?>
-    					<li><?php echo $item ?></li>
-    					<?php endforeach ?>
-    				</ul>
-    			<?php endif ?>
-    			<?php endforeach ?>
+		        <?php foreach (array('error', 'notice', 'success') as $type): ?>
+    		        <?php if ($sf_user->hasFlash($type)): ?>
+    		            <div class="flash <?php echo $type ?>"><?php echo $sf_user->getFlash($type) ?></div>
+    		        <?php endif ?>
+		        <?php endforeach ?>
+		        
 				<?php echo $sf_content ?>
 			</div>
+			
 			<hr class="space" />
 			<hr />
+			
 			<div id="footer" class="block">
 	        	<?php include_partial('default/footer') ?>
 	        </div>
+	        
 		</div>
 		<?php include_javascripts() ?>
 	</body>

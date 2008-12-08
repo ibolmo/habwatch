@@ -14,14 +14,14 @@
 	overflow: hidden;
 }
 
-body {
+body, #body {
 	margin:1.5em 0;
 	font-family: tahoma, trebuchet ms, arial, sans serif;
 }
 
 a, .link { color: #0078CC; text-decoration: none; cursor: pointer; }
 a:hover, .link:hover { color: #000; }
-h2 { border-bottom: 1px dotted #ccc; margin-top:0.5em; }
+h2 { border-bottom: 1px solid #eee; }
 
 #logo {
 	background: url(../images/NetworkedNaturalist.png) no-repeat;
@@ -127,6 +127,7 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 }
 
 .thumbnail img {
+	vertical-align: middle;
 	border: 0;
 	height: 100%;
 }

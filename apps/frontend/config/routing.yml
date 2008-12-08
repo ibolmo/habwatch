@@ -1,3 +1,9 @@
+account:
+    url: /account
+    param: { module: account, action: index }
+
+##
+
 sf_guard_signin:
     url:   /login
     param: { module: sfGuardAuth, action: signin }
@@ -22,17 +28,9 @@ sf_guard_register:
     url:   /register
     param: { module: sfGuardRegister, action: index }
     
-sf_guard_do_register:
-    url: /register/do
-    param: { module: sfGuardRegister, action: register }
-    
 sf_guard_register_confirm:
     url: /register/confirm/:key/:username
     param: { module: sfGuardRegister, action: confirm }
-
-sf_guard_register_success:
-    url: /register/success
-    param: { module: sfGuardRegister, action: register_success }
 
 ###
 
