@@ -1,8 +1,18 @@
 Profile:
     columns:
-        first_name: string(255)
-        middle_name: string(255)
-        last_name: string(255)
+        first_name:
+            type: string
+            length: 128
+            notnull: true
+
+        middle_name: 
+            type: string
+            length: 100
+            
+        last_name: 
+            type: string
+            length: 100
+            notnull: true
         
         sf_guard_user_id: integer(4)
         
@@ -12,17 +22,25 @@ Profile:
             foreignType: one
             
         Emails:
-            class: Email
+            class: Emailaddress
             type: many
             local: id
             foreign: profile_id
             
-Email:
+        Phones:
+            class: Phonenumber
+            type: many
+            local: id
+            foreign: profile_id
+
+Emailaddress:
     columns:
         address:
             type: string
             length: 100
             unique: true
+            notnull: true
+            nospace: true
         
         profile_id: integer
             
@@ -31,4 +49,200 @@ Email:
             local: profile_id
             foreign: id
             onDelete: CASCADE
-                
+
+Phonenumber:
+    columns:
+        number:
+            type: integer
+            length: 14
+            unique: true
+            notnull: true
+            nospace: true
+        
+        profile_id: integer
+            
+    relations:
+        Profile:
+            local: profile_id
+            foreign: id
+            onDelete: CASCADE
+
+# From Partisan
+Datum:
+    columns:
+        file: blob
+
+        # Foreign Keys
+        participant_id: integer
+        campaign_id: integer
+
+    relations:
+        Participant:
+            onDelete: CASCADE
+            owningSide: true
+
+        Campaign:
+            owningSide: true
+
+        Preference:
+            type: one
+            local: id
+            foreign: datum_id
+
+    actAs:
+        Timestampable:
+            
+Picture:
+    inheritance:
+        extends: Datum
+        type: concrete
+        
+    columns:
+        file:
+            name: file as still
+            type: blob
+            
+        resolution: integer
+        
+        quality:
+            type: string
+            length: 10
+            
+        format:
+            type: string
+            length: 25
+            
+GPS:
+    columns:
+        # Foreign Keys
+        hardware_id: integer
+        
+    relations:
+        Hardware:
+            type: one
+            foreignType: one
+            local: hardware_id
+            foreign: id
+            owningSide: true
+
+        Satellites:
+            type: one
+            local: id
+            foreign: g_p_s_id
+
+        Position:
+            type: one
+            local: id
+            foreign: g_p_s_id
+
+        Course:
+            type: one
+            local: id
+            foreign: g_p_s_id
+
+Satellites:
+    inheritance:
+        extends: Datum
+        type: concrete
+
+    columns:
+        horizontal_dop: float
+        
+        used_satellites:
+            type: integer
+            length: 10
+            
+        vertical_dop: float
+        
+        time: float
+        
+        satellites:
+            type: integer
+            length: 10
+            
+        time_dop: float
+
+        # Foreign Keys
+        g_p_s_id: integer
+
+    relations:
+        GPS:
+            type: one
+            local: g_p_s_id
+            foreign: id
+            owningSide: true
+
+Position:
+    tableName: position_table
+
+    inheritance:
+        extends: Datum
+        type: concrete
+
+    columns:
+        latitude: float
+        altitude: float
+        vertical_accuracy: float
+        longitude: float
+        horizontal_accuracy: float
+
+        # Foreign Keys
+        g_p_s_id: integer
+
+    relations:
+        GPS:
+            type: one
+            local: g_p_s_id
+            foreign: id
+            owningSide: true
+
+Course:
+    inheritance:
+        extends: Datum
+        type: concrete
+
+    columns:
+        speed: float
+        heading: float
+        heading_accuracy: float
+        speed_accuracy: float
+
+        # Foreign Keys
+        g_p_s_id: integer
+
+    relations:
+        GPS:
+            type: one
+            local: g_p_s_id
+            foreign: id
+            owningSide: true
+
+# End of Partisan models
+
+Email:
+    inheritance:
+        extends: Datum
+        type: concrete
+        
+    columns:
+        from:
+            type: string
+            length: 125
+            nospace: true
+                    
+        to:
+            type: string
+            length: 125
+            nospace: true
+            
+        carbon_copy:
+            type: string
+            nospace: true
+            
+        blind_carbon_copy:
+            type: string
+            nospace: true
+            
+        message:
+            type: string
+            

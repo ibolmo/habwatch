@@ -1,6 +1,9 @@
 account:
     url: /account
+    class: sfDoctrineRoute
     param: { module: account, action: index }
+    requirements:
+        sf_method: [GET, PUT]
 
 ##
 
@@ -57,16 +60,3 @@ terms:
 instructions:
     url: /instructions
     param: { module: default, action: instructions }
-
-###
-
-default_symfony:
-    url:   /symfony/:action/*
-    param: { module: default }
-
-default_index:
-    url:   /:module
-    param: { action: index }
-
-default:
-    url:   /:module/:action/*
