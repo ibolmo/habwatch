@@ -1,9 +1,6 @@
 account:
     url: /account
-    class: sfDoctrineRoute
     param: { module: account, action: index }
-    requirements:
-        sf_method: [GET, PUT]
 
 ##
 

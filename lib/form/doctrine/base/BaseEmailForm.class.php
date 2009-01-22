@@ -12,15 +12,31 @@ class BaseEmailForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'address'    => new sfWidgetFormInput(),
-      'profile_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Profile', 'add_empty' => true)),
+      'id'                => new sfWidgetFormInputHidden(),
+      'file'              => new sfWidgetFormTextarea(),
+      'sf_guard_user_id'  => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'campaign_id'       => new sfWidgetFormInput(),
+      'from'              => new sfWidgetFormInput(),
+      'to'                => new sfWidgetFormInput(),
+      'carbon_copy'       => new sfWidgetFormTextarea(),
+      'blind_carbon_copy' => new sfWidgetFormTextarea(),
+      'message'           => new sfWidgetFormTextarea(),
+      'created_at'        => new sfWidgetFormDateTime(),
+      'updated_at'        => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('model' => 'Email', 'column' => 'id', 'required' => false)),
-      'address'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
+      'id'                => new sfValidatorDoctrineChoice(array('model' => 'Email', 'column' => 'id', 'required' => false)),
+      'file'              => new sfValidatorString(array('required' => false)),
+      'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
+      'campaign_id'       => new sfValidatorInteger(array('required' => false)),
+      'from'              => new sfValidatorString(array('max_length' => 125, 'required' => false)),
+      'to'                => new sfValidatorString(array('max_length' => 125, 'required' => false)),
+      'carbon_copy'       => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
+      'blind_carbon_copy' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
+      'message'           => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
+      'created_at'        => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('email[%s]');

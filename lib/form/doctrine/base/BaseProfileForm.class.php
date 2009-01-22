@@ -21,9 +21,9 @@ class BaseProfileForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'               => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'column' => 'id', 'required' => false)),
-      'first_name'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'middle_name'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'last_name'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'first_name'       => new sfValidatorString(array('max_length' => 128)),
+      'middle_name'      => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'last_name'        => new sfValidatorString(array('max_length' => 100)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
     ));
 

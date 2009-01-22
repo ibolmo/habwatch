@@ -1,17 +1,23 @@
 sfGuardUser:
-  ibolmo:
-    username:       ibolmo
-    password:       ibolmo
-    is_super_admin: true
-    
-    Profile:
-      first_name: Olmo
-      middle_name: Fabian
-      last_name: Maldonado
-      
-      Emails:
-          primary:
-              address: olmo.maldonado@gmail.com
-          secondary:
-              address: ibolmo@ucla.edu
-    
+    ibolmo:
+        username: ibolmo
+        password: ibolmo
+        is_super_admin: true
+        
+        Profile:
+            first_name: Olmo
+            middle_name: Fabian
+            last_name: Maldonado
+            
+            Emails:
+                primary:
+                    address: olmo.maldonado@gmail.com
+                secondary:
+                    address: ibolmo@ucla.edu
+            
+            Phones:
+                primary:
+                    number: 9568215736                    
+        
+        
+        
