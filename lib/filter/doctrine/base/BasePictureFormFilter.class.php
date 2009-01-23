@@ -27,8 +27,8 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'still'             => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'      => new sfValidatorInteger(array('required' => false)),
-      'resolution'       => new sfValidatorInteger(array('required' => false)),
+      'campaign_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'resolution'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'quality'          => new sfValidatorPass(array('required' => false)),
       'format'           => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),

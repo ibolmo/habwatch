@@ -18,7 +18,7 @@ class BaseGPSFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'hardware_id' => new sfValidatorInteger(array('required' => false)),
+      'hardware_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('gps_filters[%s]');

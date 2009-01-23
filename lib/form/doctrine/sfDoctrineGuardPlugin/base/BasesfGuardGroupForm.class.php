@@ -17,8 +17,8 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
       'description'      => new sfWidgetFormTextarea(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'users_list'       => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardUser')),
-      'permissions_list' => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardPermission')),
+      'users_list'       => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
+      'permissions_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(
@@ -30,6 +30,10 @@ class BasesfGuardGroupForm extends BaseFormDoctrine
       'users_list'       => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'sfGuardGroup', 'column' => array('name')))
+    );
 
     $this->widgetSchema->setNameFormat('sf_guard_group[%s]');
 

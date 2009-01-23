@@ -22,8 +22,8 @@ class BasesfGuardUserForm extends BaseFormDoctrine
       'last_login'       => new sfWidgetFormDateTime(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'groups_list'      => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardGroup')),
-      'permissions_list' => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardPermission')),
+      'groups_list'      => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardGroup')),
+      'permissions_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(
@@ -40,6 +40,10 @@ class BasesfGuardUserForm extends BaseFormDoctrine
       'groups_list'      => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('username')))
+    );
 
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
 

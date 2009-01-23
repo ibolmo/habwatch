@@ -23,6 +23,10 @@ class BaseEmailaddressForm extends BaseFormDoctrine
       'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Emailaddress', 'column' => array('address')))
+    );
+
     $this->widgetSchema->setNameFormat('emailaddress[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

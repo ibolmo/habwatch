@@ -23,6 +23,10 @@ class BasePhonenumberForm extends BaseFormDoctrine
       'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Phonenumber', 'column' => array('number')))
+    );
+
     $this->widgetSchema->setNameFormat('phonenumber[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

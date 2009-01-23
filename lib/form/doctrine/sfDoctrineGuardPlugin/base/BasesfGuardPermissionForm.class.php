@@ -17,8 +17,8 @@ class BasesfGuardPermissionForm extends BaseFormDoctrine
       'description' => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
-      'groups_list' => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardGroup')),
-      'users_list'  => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardUser')),
+      'groups_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardGroup')),
+      'users_list'  => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
     ));
 
     $this->setValidators(array(
@@ -30,6 +30,10 @@ class BasesfGuardPermissionForm extends BaseFormDoctrine
       'groups_list' => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardGroup', 'required' => false)),
       'users_list'  => new sfValidatorDoctrineChoiceMany(array('model' => 'sfGuardUser', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'sfGuardPermission', 'column' => array('name')))
+    );
 
     $this->widgetSchema->setNameFormat('sf_guard_permission[%s]');
 

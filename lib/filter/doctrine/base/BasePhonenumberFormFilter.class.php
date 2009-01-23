@@ -19,7 +19,7 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'number'     => new sfValidatorInteger(array('required' => false)),
+      'number'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'profile_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Profile', 'column' => 'id')),
     ));
 

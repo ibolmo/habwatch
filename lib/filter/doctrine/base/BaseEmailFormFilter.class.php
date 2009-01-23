@@ -29,7 +29,7 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'              => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'       => new sfValidatorInteger(array('required' => false)),
+      'campaign_id'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'from'             => new sfValidatorPass(array('required' => false)),
       'to'               => new sfValidatorPass(array('required' => false)),
       'carbon_copy'       => new sfValidatorPass(array('required' => false)),
