@@ -14,12 +14,15 @@ Profile:
             length: 100
             notnull: true
         
-        sf_guard_user_id: integer(4)
+        sf_guard_user_id:
+            type: integer
+            length: 4
         
     relations:
         User:
             class: sfGuardUser
             foreignType: one
+            onDelete: CASCADE
             
         Emails:
             class: Emailaddress

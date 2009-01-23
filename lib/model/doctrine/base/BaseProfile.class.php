@@ -11,13 +11,14 @@ abstract class BaseProfile extends sfDoctrineRecord
     $this->hasColumn('first_name', 'string', 128, array('type' => 'string', 'length' => 128, 'notnull' => true));
     $this->hasColumn('middle_name', 'string', 100, array('type' => 'string', 'length' => 100));
     $this->hasColumn('last_name', 'string', 100, array('type' => 'string', 'length' => 100, 'notnull' => true));
-    $this->hasColumn('sf_guard_user_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('sf_guard_user_id', 'integer', 4, array('type' => 'integer', 'length' => 4));
   }
 
   public function setUp()
   {
     $this->hasOne('sfGuardUser as User', array('local' => 'sf_guard_user_id',
-                                               'foreign' => 'id'));
+                                               'foreign' => 'id',
+                                               'onDelete' => 'CASCADE'));
 
     $this->hasMany('Emailaddress as Emails', array('local' => 'id',
                                                    'foreign' => 'profile_id'));
