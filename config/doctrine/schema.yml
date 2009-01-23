@@ -17,6 +17,7 @@ Profile:
         sf_guard_user_id:
             type: integer
             length: 4
+            notnull: true            
         
     relations:
         User:
