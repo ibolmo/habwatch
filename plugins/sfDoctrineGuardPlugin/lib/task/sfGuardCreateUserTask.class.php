@@ -24,14 +24,14 @@ class sfGuardCreateUserTask extends sfDoctrineBaseTask
   protected function configure()
   {
     $this->addArguments(array(
-      new sfCommandArgument('application', sfCommandArgument::REQUIRED, 'The application name'),
       new sfCommandArgument('username', sfCommandArgument::REQUIRED, 'The user name'),
       new sfCommandArgument('password', sfCommandArgument::REQUIRED, 'The password'),
     ));
 
     $this->addOptions(array(
+      new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', null),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
-      new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
+      new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
     ));
 
     $this->namespace = 'guard';
@@ -50,9 +50,7 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $configuration = ProjectConfiguration::getApplicationConfiguration($arguments['application'], $options['env'], true);
-
-    $databaseManager = new sfDatabaseManager($configuration);
+    $databaseManager = new sfDatabaseManager($this->configuration);
 
     $user = new sfGuardUser();
     $user->setUsername($arguments['username']);

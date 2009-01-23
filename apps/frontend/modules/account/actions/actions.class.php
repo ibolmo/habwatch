@@ -17,11 +17,7 @@ class accountActions extends sfActions
      */
     public function executeIndex(sfWebRequest $request)
     {
-        # sfGuardUser has password and username (disabled)
-        
-        # Profile has first, middle, and last name plus Emails
-        
-        
-        $this->form = new ProfileForm();
+        $this->AccountForm = new AccountForm();
+        $this->UserForm = new UserForm();
     }
 }
