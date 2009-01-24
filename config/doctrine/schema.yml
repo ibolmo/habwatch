@@ -26,18 +26,18 @@ Profile:
             onDelete: CASCADE
             
         Emails:
-            class: Emailaddress
+            class: EmailAddress
             type: many
             local: id
             foreign: profile_id
             
         Phones:
-            class: Phonenumber
+            class: PhoneNumber
             type: many
             local: id
             foreign: profile_id
 
-Emailaddress:
+EmailAddress:
     columns:
         address:
             type: string
@@ -54,7 +54,7 @@ Emailaddress:
             foreign: id
             onDelete: CASCADE
 
-Phonenumber:
+PhoneNumber:
     columns:
         number:
             type: integer

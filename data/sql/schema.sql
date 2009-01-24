@@ -1,9 +1,9 @@
 CREATE TABLE datum (id BIGSERIAL, file BYTEA, sf_guard_user_id INT, campaign_id BIGINT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
 CREATE TABLE course (id BIGSERIAL, file BYTEA, sf_guard_user_id INT, campaign_id BIGINT, speed FLOAT, heading FLOAT, heading_accuracy FLOAT, speed_accuracy FLOAT, g_p_s_id BIGINT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
 CREATE TABLE email (id BIGSERIAL, file BYTEA, sf_guard_user_id INT, campaign_id BIGINT, _from VARCHAR(125), _to VARCHAR(125), carbon_copy TEXT, blind_carbon_copy TEXT, message TEXT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
-CREATE TABLE emailaddress (id BIGSERIAL, address VARCHAR(100) NOT NULL UNIQUE, profile_id BIGINT, PRIMARY KEY(id));
+CREATE TABLE email_address (id BIGSERIAL, address VARCHAR(100) NOT NULL UNIQUE, profile_id BIGINT, PRIMARY KEY(id));
 CREATE TABLE g_p_s (id BIGSERIAL, hardware_id BIGINT, PRIMARY KEY(id));
-CREATE TABLE phonenumber (id BIGSERIAL, number BIGINT NOT NULL, profile_id BIGINT, PRIMARY KEY(id));
+CREATE TABLE phone_number (id BIGSERIAL, number BIGINT NOT NULL, profile_id BIGINT, PRIMARY KEY(id));
 CREATE TABLE picture (id BIGSERIAL, file BYTEA, sf_guard_user_id INT, campaign_id BIGINT, resolution BIGINT, quality VARCHAR(10), format VARCHAR(25), created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
 CREATE TABLE position_table (id BIGSERIAL, file BYTEA, sf_guard_user_id INT, campaign_id BIGINT, latitude FLOAT, altitude FLOAT, vertical_accuracy FLOAT, longitude FLOAT, horizontal_accuracy FLOAT, g_p_s_id BIGINT, created_at TIMESTAMP without time zone, updated_at TIMESTAMP without time zone, PRIMARY KEY(id));
 CREATE TABLE profile (id BIGSERIAL, first_name VARCHAR(128) NOT NULL, middle_name VARCHAR(100), last_name VARCHAR(100) NOT NULL, sf_guard_user_id INT NOT NULL, PRIMARY KEY(id));
@@ -20,8 +20,8 @@ ALTER TABLE datum ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id
 ALTER TABLE course ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE course ADD FOREIGN KEY (g_p_s_id) REFERENCES g_p_s(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE email ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
-ALTER TABLE emailaddress ADD FOREIGN KEY (profile_id) REFERENCES profile(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
-ALTER TABLE phonenumber ADD FOREIGN KEY (profile_id) REFERENCES profile(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE email_address ADD FOREIGN KEY (profile_id) REFERENCES profile(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE phone_number ADD FOREIGN KEY (profile_id) REFERENCES profile(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE picture ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE position_table ADD FOREIGN KEY (sf_guard_user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE position_table ADD FOREIGN KEY (g_p_s_id) REFERENCES g_p_s(id) NOT DEFERRABLE INITIALLY IMMEDIATE;

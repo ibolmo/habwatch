@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Emailaddress form base class.
+ * EmailAddress form base class.
  *
  * @package    form
- * @subpackage emailaddress
+ * @subpackage email_address
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
-class BaseEmailaddressForm extends BaseFormDoctrine
+class BaseEmailAddressForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -18,16 +18,16 @@ class BaseEmailaddressForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('model' => 'Emailaddress', 'column' => 'id', 'required' => false)),
+      'id'         => new sfValidatorDoctrineChoice(array('model' => 'EmailAddress', 'column' => 'id', 'required' => false)),
       'address'    => new sfValidatorString(array('max_length' => 100)),
       'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Emailaddress', 'column' => array('address')))
+      new sfValidatorDoctrineUnique(array('model' => 'EmailAddress', 'column' => array('address')))
     );
 
-    $this->widgetSchema->setNameFormat('emailaddress[%s]');
+    $this->widgetSchema->setNameFormat('email_address[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -36,7 +36,7 @@ class BaseEmailaddressForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Emailaddress';
+    return 'EmailAddress';
   }
 
 }

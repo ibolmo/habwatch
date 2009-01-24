@@ -3,13 +3,13 @@
 require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
- * Emailaddress filter form base class.
+ * EmailAddress filter form base class.
  *
  * @package    filters
- * @subpackage Emailaddress *
+ * @subpackage EmailAddress *
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class BaseEmailaddressFormFilter extends BaseFormFilterDoctrine
+class BaseEmailAddressFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -23,7 +23,7 @@ class BaseEmailaddressFormFilter extends BaseFormFilterDoctrine
       'profile_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Profile', 'column' => 'id')),
     ));
 
-    $this->widgetSchema->setNameFormat('emailaddress_filters[%s]');
+    $this->widgetSchema->setNameFormat('email_address_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -32,7 +32,7 @@ class BaseEmailaddressFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Emailaddress';
+    return 'EmailAddress';
   }
 
   public function getFields()

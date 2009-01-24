@@ -20,10 +20,10 @@ abstract class BaseProfile extends sfDoctrineRecord
                                                'foreign' => 'id',
                                                'onDelete' => 'CASCADE'));
 
-    $this->hasMany('Emailaddress as Emails', array('local' => 'id',
+    $this->hasMany('EmailAddress as Emails', array('local' => 'id',
                                                    'foreign' => 'profile_id'));
 
-    $this->hasMany('Phonenumber as Phones', array('local' => 'id',
+    $this->hasMany('PhoneNumber as Phones', array('local' => 'id',
                                                   'foreign' => 'profile_id'));
   }
 }
