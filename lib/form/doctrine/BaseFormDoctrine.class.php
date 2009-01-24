@@ -8,4 +8,10 @@
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {
+    public function renderHiddenFields()
+    {
+        $output = parent::renderHiddenFields();
+        foreach ($this->getFormFieldSchema() as $name => $field) if ($field->isHidden()) unset($this[$name]);
+        return $output;
+    }
 }
