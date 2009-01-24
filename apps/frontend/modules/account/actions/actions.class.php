@@ -8,7 +8,7 @@
  * @author     Olmo Maldonado, <ibolmo@ucla.edu>
  * @version    SVN: $Id: actions.class.php 12479 2008-10-31 10:54:40Z fabien $
  */
-class accountActions extends sfActions
+class accountActions extends myActions
 {
     /**
      * Executes index action
@@ -17,7 +17,13 @@ class accountActions extends sfActions
      */
     public function executeIndex(sfWebRequest $request)
     {
-        $this->AccountForm = new AccountForm();
-        $this->UserForm = new UserForm();
+        $this->UserForm = new UserForm($this->User);
+        $this->AccountForm = new AccountForm($this->User->Profile);
+        
+        if ($request->isMethod('post')) {
+            # Todo, load default some how.
+            $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
+            $this->AccountForm->bindAndSave($request->getParameter('profile'));
+        }
     }
 }

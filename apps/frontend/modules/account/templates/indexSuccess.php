@@ -1,4 +1,4 @@
-<?php echo $AccountForm->renderFormTag(url_for('@account')) ?>
+<form method="post" action="<?= url_for('@account') ?>"
 	<div class="block">
 		<div class="column border span-10 append-1">
 			<fieldset id="account_essentials"> 
@@ -28,7 +28,7 @@
 			<fieldset id="account_privacy"> 
 				<legend>Privacy</legend> 
 				<p>
-					You may disable any phone number, or email address to stop receiving messages from Networked Naturalist.
+					You may disable any phone number, or email address to stop receiving messages from <?= sfConfig::get('app_project_name') ?>.
 				</p>
 			</fieldset>		
 		</div>
