@@ -28,7 +28,10 @@ class accountActions extends myActions
             #$success[] = $this->AccountForm->bindAndSave($request->getParameter('profile'));
             $success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
             if (array_sum($success)) {
+                $this->getUser()->setFlash('success', 'Your account information has been updated');
                 $this->redirect('@account');
+            } else {
+                $this->getUser()->setFlash('error', 'There was an error with the form');
             }
         }
     }
