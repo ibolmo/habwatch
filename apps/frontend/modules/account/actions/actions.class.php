@@ -23,11 +23,13 @@ class accountActions extends myActions
         $this->PhoneNumbersForm = new PhoneNumbersForm($this->User->Profile);
         
         if ($request->isMethod('post')) {
-            # Todo, load default some how.
-            #$this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
-            #$this->AccountForm->bindAndSave($request->getParameter('profile'));
-            
-            $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
+            $success = array();
+            #$success[] = $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
+            #$success[] = $this->AccountForm->bindAndSave($request->getParameter('profile'));
+            $success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
+            if (array_sum($success)) {
+                $this->redirect('@account');
+            }
         }
     }
 }

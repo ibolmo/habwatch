@@ -41,7 +41,7 @@ class PhoneNumbersForm extends sfFormDoctrine
         
         $this->object->Phones->delete();
         
-        foreach ($this->values['Phones'] as $i => $number) {
+        foreach ($this->values['Phones'] as $number) {
             $Phone = new PhoneNumber();
             $Phone->number = $number;
             $this->object->Phones[] = $Phone;
