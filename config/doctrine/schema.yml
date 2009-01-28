@@ -57,7 +57,7 @@ EmailAddress:
 PhoneNumber:
     columns:
         number:
-            type: integer
+            type: string
             length: 14
             unique: true
             notnull: true
