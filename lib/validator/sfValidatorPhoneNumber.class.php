@@ -21,7 +21,8 @@ class sfValidatorPhoneNumber extends sfValidatorBase
     protected function configure($options = array(), $messages = array())
     {
         $this->addOption('pattern', "/(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}/");$this->setMessage('invalid', '"%value%" is not a phone number.');
-    
+        $this->addOption('required', false);
+        
         $this->setMessage('invalid', '"%value%" is not a phone number.');
     }
 
