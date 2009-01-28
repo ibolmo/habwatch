@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Emailaddress filter form.
+ * EmailAddress filter form.
  *
  * @package    filters
- * @subpackage Emailaddress *
+ * @subpackage EmailAddress *
  * @version    SVN: $Id: sfDoctrineFormFilterTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class EmailaddressFormFilter extends BaseEmailaddressFormFilter
+class EmailAddressFormFilter extends BaseEmailAddressFormFilter
 {
   public function configure()
   {

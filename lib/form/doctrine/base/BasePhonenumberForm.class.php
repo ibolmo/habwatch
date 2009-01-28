@@ -1,13 +1,13 @@
 <?php
 
 /**
- * PhoneNumber form base class.
+ * Phonenumber form base class.
  *
  * @package    form
- * @subpackage phone_number
+ * @subpackage phonenumber
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
-class BasePhoneNumberForm extends BaseFormDoctrine
+class BasePhonenumberForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -18,16 +18,12 @@ class BasePhoneNumberForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('model' => 'PhoneNumber', 'column' => 'id', 'required' => false)),
-      'number'     => new sfValidatorInteger(),
+      'id'         => new sfValidatorDoctrineChoice(array('model' => 'Phonenumber', 'column' => 'id', 'required' => false)),
+      'number'     => new sfValidatorString(array('max_length' => 14)),
       'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
     ));
 
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'PhoneNumber', 'column' => array('number')))
-    );
-
-    $this->widgetSchema->setNameFormat('phone_number[%s]');
+    $this->widgetSchema->setNameFormat('phonenumber[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -36,7 +32,7 @@ class BasePhoneNumberForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'PhoneNumber';
+    return 'Phonenumber';
   }
 
 }

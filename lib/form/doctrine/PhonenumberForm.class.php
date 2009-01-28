@@ -1,15 +1,17 @@
 <?php
 
 /**
- * Phonenumber form.
+ * PhoneNumber form.
  *
  * @package    form
- * @subpackage Phonenumber
+ * @subpackage PhoneNumber
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 6174 2007-11-27 06:22:40Z fabien $
  */
-class PhonenumberForm extends BasePhonenumberForm
+class PhoneNumberForm extends BasePhoneNumberForm
 {
-  public function configure()
-  {
-  }
+    public function configure()
+    {
+        unset($this['id'], $this->widgetSchema['profile_id']);
+        $this->validatorSchema['number'] = new sfValidatorPhoneNumber();
+    }
 }

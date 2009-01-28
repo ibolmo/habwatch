@@ -59,7 +59,6 @@ PhoneNumber:
         number:
             type: string
             length: 14
-            unique: true
             notnull: true
             nospace: true
         

@@ -8,7 +8,7 @@ abstract class BasePhoneNumber extends sfDoctrineRecord
   public function setTableDefinition()
   {
     $this->setTableName('phone_number');
-    $this->hasColumn('number', 'integer', 14, array('type' => 'integer', 'length' => 14, 'unique' => true, 'notnull' => true, 'nospace' => true));
+    $this->hasColumn('number', 'string', 14, array('type' => 'string', 'length' => 14, 'notnull' => true, 'nospace' => true));
     $this->hasColumn('profile_id', 'integer', null, array('type' => 'integer'));
   }
 

@@ -3,13 +3,13 @@
 require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
- * PhoneNumber filter form base class.
+ * Phonenumber filter form base class.
  *
  * @package    filters
- * @subpackage PhoneNumber *
+ * @subpackage Phonenumber *
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class BasePhoneNumberFormFilter extends BaseFormFilterDoctrine
+class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -19,11 +19,11 @@ class BasePhoneNumberFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'number'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'number'     => new sfValidatorPass(array('required' => false)),
       'profile_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Profile', 'column' => 'id')),
     ));
 
-    $this->widgetSchema->setNameFormat('phone_number_filters[%s]');
+    $this->widgetSchema->setNameFormat('phonenumber_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -32,14 +32,14 @@ class BasePhoneNumberFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'PhoneNumber';
+    return 'Phonenumber';
   }
 
   public function getFields()
   {
     return array(
       'id'         => 'Number',
-      'number'     => 'Number',
+      'number'     => 'Text',
       'profile_id' => 'ForeignKey',
     );
   }

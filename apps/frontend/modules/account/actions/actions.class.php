@@ -20,10 +20,14 @@ class accountActions extends myActions
         $this->UserForm = new UserForm($this->User);
         $this->AccountForm = new AccountForm($this->User->Profile);
         
+        $this->PhoneNumbersForm = new PhoneNumbersForm($this->User->Profile);
+        
         if ($request->isMethod('post')) {
             # Todo, load default some how.
-            $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
-            $this->AccountForm->bindAndSave($request->getParameter('profile'));
+            #$this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
+            #$this->AccountForm->bindAndSave($request->getParameter('profile'));
+            
+            $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
         }
     }
 }
