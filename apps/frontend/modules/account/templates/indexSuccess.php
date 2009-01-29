@@ -49,7 +49,7 @@
     					    </td>
                             <?php endif ?>
         					<td>
-        					    <?= $Form['number'] ?>
+        					    <?= $Form['number']->render($Form['disabled']->getValue() ? array('class' => 'disabled') : array()) ?>
         				    </td>
         					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
         						<a href="#" class="disable_field"><?= (bool) $Form['disabled']->getValue() ? 'enable' : 'disable' ?></a>

@@ -21,7 +21,8 @@ window.addEvent('domready', function(){
 	
 	var remove_field = function(){
 		var row = this.getParent('tr');
-		if (!row.getElement('input').get('id')) {
+		console.log(row.getElement('input').get('name'), !row.getElement('input').get('id').match(/\[1\]/g));
+		if (!row.getElement('input').get('id').match(/_1_/g)) {
 			var rowspan = row.getParent().getElement('tr:nth-child(2) td');
 			rowspan.set('rowspan', (rowspan.get('rowspan') * 1) - 1);
 			row.empty().destroy();
