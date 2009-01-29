@@ -27,9 +27,9 @@ class accountActions extends myActions
         
         if ($request->isMethod('post')) {
             $success = array();
-            #$success[] = $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
-            #$success[] = $this->AccountForm->bindAndSave($request->getParameter('profile'));
-            #$success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
+            $success[] = $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
+            $success[] = $this->AccountForm->bindAndSave($request->getParameter('profile'));
+            $success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
             $success[] = $this->EmailAddressesForm->bindAndSave(array('Emails' => $request->getParameter('Emails')));
             
             if (array_sum($success)) {
