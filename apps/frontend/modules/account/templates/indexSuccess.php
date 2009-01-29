@@ -41,74 +41,38 @@
 				    <?= $PhoneNumberForm->renderHiddenFields() ?>
 				<?php endforeach ?>
 				<table id="account_phone_numbers_table" class="settings_table">
-					<?php foreach ($PhoneNumbersForm->PhoneNumberForms as $i => $Form): ?>
-					    <tr>
-                            <?php if ($i == 0): ?>
-        					<td class="span-4">
-        					    <?= $Form['number']->renderLabel() ?>
-    					    </td>
-                            <?php endif ?>
-        					<td>
-        					    <?= $Form['number']->render($Form['disabled']->getValue() ? array('class' => 'disabled') : array()) ?>
-        				    </td>
-        					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
-        						<a href="#" class="disable_field"><?= (bool) $Form['disabled']->getValue() ? 'enable' : 'disable' ?></a>
-        						<?= $Form['disabled']->render(array('class' => 'invisible')) ?>
-        					</td>
-        					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
-        					    <?php if ($i != 0): ?>
-        					    <a href="#" class="remove_field">remove</a>
-        					    <?php endif ?>
-        				    </td>
-        				</tr>
-        				<?php if ($i == 0): ?>
-        				<tr>
-        					<td rowspan="<?= count($PhoneNumbersForm->PhoneNumberForms) + 2 ?>">
-        					    <?= $PhoneNumbersForm->PhoneNumberForms[1]['number']->renderLabel() ?>
-    					    </td>
-        				</tr>
-        				<?php endif ?>
-					<?php endforeach ?>
-    				<tr>
-    					<td class="center"><a href="#" class="add_field">Add more</a></td>
-    					<td colspan="2">&nbsp;</td>
-    				</tr>
-    					    
-    					    <?php /* ?>
-            				<?php foreach ($PhoneNumberForm as $i => $Field): ?>
-            				<tr>
+        			<?php foreach ($PhoneNumbersForm->PhoneNumberForms as $i => $Form): ?>
+            			    <tr>
                                 <?php if ($i == 0): ?>
             					<td class="span-4">
-            					    <?= $Field->renderLabel() ?>
-        					    </td>
+            					    <?= $Form['number']->renderLabel() ?>
+            				    </td>
                                 <?php endif ?>
             					<td>
-            					    <?= $Field['number'] ?>
+            					    <?= $Form['number']->render($Form['disabled']->getValue() ? array('class' => 'disabled') : array()) ?>
             				    </td>
-            					<td <?= ($i == 0) ? 'width: 25px' : '' ?>>
-            						<a href="#" class="disable_field"><?= @$Field->disabled ? 'enable' : 'disable' ?></a>
-            						<?= $Field['disabled'] ?>
+            					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
+            						<a href="#" class="disable_field"><?= (bool) $Form['disabled']->getValue() ? 'enable' : 'disable' ?></a>
+            						<?= $Form['disabled']->render(array('class' => 'invisible')) ?>
             					</td>
-            					<td <?= ($i == 0) ? 'width: 25px' : '' ?>>
+            					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
             					    <?php if ($i != 0): ?>
             					    <a href="#" class="remove_field">remove</a>
             					    <?php endif ?>
-            					    &nbsp;
             				    </td>
             				</tr>
             				<?php if ($i == 0): ?>
             				<tr>
             					<td rowspan="<?= count($PhoneNumbersForm->PhoneNumberForms) + 2 ?>">
-            					    <label for="field_phone_number_1">Additional</label>
-        					    </td>
+            					    <?= $PhoneNumbersForm->PhoneNumberForms[1]['number']->renderLabel() ?>
+            				    </td>
             				</tr>
-            				<?php endif ?>
-            				<?php endforeach ?>
-            				<tr>
-            					<td class="center"><a href="#" class="add_field">Add more</a></td>
-            					<td colspan="2">&nbsp;</td>
-            				</tr>
-            			    <?php //*/ ?>
+        				<?php endif ?>
+        			<?php endforeach ?>
+    				<tr>
+    					<td class="center"><a href="#" class="add_field">Add more</a></td>
+    					<td colspan="2">&nbsp;</td>
+    				</tr>
 				</table>
 			</fieldset>
 		</div>
