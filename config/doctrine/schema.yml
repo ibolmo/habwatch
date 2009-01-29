@@ -45,6 +45,9 @@ EmailAddress:
             unique: true
             notnull: true
             nospace: true
+        disabled:
+            type: boolean
+            default: false
         
         profile_id: integer
             
@@ -61,6 +64,10 @@ PhoneNumber:
             length: 14
             notnull: true
             nospace: true
+        disabled:
+            type: boolean
+            default: false
+            
         
         profile_id: integer
             
