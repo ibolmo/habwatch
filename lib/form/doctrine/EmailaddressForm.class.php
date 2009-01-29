@@ -11,5 +11,7 @@ class EmailAddressForm extends BaseEmailAddressForm
 {
   public function configure()
   {
+        unset($this['id'], $this->widgetSchema['profile_id']);
+        $this->validatorSchema['address'] = new sfValidatorEmailAddress();
   }
 }

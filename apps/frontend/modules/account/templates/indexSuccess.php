@@ -75,6 +75,49 @@
     				</tr>
 				</table>
 			</fieldset>
+			
+			<fieldset id="account_email_addresses">
+				<legend>Email Addresses</legend>
+				<?= $EmailAddressesForm->renderGlobalErrors() ?>
+				<?php foreach ($EmailAddressesForm->EmailAddressForms as $EmailAddressForm): ?>
+				    <?= $EmailAddressForm->renderGlobalErrors() ?>
+				    <?= $EmailAddressForm->renderHiddenFields() ?>
+				<?php endforeach ?>
+				<table id="account_email_addresses_table" class="settings_table">
+        			<?php foreach ($EmailAddressesForm->EmailAddressForms as $i => $Form): ?>
+            			    <tr>
+                                <?php if ($i == 0): ?>
+            					<td class="span-4">
+            					    <?= $Form['address']->renderLabel() ?>
+            				    </td>
+                                <?php endif ?>
+            					<td>
+            					    <?= $Form['address']->render($Form['disabled']->getValue() ? array('class' => 'disabled') : array()) ?>
+            				    </td>
+            					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
+            						<a href="#" class="disable_field"><?= (bool) $Form['disabled']->getValue() ? 'enable' : 'disable' ?></a>
+            						<?= $Form['disabled']->render(array('class' => 'invisible')) ?>
+            					</td>
+            					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
+            					    <?php if ($i != 0): ?>
+            					    <a href="#" class="remove_field">remove</a>
+            					    <?php endif ?>
+            				    </td>
+            				</tr>
+            				<?php if ($i == 0): ?>
+            				<tr>
+            					<td rowspan="<?= count($EmailAddressesForm->EmailAddressForms) + 2 ?>">
+            					    <?= $EmailAddressesForm->EmailAddressForms[1]['address']->renderLabel() ?>
+            				    </td>
+            				</tr>
+        				<?php endif ?>
+        			<?php endforeach ?>
+    				<tr>
+    					<td class="center"><a href="#" class="add_field">Add more</a></td>
+    					<td colspan="2">&nbsp;</td>
+    				</tr>
+				</table>
+			</fieldset>
 		</div>
 	</div>
 	<div class="actions center">

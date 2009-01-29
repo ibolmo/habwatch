@@ -23,12 +23,15 @@ class accountActions extends myActions
         $this->UserForm = new UserForm($this->User);
         $this->AccountForm = new AccountForm($this->User->Profile);
         $this->PhoneNumbersForm = new PhoneNumbersForm($this->User->Profile);
+        $this->EmailAddressesForm = new EmailAddressesForm($this->User->Profile);
         
         if ($request->isMethod('post')) {
             $success = array();
             #$success[] = $this->UserForm->bindAndSave(array_merge($request->getParameter('sf_guard_user', array()), array('username' => $this->User->username)));
             #$success[] = $this->AccountForm->bindAndSave($request->getParameter('profile'));
-            $success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
+            #$success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
+            $success[] = $this->EmailAddressesForm->bindAndSave(array('Emails' => $request->getParameter('Emails')));
+            
             if (array_sum($success)) {
                 $this->getUser()->setFlash('success', 'Your account information has been updated');
                 $this->redirect('@account');
