@@ -9,6 +9,7 @@ abstract class BaseEmailAddress extends sfDoctrineRecord
   {
     $this->setTableName('email_address');
     $this->hasColumn('address', 'string', 100, array('type' => 'string', 'length' => 100, 'unique' => true, 'notnull' => true, 'nospace' => true));
+    $this->hasColumn('disabled', 'boolean', null, array('type' => 'boolean', 'default' => false));
     $this->hasColumn('profile_id', 'integer', null, array('type' => 'integer'));
   }
 

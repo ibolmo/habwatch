@@ -9,6 +9,7 @@ abstract class BasePhoneNumber extends sfDoctrineRecord
   {
     $this->setTableName('phone_number');
     $this->hasColumn('number', 'string', 14, array('type' => 'string', 'length' => 14, 'notnull' => true, 'nospace' => true));
+    $this->hasColumn('disabled', 'boolean', null, array('type' => 'boolean', 'default' => false));
     $this->hasColumn('profile_id', 'integer', null, array('type' => 'integer'));
   }
 

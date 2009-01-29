@@ -15,11 +15,13 @@ class BaseEmailAddressFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'address'    => new sfWidgetFormFilterInput(),
+      'disabled'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'profile_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Profile', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'address'    => new sfValidatorPass(array('required' => false)),
+      'disabled'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'profile_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Profile', 'column' => 'id')),
     ));
 
@@ -40,6 +42,7 @@ class BaseEmailAddressFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'         => 'Number',
       'address'    => 'Text',
+      'disabled'   => 'Boolean',
       'profile_id' => 'ForeignKey',
     );
   }

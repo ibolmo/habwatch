@@ -14,12 +14,14 @@ class BasePhonenumberForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'number'     => new sfWidgetFormInput(),
+      'disabled'   => new sfWidgetFormInputCheckbox(),
       'profile_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Profile', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorDoctrineChoice(array('model' => 'Phonenumber', 'column' => 'id', 'required' => false)),
       'number'     => new sfValidatorString(array('max_length' => 14)),
+      'disabled'   => new sfValidatorBoolean(array('required' => false)),
       'profile_id' => new sfValidatorDoctrineChoice(array('model' => 'Profile', 'required' => false)),
     ));
 
