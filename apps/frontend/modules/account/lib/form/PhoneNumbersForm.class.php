@@ -14,7 +14,7 @@ class PhoneNumbersForm extends sfFormDoctrine
         parent::__construct($Profile, $options, $CSRFSecret);
         
         $this->PhoneNumberForms = array();
-        for ($i = 0, $l = max($this->object->Phones->count(), 5); $i < $l; $i++){
+        for ($i = 0, $l = max($this->object->Phones->count(), 2); $i < $l; $i++){
             $this->PhoneNumberForms[] = $Form = new PhoneNumberForm();
             $Form->widgetSchema->setNameFormat("Phones[$i][%s]");
             $Form->widgetSchema['number']->setLabel(($i == 0) ? 'Primary' : (($i == 1) ? 'Additional' : '&nbsp;'));
@@ -26,7 +26,6 @@ class PhoneNumbersForm extends sfFormDoctrine
     
     public function configure()
     {
-        $this->validatorSchema['Phones'] = new sfValidatorSchemaForEach(new sfValidatorPhoneNumber(), max($this->object->Phones->count(), 2));
     }
     
     public function getModelName() 
@@ -41,6 +40,7 @@ class PhoneNumbersForm extends sfFormDoctrine
                 unset($taintedValues['Phones'][$i]);
             }
         }
+        $this->validatorSchema['Phones'] = new sfValidatorSchemaForEach(new sfValidatorPhoneNumber(), max(count($taintedValues['Phones']), $this->object->Phones->count(), 2));
         return parent::bind($taintedValues, $taintedFiles);
     }
     
