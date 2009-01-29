@@ -32,8 +32,9 @@ class sfValidatorPhoneNumber extends sfValidatorBase
     protected function doClean($value)
     {
         $clean = $this->cleanPhoneNumber($value);
+        $clean['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
         
-        if (strval($clean) != $value['number']) {
+        if (strval($clean['number']) != $value['number']) {
             throw new sfValidatorError($this, 'invalid', array('value' => $value['number']));
         }
         
@@ -54,6 +55,8 @@ class sfValidatorPhoneNumber extends sfValidatorBase
 		if (!isset($matched[0])) {
 	        throw new sfValidatorError($this, 'invalid', array('value' => $number));
 		}
-		return $matched[0];
+		
+		$phone['number'] = $matched[0];
+		return $phone;
 	}
 }

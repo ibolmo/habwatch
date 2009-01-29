@@ -17,9 +17,11 @@ class accountActions extends myActions
      */
     public function executeIndex(sfWebRequest $request)
     {
+        $this->getResponse()->addJavascript('mootools');
+        $this->getResponse()->addJavascript('account');
+        
         $this->UserForm = new UserForm($this->User);
         $this->AccountForm = new AccountForm($this->User->Profile);
-        
         $this->PhoneNumbersForm = new PhoneNumbersForm($this->User->Profile);
         
         if ($request->isMethod('post')) {

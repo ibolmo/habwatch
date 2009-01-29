@@ -17,7 +17,6 @@ class PhoneNumbersForm extends sfFormDoctrine
         for ($i = 0, $l = max($this->object->Phones->count(), 5); $i < $l; $i++){
             $this->PhoneNumberForms[] = $Form = new PhoneNumberForm();
             $Form->widgetSchema->setNameFormat("Phones[$i][%s]");
-            $Form->widgetSchema['disabled']->
             $Form->widgetSchema['number']->setLabel(($i == 0) ? 'Primary' : (($i == 1) ? 'Additional' : '&nbsp;'));
             if (isset($this->object->Phones[$i])) {
                 $Form->setDefaults($this->object->Phones[$i]->toArray(false));
@@ -53,11 +52,11 @@ class PhoneNumbersForm extends sfFormDoctrine
         
         $this->object->Phones->delete();
         
-        foreach ($this->values['Phones'] as $number) {
-            if (!$number)  continue;
-            $Phone = new PhoneNumber();
-            $Phone->number = $number;
-            $this->object->Phones[] = $Phone;
+        foreach ($this->values['Phones'] as $Phone) {
+            if (!$Phone['number'])  continue;
+            $PhoneNumber = new PhoneNumber();
+            $PhoneNumber->fromArray($Phone);
+            $this->object->Phones[] = $PhoneNumber;
         }
         
         $this->object->save($con);

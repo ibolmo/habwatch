@@ -53,7 +53,7 @@
         				    </td>
         					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
         						<a href="#" class="disable_field"><?= (bool) $Form['disabled']->getValue() ? 'enable' : 'disable' ?></a>
-        						<?= $Form['disabled']->render(array('class' => 'invisible')) ?>
+        						<?= $Form['disabled']->render(); //array('class' => 'invisible')) ?>
         					</td>
         					<td <?= ($i == 0) ? 'style="width: 25px"' : '' ?>>
         					    <?php if ($i != 0): ?>
