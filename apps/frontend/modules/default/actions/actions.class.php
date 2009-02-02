@@ -34,4 +34,10 @@ class defaultActions extends sfActions
 	public function executeInstructions(sfWebRequest $request)
 	{
 	}
+	
+	public function executeError404($request)
+	{
+	    $this->setLayout(false);
+	    $this->renderText('An error has occurred');
+	}
 }
