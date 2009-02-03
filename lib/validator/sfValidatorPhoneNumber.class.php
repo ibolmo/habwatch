@@ -9,6 +9,8 @@
  */
 class sfValidatorPhoneNumber extends sfValidatorBase
 {
+    public static $pattern = "/(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}/";
+    
     /**
      * Configures the current validator.
      *
@@ -19,7 +21,7 @@ class sfValidatorPhoneNumber extends sfValidatorBase
      */
     protected function configure($options = array(), $messages = array())
     {
-        $this->addOption('pattern', "/(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}/");
+        $this->addOption('pattern', self::$pattern);
         $this->addOption('required', false);
         
         $this->setMessage('invalid', '"%value%" is not a phone number.');
@@ -32,9 +34,6 @@ class sfValidatorPhoneNumber extends sfValidatorBase
     {
         $clean = $this->cleanPhoneNumber($value);
         $clean['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
-        
-        if (strval($clean['number']) != $value['number']) throw new sfValidatorError($this, 'invalid', array('value' => $value['number']));
-        
         return $clean;
     }
     

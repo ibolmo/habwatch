@@ -32,7 +32,7 @@ class accountActions extends myActions
             $success[] = $this->PhoneNumbersForm->bindAndSave(array('Phones' => $request->getParameter('Phones')));
             $success[] = $this->EmailAddressesForm->bindAndSave(array('Emails' => $request->getParameter('Emails')));
             
-            if (array_sum($success)) {
+            if (!in_array(false, $success)) {
                 $this->getUser()->setFlash('success', 'Your account information has been updated');
                 $this->redirect('@account');
             } else {

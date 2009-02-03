@@ -9,6 +9,8 @@
  */
 class sfValidatorEmailAddress extends sfValidatorBase
 {
+    public static $pattern = "/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|edu)\b/";
+    
     /**
      * Configures the current validator.
      *
@@ -19,7 +21,7 @@ class sfValidatorEmailAddress extends sfValidatorBase
      */
     protected function configure($options = array(), $messages = array())
     {
-        $this->addOption('pattern', "/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|edu)\b/");
+        $this->addOption('pattern', self::$pattern);
         $this->addOption('required', false);
         
         $this->setMessage('invalid', '"%value%" is not an email address.');
@@ -32,9 +34,6 @@ class sfValidatorEmailAddress extends sfValidatorBase
     {
         $clean = $this->cleanEmailAddress($value);
         $clean['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
-        
-        if (strval($clean['address']) != $value['address']) throw new sfValidatorError($this, 'invalid', array('value' => $value['address']));
-        
         return $clean;
     }
     
