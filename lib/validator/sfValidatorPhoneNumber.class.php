@@ -32,21 +32,21 @@ class sfValidatorPhoneNumber extends sfValidatorBase
      */
     protected function doClean($value)
     {
-        $clean = $this->cleanPhoneNumber($value);
-        $clean['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
-        return $clean;
+        if ($clean = self::cleanPhoneNumber($value['number'], $this->getOption('pattern'))){
+            $value['number'] = $clean;
+            $value['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
+            return $value;
+        }
+        
+        throw new sfValidatorError($this, 'invalid', array('value' => $value['number']));
     }
     
         
-    public function cleanPhoneNumber($phone, $pattern = null)
-	{
-		if (!$pattern) $pattern = $this->getOption('pattern');
-	    	        
-		$number = preg_replace("/[^\d]/", '', $phone['number']);
-		if ($number) preg_match($pattern, $number, $matched);
-		if (!isset($matched[0])) throw new sfValidatorError($this, 'invalid', array('value' => $number));
-		$phone['number'] = $matched[0];
-		
-		return $phone;
+    public static function cleanPhoneNumber($number, $pattern = null)
+    {
+        if (!$pattern) $pattern = self::$pattern;
+		$number = preg_replace("/[^\d]/", '', $number);
+		preg_match($pattern, $number, $matched);		
+		return isset($matched[0]) ? $matched[0] : false;
 	}
 }

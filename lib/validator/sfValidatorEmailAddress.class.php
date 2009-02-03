@@ -26,26 +26,26 @@ class sfValidatorEmailAddress extends sfValidatorBase
         
         $this->setMessage('invalid', '"%value%" is not an email address.');
     }
-
+	
     /**
      * @see sfValidatorBase
      */
     protected function doClean($value)
     {
-        $clean = $this->cleanEmailAddress($value);
-        $clean['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
-        return $clean;
+        if ($clean = self::cleanEmailAddress($value['address'], $this->getOption('pattern'))){
+            $value['address'] = $clean;
+            $value['disabled'] = (isset($value['disabled']) && $value['disabled'] == 'on') ? true : false;
+            return $value;
+        }
+        
+        throw new sfValidatorError($this, 'invalid', array('value' => $value['address']));
     }
     
         
-    public function cleanEmailAddress($email, $pattern = null)
-	{
-		if (!$pattern) $pattern = $this->getOption('pattern');
-	    	        
-		preg_match($pattern, $email['address'], $matched);
-		if (!isset($matched[0])) throw new sfValidatorError($this, 'invalid', array('value' => $email['address']));
-		$email['address'] = $matched[0];
-		
-		return $email;
+    public static function cleanEmailAddress($address, $pattern = null)
+    {
+        if (!$pattern) $pattern = self::$pattern;
+		preg_match($pattern, $address, $matched);		
+		return isset($matched[0]) ? $matched[0] : false;
 	}
 }
