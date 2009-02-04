@@ -16,7 +16,10 @@ class smsActions extends sfActions
         
         if ($in_number = $this->getRequest()->getParameter('s_phone_number')) {
             $this->PhoneNumber = Doctrine::getTable('PhoneNumber')->findOneByNumber(sfValidatorPhoneNumber::cleanPhoneNumber($in_number));
-            if ($this->PhoneNumber) $this->User = $this->PhoneNumber->Profile->User;
+            if ($this->PhoneNumber){
+                $this->User = $this->PhoneNumber->Profile->User;
+                $this->getUser()->setAttribute('user_id', $this->User->id);
+            }
         }
         
         $this->getRequest()->setRequestFormat('sms'); 
@@ -32,7 +35,7 @@ class smsActions extends sfActions
     }
     
     public static function parse($message)
-    {        
+    {
         $bits = explode(' ', $message);
         $command = array_shift($bits);
         

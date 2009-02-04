@@ -13,15 +13,10 @@ class messageActions extends myActions
     public function preExecute()
     {
         parent::preExecute();
+        if (!$this->User && $id = $this->getUser()->getAttribute('user_id')) {
+            $this->User = Doctrine::getTable('sfGuardUser')->findOneById($id);
+        }
         $this->forward404Unless($this->parsed = $this->getUser()->getFlash('parsed'));
-    }
-    /**
-     * Executes index action
-     *
-     * @param sfRequest $request A request object
-     */
-    public function executeIndex(sfWebRequest $request)
-    {
     }
     
     public function executeReport(sfRequest $request)
