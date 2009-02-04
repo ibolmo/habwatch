@@ -3,13 +3,13 @@
 require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
- * Email filter form base class.
+ * SMS filter form base class.
  *
  * @package    filters
- * @subpackage Email *
+ * @subpackage SMS *
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class BaseEmailFormFilter extends BaseFormFilterDoctrine
+class BaseSMSFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -43,7 +43,7 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
       'updated_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
-    $this->widgetSchema->setNameFormat('email_filters[%s]');
+    $this->widgetSchema->setNameFormat('sms_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -52,7 +52,7 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Email';
+    return 'SMS';
   }
 
   public function getFields()

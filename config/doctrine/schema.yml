@@ -228,8 +228,7 @@ Course:
             owningSide: true
 
 # End of Partisan models
-
-Email:
+Message:
     inheritance:
         extends: Datum
         type: concrete
@@ -247,6 +246,21 @@ Email:
             length: 125
             nospace: true
             
+        message:
+            type: string
+            
+SMS:
+    inheritance:
+        extends: Message
+        type: column_aggregation
+
+
+Email:
+    inheritance:
+        extends: Message
+        type: column_aggregation
+        
+    columns:
         carbon_copy:
             type: string
             nospace: true
@@ -255,6 +269,5 @@ Email:
             type: string
             nospace: true
             
-        message:
+        subject:
             type: string
-            

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Email form base class.
+ * SMS form base class.
  *
  * @package    form
- * @subpackage email
+ * @subpackage sms
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
-class BaseEmailForm extends BaseFormDoctrine
+class BaseSMSForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -28,7 +28,7 @@ class BaseEmailForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorDoctrineChoice(array('model' => 'Email', 'column' => 'id', 'required' => false)),
+      'id'                => new sfValidatorDoctrineChoice(array('model' => 'SMS', 'column' => 'id', 'required' => false)),
       'file'              => new sfValidatorString(array('required' => false)),
       'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'campaign_id'       => new sfValidatorInteger(array('required' => false)),
@@ -43,7 +43,7 @@ class BaseEmailForm extends BaseFormDoctrine
       'updated_at'        => new sfValidatorDateTime(array('required' => false)),
     ));
 
-    $this->widgetSchema->setNameFormat('email[%s]');
+    $this->widgetSchema->setNameFormat('sms[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -52,7 +52,7 @@ class BaseEmailForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Email';
+    return 'SMS';
   }
 
 }
