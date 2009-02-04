@@ -365,7 +365,7 @@ Report:
             type: one
             local: id
             foreign: report_id
-            
+
 Coordinate:
     inheritance:
         extends: Datum
