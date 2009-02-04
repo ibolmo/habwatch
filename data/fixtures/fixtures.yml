@@ -24,3 +24,13 @@ Data:
             report_sms:
                 from: 9568215736
                 message: 'report 1 dead crab santa monica'
+                
+        Reports:
+            sms_report:
+                quantity: 1
+                condition: 'dead'
+                subject: crab
+                
+                Location:
+                    latitude: 1
+                    longitude: 10

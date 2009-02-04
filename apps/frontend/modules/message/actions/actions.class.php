@@ -25,6 +25,7 @@ class messageActions extends myActions
         $Report = new Report();
         $Report->fromArray($this->parsed);
         $Report->Location = $this->parsed['location'];
+        $Report->save();
     }
     
     public function executeHelp(sfRequest $request)

@@ -1,1 +1,1 @@
-<?= print_r($parsed) ?>
+Thank you for reporting that there's <?= $parsed['quantity'] ?> <?= $parsed['condition'] ?> <?= $parsed['subject'] ?> near <?= $parsed['location'] ?>.
