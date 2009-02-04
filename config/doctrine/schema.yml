@@ -154,17 +154,8 @@ Picture:
             
 GPS:
     columns:
-        # Foreign Keys
-        hardware_id: integer
         
     relations:
-        Hardware:
-            type: one
-            foreignType: one
-            local: hardware_id
-            foreign: id
-            owningSide: true
-
         Satellites:
             type: one
             local: id
