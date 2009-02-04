@@ -14,17 +14,13 @@ sfGuardUser:
             
             Phones:
                 primary:
-                    number: 5555555555
+                    number: 9568215736
                     
 Data:
     ibolmo_data:
         sfGuardUser: ibolmo
     
-        SMS:
-            help_sms:
-                from: 5555555555
-                message: 'help'
-            
+        SMS:            
             report_sms:
-                from: 5555555555
+                from: 9568215736
                 message: 'report 1 dead crab santa monica'

@@ -19,8 +19,12 @@ class messageActions extends myActions
         $this->forward404Unless($this->parsed = $this->getUser()->getFlash('parsed'));
     }
     
+    # report [quantity] cond. subj. loc.
     public function executeReport(sfRequest $request)
     {
+        $Report = new Report();
+        $Report->fromArray($this->parsed);
+        $Report->Location = $this->parsed['location'];
     }
     
     public function executeHelp(sfRequest $request)
