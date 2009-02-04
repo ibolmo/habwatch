@@ -21,12 +21,16 @@ Data:
         sfGuardUser: ibolmo
     
         SMS:            
-            report_sms:
+            report_sms_1:
                 from: 9568215736
                 message: 'report 1 dead crab santa monica'
-                
+            
+            report_sms_2:
+                from: 9568215736
+                message: 'report dead bird santa monica pier'
+                    
         Reports:
-            sms_report:
+            sms_report_1:
                 quantity: 1
                 condition: 'dead'
                 subject: crab
@@ -34,3 +38,12 @@ Data:
                 Location:
                     latitude: 1
                     longitude: 10
+                    
+            sms_report_2:
+                quantity: 1
+                condition: dead
+                subject: bird
+                
+                Location:
+                    latitude: 10
+                    longitude: 1

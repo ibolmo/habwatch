@@ -10,3 +10,8 @@ PHP 5.2.x
 Ideas
 -----
 SMS Authorization (instead of relying on known #s)
+
+
+Programming
+-----------
+Use SMS Model to do the parsing and Report generation?
