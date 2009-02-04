@@ -348,7 +348,8 @@ Report:
         quantity: integer
         condition: string
         subject: string
-
+        
+        location_id: integer
         message_id: integer
         data_id: integer
         
@@ -381,4 +382,3 @@ Coordinate:
             type: one
             local: report_id
             foreign: id
-            
