@@ -78,22 +78,23 @@ PhoneNumber:
             onDelete: CASCADE
 
 # From Partisan
+Data:
+    columns:
+        sf_guard_user_id: integer(4)
+        
+    relations:
+        sfGuardUser:
+            type: one
+            local: sf_guard_user_id
+            foreign: id
+            foreignType: one
+            onDelete: CASCADE
+
 Datum:
     columns:
         file: blob
-
-        # Foreign Keys
-        sf_guard_user_id: integer(4)
-
-    relations:
-        sfGuardUser:
-            foreignAlias: Data
-            foreignType: many
-            local: sf_guard_user_id
-            foreign: id
-            onDelete: CASCADE
-            owningSide: true
-
+        
+    relations:            
         Preference:
             type: one
             local: id
@@ -101,7 +102,26 @@ Datum:
 
     actAs:
         Timestampable:
-            
+
+Preference:
+    columns:
+        enabled:
+            type: boolean
+            default: false
+
+        # Foreign Keys
+        datum_id: integer
+
+    relations:            
+        Datum:
+            type: one
+            local: datum_id
+            foreign: id
+            onDelete: CASCADE
+
+    actAs:
+        Timestampable:
+
 Picture:
     inheritance:
         extends: Datum
@@ -121,6 +141,16 @@ Picture:
         format:
             type: string
             length: 25
+            
+    
+        data_id: integer            
+
+    relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Pictures
+            onDelete: CASCADE        
             
 GPS:
     columns:
@@ -174,8 +204,14 @@ Satellites:
 
         # Foreign Keys
         g_p_s_id: integer
+        data_id: integer            
 
     relations:
+        Data:
+            type: one
+            foreignType: many
+            onDelete: CASCADE
+            
         GPS:
             type: one
             local: g_p_s_id
@@ -198,8 +234,15 @@ Position:
 
         # Foreign Keys
         g_p_s_id: integer
+        data_id: integer            
 
     relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Positions
+            onDelete: CASCADE
+            
         GPS:
             type: one
             local: g_p_s_id
@@ -219,8 +262,15 @@ Course:
 
         # Foreign Keys
         g_p_s_id: integer
+        data_id: integer            
 
     relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Courses
+            onDelete: CASCADE
+            
         GPS:
             type: one
             local: g_p_s_id
@@ -249,10 +299,28 @@ Message:
         message:
             type: string
 
+        
+        data_id: integer            
+
+    relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Messages
+            onDelete: CASCADE
 SMS:
     inheritance:
         extends: Message
         type: column_aggregation
+        
+    columns:
+        data_id: integer            
+
+    relations:
+        Data:
+            type: one
+            foreignType: many
+            onDelete: CASCADE
 
 Email:
     inheritance:
@@ -270,3 +338,12 @@ Email:
             
         subject:
             type: string
+    
+        data_id: integer            
+
+    relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Emails
+            onDelete: CASCADE

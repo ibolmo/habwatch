@@ -14,10 +14,10 @@ class BaseMessageForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
       'file'              => new sfWidgetFormTextarea(),
-      'sf_guard_user_id'  => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'from'              => new sfWidgetFormInput(),
       'to'                => new sfWidgetFormInput(),
       'message'           => new sfWidgetFormTextarea(),
+      'data_id'           => new sfWidgetFormDoctrineSelect(array('model' => 'Data', 'add_empty' => true)),
       'type'              => new sfWidgetFormInput(),
       'carbon_copy'       => new sfWidgetFormTextarea(),
       'blind_carbon_copy' => new sfWidgetFormTextarea(),
@@ -29,10 +29,10 @@ class BaseMessageForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorDoctrineChoice(array('model' => 'Message', 'column' => 'id', 'required' => false)),
       'file'              => new sfValidatorString(array('required' => false)),
-      'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'from'              => new sfValidatorString(array('max_length' => 125, 'required' => false)),
       'to'                => new sfValidatorString(array('max_length' => 125, 'required' => false)),
       'message'           => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
+      'data_id'           => new sfValidatorDoctrineChoice(array('model' => 'Data', 'required' => false)),
       'type'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'carbon_copy'       => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
       'blind_carbon_copy' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),

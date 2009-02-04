@@ -14,11 +14,16 @@ abstract class BaseCourse extends Datum
     $this->hasColumn('heading_accuracy', 'float', null, array('type' => 'float'));
     $this->hasColumn('speed_accuracy', 'float', null, array('type' => 'float'));
     $this->hasColumn('g_p_s_id', 'integer', null, array('type' => 'integer'));
+    $this->hasColumn('data_id', 'integer', null, array('type' => 'integer'));
   }
 
   public function setUp()
   {
     parent::setUp();
+    $this->hasOne('Data', array('local' => 'data_id',
+                                'foreign' => 'id',
+                                'onDelete' => 'CASCADE'));
+
     $this->hasOne('GPS', array('local' => 'g_p_s_id',
                                'foreign' => 'id',
                                'owningSide' => true));

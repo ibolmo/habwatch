@@ -14,12 +14,12 @@ class BaseCourseForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'file'             => new sfWidgetFormTextarea(),
-      'sf_guard_user_id' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'speed'            => new sfWidgetFormInput(),
       'heading'          => new sfWidgetFormInput(),
       'heading_accuracy' => new sfWidgetFormInput(),
       'speed_accuracy'   => new sfWidgetFormInput(),
       'g_p_s_id'         => new sfWidgetFormDoctrineSelect(array('model' => 'GPS', 'add_empty' => true)),
+      'data_id'          => new sfWidgetFormDoctrineSelect(array('model' => 'Data', 'add_empty' => true)),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -27,12 +27,12 @@ class BaseCourseForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'               => new sfValidatorDoctrineChoice(array('model' => 'Course', 'column' => 'id', 'required' => false)),
       'file'             => new sfValidatorString(array('required' => false)),
-      'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'speed'            => new sfValidatorNumber(array('required' => false)),
       'heading'          => new sfValidatorNumber(array('required' => false)),
       'heading_accuracy' => new sfValidatorNumber(array('required' => false)),
       'speed_accuracy'   => new sfValidatorNumber(array('required' => false)),
       'g_p_s_id'         => new sfValidatorDoctrineChoice(array('model' => 'GPS', 'required' => false)),
+      'data_id'          => new sfValidatorDoctrineChoice(array('model' => 'Data', 'required' => false)),
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
       'updated_at'       => new sfValidatorDateTime(array('required' => false)),
     ));

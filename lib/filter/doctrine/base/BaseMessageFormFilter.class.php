@@ -15,10 +15,10 @@ class BaseMessageFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'file'              => new sfWidgetFormFilterInput(),
-      'sf_guard_user_id'  => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'from'             => new sfWidgetFormFilterInput(),
       'to'               => new sfWidgetFormFilterInput(),
       'message'           => new sfWidgetFormFilterInput(),
+      'data_id'           => new sfWidgetFormDoctrineChoice(array('model' => 'Data', 'add_empty' => true)),
       'type'              => new sfWidgetFormFilterInput(),
       'carbon_copy'       => new sfWidgetFormFilterInput(),
       'blind_carbon_copy' => new sfWidgetFormFilterInput(),
@@ -29,10 +29,10 @@ class BaseMessageFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'file'              => new sfValidatorPass(array('required' => false)),
-      'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'from'             => new sfValidatorPass(array('required' => false)),
       'to'               => new sfValidatorPass(array('required' => false)),
       'message'           => new sfValidatorPass(array('required' => false)),
+      'data_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Data', 'column' => 'id')),
       'type'              => new sfValidatorPass(array('required' => false)),
       'carbon_copy'       => new sfValidatorPass(array('required' => false)),
       'blind_carbon_copy' => new sfValidatorPass(array('required' => false)),
@@ -58,10 +58,10 @@ class BaseMessageFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                => 'Number',
       'file'              => 'Text',
-      'sf_guard_user_id'  => 'ForeignKey',
       'from'              => 'Text',
       'to'                => 'Text',
       'message'           => 'Text',
+      'data_id'           => 'ForeignKey',
       'type'              => 'Text',
       'carbon_copy'       => 'Text',
       'blind_carbon_copy' => 'Text',

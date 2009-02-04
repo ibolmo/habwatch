@@ -13,6 +13,14 @@ abstract class BasePicture extends Datum
     $this->hasColumn('resolution', 'integer', null, array('type' => 'integer'));
     $this->hasColumn('quality', 'string', 10, array('type' => 'string', 'length' => 10));
     $this->hasColumn('format', 'string', 25, array('type' => 'string', 'length' => 25));
+    $this->hasColumn('data_id', 'integer', null, array('type' => 'integer'));
   }
 
+  public function setUp()
+  {
+    parent::setUp();
+    $this->hasOne('Data', array('local' => 'data_id',
+                                'foreign' => 'id',
+                                'onDelete' => 'CASCADE'));
+  }
 }

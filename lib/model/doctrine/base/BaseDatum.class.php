@@ -9,15 +9,12 @@ abstract class BaseDatum extends sfDoctrineRecord
   {
     $this->setTableName('datum');
     $this->hasColumn('file', 'blob', null, array('type' => 'blob'));
-    $this->hasColumn('sf_guard_user_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
   }
 
   public function setUp()
   {
-    $this->hasOne('sfGuardUser', array('local' => 'sf_guard_user_id',
-                                       'foreign' => 'id',
-                                       'onDelete' => 'CASCADE',
-                                       'owningSide' => true));
+    $this->hasOne('Preference', array('local' => 'id',
+                                      'foreign' => 'datum_id'));
 
     $timestampable0 = new Doctrine_Template_Timestampable();
     $this->actAs($timestampable0);

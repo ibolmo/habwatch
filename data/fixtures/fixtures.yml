@@ -6,20 +6,25 @@ sfGuardUser:
         
         Profile:
             first_name: Olmo
-            middle_name: Fabian
             last_name: Maldonado
             
             Emails:
                 primary:
-                    address: olmo.maldonado@gmail.com
-                secondary:
-                    address: ibolmo@ucla.edu
+                    address: ibolmo@gmail.com
             
             Phones:
                 primary:
-                    number: 9568215736
-                
+                    number: 5555555555
+                    
+Data:
+    ibolmo_data:
+        sfGuardUser: ibolmo
+    
+        SMS:
+            help_sms:
+                from: 5555555555
+                message: 'help'
             
-        
-        
-        
+            report_sms:
+                from: 5555555555
+                message: 'report 1 dead crab santa monica'
