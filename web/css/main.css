@@ -4,7 +4,6 @@
 @import "blueprintcss/forms.css";
 @import "blueprintcss/plugins/fancy-type.css";
 @import "blueprintcss/plugins/tabs.css";
-@import "boilerplatecss/plugins.css";
 
 .grid { background: url(../images/grid.png); }
 .container {
@@ -24,7 +23,9 @@ a:hover, .link:hover { color: #000; }
 h2 { border-bottom: 1px solid #eee; }
 
 #logo {
+    /*
 	background: url(../images/NetworkedNaturalist.png) no-repeat;
+	//*/
 	width: 708px;
 	height: 94px;
 }
@@ -102,7 +103,9 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 
 
 #sms_demo_phone {
+    /*
 	background: url(../images/bigphone.jpg) no-repeat;
+	//*/
 	height: 448px;
 }
 
