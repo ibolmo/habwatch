@@ -13,7 +13,7 @@ class messageActions extends myActions
     public function preExecute()
     {
         parent::preExecute();
-        $this->forward404Unless($this->parsed = $this->getUser()->getAttribute('parsed'));
+        $this->forward404Unless($this->parsed = $this->getUser()->getFlash('parsed'));
     }
     /**
      * Executes index action

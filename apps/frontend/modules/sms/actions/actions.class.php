@@ -27,7 +27,7 @@ class smsActions extends sfActions
     {
         $this->forwardIf(!$this->User, 'sms', 'error400');
         $parsed = self::parse($request->getParameter('message', 'help'));
-        $this->getUser()->setAttribute('parsed', $parsed);
+        $this->getUser()->setFlash('parsed', $parsed);
         $this->forward('message', $parsed['command']);
     }
     
