@@ -51,6 +51,7 @@ class smsActions extends sfActions
                 
                 return array(
                     'command' => $command,
+                    'quantity' => $quantity,
                     'condition' => $condition,
                     'subject' => $subject,
                     'location' => $location
