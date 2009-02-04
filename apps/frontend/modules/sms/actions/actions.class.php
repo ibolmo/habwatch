@@ -10,15 +10,6 @@
  */
 class smsActions extends sfActions
 {
-    static $help = '
-Usage:
-  mh [cmd] [qty] cond subj loc
-Where each can be:
-  cmd: report, list, help, note
-  qty: 1, 2, ... , five, six ...
-  cond: dead, sick, ...
-  subj: fish, ...';
-    
     public function preExecute()
     {
         $this->PhoneNumber = $this->User = false;
@@ -35,14 +26,38 @@ Where each can be:
     public function executeParse(sfRequest $request)
     {
         $this->forwardIf(!$this->User, 'sms', 'error400');
-        $parsed = self::parse($request->getParameter('message', ''));
+        $parsed = self::parse($request->getParameter('message', 'help'));
         $this->getUser()->setAttribute('parsed', $parsed);
         $this->forward('message', $parsed['command']);
     }
     
     public static function parse($message)
-    {
-        return array('command' => 'help');
+    {        
+        $bits = explode(' ', $message);
+        $command = array_shift($bits);
+        
+        switch ($command) {
+            # report [quantity] condition subject location
+            case 'report':
+                $quantity = 1;
+                
+                if (is_numeric($bits[0])) $quantity = array_shift($bits);
+                $condition = array_shift($bits);
+                $subject = array_shift($bits);
+                $location = implode(' ', $bits);
+                
+                return array(
+                    'command' => $command,
+                    'condition' => $condition,
+                    'subject' => $subject,
+                    'location' => $location
+                );
+                
+            default:
+                return array(
+                    'command' => 'help'
+                );
+        }
     }
     
     public function executeError400(sfRequest $request)
@@ -50,11 +65,5 @@ Where each can be:
         $this->setLayout(false);
         $this->getResponse()->setStatusCode(400);
         return $this->renderText('Your phone number is not registered');
-    }
-    
-    public function executeHelp()
-    {
-        $this->setLayout(false);
-        return $this->renderText(self::$help);
     }
 }

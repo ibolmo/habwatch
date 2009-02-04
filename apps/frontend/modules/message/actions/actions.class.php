@@ -24,6 +24,10 @@ class messageActions extends myActions
     {
     }
     
+    public function executeReport(sfRequest $request)
+    {
+    }
+    
     public function executeHelp(sfRequest $request)
     {
     }

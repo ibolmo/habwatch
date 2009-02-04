@@ -25,12 +25,21 @@ $t = $b->test();
 
 $b->get(SMSTest::$uri)
   ->isStatusCode(404);
+
+$t->diag('  Test incorrect phone');
+$b->sms('my message', 22405)
+  ->isStatusCode(400)
+  ->responseContains('not registered');
   
 $b->sms('my message', 5555555555)
   ->isStatusCode(400)
   ->responseContains('not registered');
 
+$t->diag('  Test help usage');
 $b->sms('help');
 $t->is($b->getResponse()->getContentType(), 'text/plain; charset=utf-8', 'Content type is plain text');
 $b->responseContains('Usage:');
+
+$b->sms('')->responseContains('Usage:');
   
+$b->sms('report 1 dead bird santa monica');
