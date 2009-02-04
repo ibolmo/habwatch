@@ -10,7 +10,6 @@ abstract class BaseDatum extends sfDoctrineRecord
     $this->setTableName('datum');
     $this->hasColumn('file', 'blob', null, array('type' => 'blob'));
     $this->hasColumn('sf_guard_user_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('campaign_id', 'integer', null, array('type' => 'integer'));
   }
 
   public function setUp()

@@ -16,7 +16,6 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'              => new sfWidgetFormFilterInput(),
       'sf_guard_user_id'  => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'       => new sfWidgetFormFilterInput(),
       'from'             => new sfWidgetFormFilterInput(),
       'to'               => new sfWidgetFormFilterInput(),
       'message'           => new sfWidgetFormFilterInput(),
@@ -31,7 +30,6 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'              => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'from'             => new sfValidatorPass(array('required' => false)),
       'to'               => new sfValidatorPass(array('required' => false)),
       'message'           => new sfValidatorPass(array('required' => false)),
@@ -61,7 +59,6 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
       'id'                => 'Number',
       'file'              => 'Text',
       'sf_guard_user_id'  => 'ForeignKey',
-      'campaign_id'       => 'Number',
       'from'              => 'Text',
       'to'                => 'Text',
       'message'           => 'Text',

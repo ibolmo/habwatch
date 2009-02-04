@@ -16,7 +16,6 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'still'             => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'      => new sfWidgetFormFilterInput(),
       'resolution'       => new sfWidgetFormFilterInput(),
       'quality'          => new sfWidgetFormFilterInput(),
       'format'           => new sfWidgetFormFilterInput(),
@@ -27,7 +26,6 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'still'             => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'resolution'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'quality'          => new sfValidatorPass(array('required' => false)),
       'format'           => new sfValidatorPass(array('required' => false)),
@@ -53,7 +51,6 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'still'            => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
-      'campaign_id'      => 'Number',
       'resolution'       => 'Number',
       'quality'          => 'Text',
       'format'           => 'Text',

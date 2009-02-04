@@ -15,7 +15,6 @@ class BaseDatumForm extends BaseFormDoctrine
       'id'               => new sfWidgetFormInputHidden(),
       'file'             => new sfWidgetFormTextarea(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'      => new sfWidgetFormInput(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -24,7 +23,6 @@ class BaseDatumForm extends BaseFormDoctrine
       'id'               => new sfValidatorDoctrineChoice(array('model' => 'Datum', 'column' => 'id', 'required' => false)),
       'file'             => new sfValidatorString(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
-      'campaign_id'      => new sfValidatorInteger(array('required' => false)),
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
       'updated_at'       => new sfValidatorDateTime(array('required' => false)),
     ));

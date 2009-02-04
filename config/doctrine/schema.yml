@@ -84,14 +84,14 @@ Datum:
 
         # Foreign Keys
         sf_guard_user_id: integer(4)
-        campaign_id: integer
 
     relations:
         sfGuardUser:
+            foreignAlias: Data
+            foreignType: many
+            local: sf_guard_user_id
+            foreign: id
             onDelete: CASCADE
-            owningSide: true
-
-        Campaign:
             owningSide: true
 
         Preference:
@@ -248,12 +248,11 @@ Message:
             
         message:
             type: string
-            
+
 SMS:
     inheritance:
         extends: Message
         type: column_aggregation
-
 
 Email:
     inheritance:

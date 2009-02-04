@@ -16,7 +16,6 @@ class BaseDatumFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'             => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'      => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
@@ -24,7 +23,6 @@ class BaseDatumFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'             => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
@@ -47,7 +45,6 @@ class BaseDatumFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'file'             => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
-      'campaign_id'      => 'Number',
       'created_at'       => 'Date',
       'updated_at'       => 'Date',
     );

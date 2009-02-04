@@ -16,7 +16,6 @@ class BaseCourseFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'             => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'      => new sfWidgetFormFilterInput(),
       'speed'            => new sfWidgetFormFilterInput(),
       'heading'          => new sfWidgetFormFilterInput(),
       'heading_accuracy' => new sfWidgetFormFilterInput(),
@@ -29,7 +28,6 @@ class BaseCourseFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'             => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'speed'            => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'heading'          => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'heading_accuracy' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -57,7 +55,6 @@ class BaseCourseFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'file'             => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
-      'campaign_id'      => 'Number',
       'speed'            => 'Number',
       'heading'          => 'Number',
       'heading_accuracy' => 'Number',

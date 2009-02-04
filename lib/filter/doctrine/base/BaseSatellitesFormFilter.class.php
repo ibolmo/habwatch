@@ -16,7 +16,6 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'             => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'      => new sfWidgetFormFilterInput(),
       'horizontal_dop'   => new sfWidgetFormFilterInput(),
       'used_satellites'  => new sfWidgetFormFilterInput(),
       'vertical_dop'     => new sfWidgetFormFilterInput(),
@@ -31,7 +30,6 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'             => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'horizontal_dop'   => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'used_satellites'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'vertical_dop'     => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -61,7 +59,6 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
       'id'               => 'Number',
       'file'             => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
-      'campaign_id'      => 'Number',
       'horizontal_dop'   => 'Number',
       'used_satellites'  => 'Number',
       'vertical_dop'     => 'Number',

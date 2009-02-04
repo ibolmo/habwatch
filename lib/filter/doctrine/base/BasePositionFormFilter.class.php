@@ -16,7 +16,6 @@ class BasePositionFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'                => new sfWidgetFormFilterInput(),
       'sf_guard_user_id'    => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'campaign_id'         => new sfWidgetFormFilterInput(),
       'latitude'            => new sfWidgetFormFilterInput(),
       'altitude'            => new sfWidgetFormFilterInput(),
       'vertical_accuracy'   => new sfWidgetFormFilterInput(),
@@ -30,7 +29,6 @@ class BasePositionFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'                => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'campaign_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'latitude'            => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'altitude'            => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'vertical_accuracy'   => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -59,7 +57,6 @@ class BasePositionFormFilter extends BaseFormFilterDoctrine
       'id'                  => 'Number',
       'file'                => 'Text',
       'sf_guard_user_id'    => 'ForeignKey',
-      'campaign_id'         => 'Number',
       'latitude'            => 'Number',
       'altitude'            => 'Number',
       'vertical_accuracy'   => 'Number',
