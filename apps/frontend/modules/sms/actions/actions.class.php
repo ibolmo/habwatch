@@ -28,13 +28,15 @@ Where each can be:
             if ($this->PhoneNumber) $this->User = $this->PhoneNumber->Profile->User;
         }
         
+        $this->getRequest()->setRequestFormat('sms'); 
         $this->getResponse()->setContentType('text/plain');
     }
     
     public function executeParse(sfRequest $request)
     {
         $this->forwardIf(!$this->User, 'sms', 'error400');
-        $this->setVar('parsed', self::parse($request->getParameter('message', '')));
+        $parsed = self::parse($request->getParameter('message', ''));
+        $this->getUser()->setAttribute('parsed', $parsed);
         $this->forward('message', $parsed['command']);
     }
     

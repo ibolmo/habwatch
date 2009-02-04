@@ -8,15 +8,23 @@
  * @author     Olmo Maldonado, <ibolmo@ucla.edu>
  * @version    SVN: $Id: actions.class.php 12479 2008-10-31 10:54:40Z fabien $
  */
-class messageActions extends sfActions
+class messageActions extends myActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->forward('default', 'module');
-  }
+    public function preExecute()
+    {
+        parent::preExecute();
+        $this->forward404Unless($this->parsed = $this->getUser()->getAttribute('parsed'));
+    }
+    /**
+     * Executes index action
+     *
+     * @param sfRequest $request A request object
+     */
+    public function executeIndex(sfWebRequest $request)
+    {
+    }
+    
+    public function executeHelp(sfRequest $request)
+    {
+    }
 }

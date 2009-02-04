@@ -1,15 +1,18 @@
 <?php
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
-define('SMS', '/sms');
+
 define('IN_PHONE', '9568215736');
 
-/**
-* 
-*/
 class SMSTest extends sfTestBrowser
 {
     static $uri = '/sms';
+    
+    public function __construct($hostname = null, $remote = null, $options = array())
+    {
+        parent::__construct($hostname, $remote, $options);
+        
+    }
     
     public function sms($message, $from = IN_PHONE, $to = '')
     {
