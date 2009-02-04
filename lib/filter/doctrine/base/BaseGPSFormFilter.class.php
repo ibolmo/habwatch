@@ -14,11 +14,9 @@ class BaseGPSFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'hardware_id' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'hardware_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('gps_filters[%s]');
@@ -36,8 +34,7 @@ class BaseGPSFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Number',
-      'hardware_id' => 'Number',
+      'id' => 'Number',
     );
   }
 }

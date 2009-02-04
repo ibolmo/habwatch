@@ -8,7 +8,6 @@ abstract class BaseGPS extends sfDoctrineRecord
   public function setTableDefinition()
   {
     $this->setTableName('g_p_s');
-    $this->hasColumn('hardware_id', 'integer', null, array('type' => 'integer'));
   }
 
   public function setUp()

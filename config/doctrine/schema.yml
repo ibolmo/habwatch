@@ -338,3 +338,47 @@ Email:
             foreignType: many
             foreignAlias: Emails
             onDelete: CASCADE
+            
+Report:
+    inheritance:
+        extends: Datum
+        type: concrete
+        
+    columns:
+        quantity: integer
+        condition: string
+        subject: string
+
+        message_id: integer
+        data_id: integer
+        
+    relations:
+        Data:
+            type: one
+            foreignType: many
+            foreignAlias: Reports
+            onDelete: CASCADE
+            
+        Location:
+            class: Coordinate
+            type: one
+            local: id
+            foreign: report_id
+            
+Coordinate:
+    inheritance:
+        extends: Datum
+        type: concrete
+        
+    columns:
+        latitude: string
+        longitude: string
+    
+        report_id: integer
+        
+    relations:
+        Report:
+            type: one
+            local: report_id
+            foreign: id
+            

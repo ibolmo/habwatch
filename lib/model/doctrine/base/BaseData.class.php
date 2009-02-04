@@ -37,5 +37,8 @@ abstract class BaseData extends sfDoctrineRecord
 
     $this->hasMany('Email as Emails', array('local' => 'id',
                                             'foreign' => 'data_id'));
+
+    $this->hasMany('Report as Reports', array('local' => 'id',
+                                              'foreign' => 'data_id'));
   }
 }
