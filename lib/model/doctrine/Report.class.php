@@ -10,11 +10,11 @@ class Report extends BaseReport
         $this->_set('location', $value);
         
         if ($coordinates = GMap::getCoordinates(GMap::geocode($value))) {
-            $this->Location = new Coordinate();
-            $this->Location->Report = $this;
-            $this->Location->latitude = $coordinates['latitude'];
-            $this->Location->longitude = $coordinates['longitude'];
-            $this->Location->save();
+            $this->Point = new Coordinate();
+            $this->Point->Report = $this;
+            $this->Point->latitude = $coordinates['latitude'];
+            $this->Point->longitude = $coordinates['longitude'];
+            $this->Point->save();
         } else {
             # flag
         }

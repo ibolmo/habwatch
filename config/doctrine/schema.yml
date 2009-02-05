@@ -349,19 +349,24 @@ Report:
         quantity: integer
         condition: string
         subject: string
+        location: string
         
-        location_id: integer
         message_id: integer
         storage_id: integer
         
     relations:
+        Message:
+            type: one
+            local: message_id
+            foreign: id
+        
         Storage:
             type: one
             foreignType: many
             foreignAlias: Reports
             onDelete: CASCADE
             
-        Location:
+        Point:
             class: Coordinate
             type: one
             local: id
@@ -383,3 +388,4 @@ Coordinate:
             type: one
             local: report_id
             foreign: id
+            onDelete: CASCADE

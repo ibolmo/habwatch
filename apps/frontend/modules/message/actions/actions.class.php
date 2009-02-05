@@ -24,7 +24,6 @@ class messageActions extends myActions
     {
         $this->User->Storage->Reports[] = $Report = new Report();
         $Report->fromArray($this->parsed);
-        $Report->Location = $this->parsed['location'];
         $Report->save();
     }
     

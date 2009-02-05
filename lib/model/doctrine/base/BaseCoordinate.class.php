@@ -18,6 +18,7 @@ abstract class BaseCoordinate extends Datum
   {
     parent::setUp();
     $this->hasOne('Report', array('local' => 'report_id',
-                                  'foreign' => 'id'));
+                                  'foreign' => 'id',
+                                  'onDelete' => 'CASCADE'));
   }
 }

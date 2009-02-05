@@ -31,8 +31,9 @@ sfGuardUser:
                     quantity: 1
                     condition: 'dead'
                     subject: crab
+                    location: 'santa monica'
                     
-                    Location:
+                    Point:
                         latitude: 1
                         longitude: 10
                         
@@ -40,7 +41,8 @@ sfGuardUser:
                     quantity: 1
                     condition: dead
                     subject: bird
+                    location: 'santa monica pier'
                     
-                    Location:
+                    Point:
                         latitude: 10
                         longitude: 1

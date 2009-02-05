@@ -27,5 +27,8 @@ abstract class BaseMessage extends Datum
     $this->hasOne('Storage', array('local' => 'storage_id',
                                    'foreign' => 'id',
                                    'onDelete' => 'CASCADE'));
+
+    $this->hasMany('Report', array('local' => 'id',
+                                   'foreign' => 'message_id'));
   }
 }
