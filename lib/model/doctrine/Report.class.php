@@ -7,10 +7,16 @@ class Report extends BaseReport
 {
     public function setLocation($value)
     {
-        $this->Location = new Coordinate();
-        $this->Location->Report = $this;
-        $this->Location->latitude = 1;
-        $this->Location->longitude = 10;
-        $this->Location->save();
+        $this->_set('location', $value);
+        
+        if ($coordinates = GMap::getCoordinates(GMap::geocode($value))) {
+            $this->Location = new Coordinate();
+            $this->Location->Report = $this;
+            $this->Location->latitude = $coordinates['latitude'];
+            $this->Location->longitude = $coordinates['longitude'];
+            $this->Location->save();
+        } else {
+            # flag
+        }
     }
 }

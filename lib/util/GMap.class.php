@@ -21,4 +21,17 @@ class GMap
         $json_string = self::$browser->getResponseText();
         return $json_string ? json_decode($json_string, true) : false;
     }
+    
+    public static function getCoordinates($result)
+    {
+        if ($result && $result['Status']['code'] == 200 && isset($result['Placemark'])) {
+            $coordinates = $result['Placemark'][0]['Point']['coordinates'];
+            return array(
+                'longitude' => $coordinates[0],
+                'latitude' => $coordinates[1]
+            );
+        } else {
+            return false;
+        }
+    }
 }
