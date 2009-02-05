@@ -16,34 +16,31 @@ sfGuardUser:
                 primary:
                     number: 9568215736
                     
-Data:
-    ibolmo_data:
-        sfGuardUser: ibolmo
-    
-        SMS:            
-            report_sms_1:
-                from: 9568215736
-                message: 'report 1 dead crab santa monica'
-            
-            report_sms_2:
-                from: 9568215736
-                message: 'report dead bird santa monica pier'
-                    
-        Reports:
-            sms_report_1:
-                quantity: 1
-                condition: 'dead'
-                subject: crab
+        Storage:
+            SMS:            
+                report_sms_1:
+                    from: 9568215736
+                    message: 'report 1 dead crab santa monica'
                 
-                Location:
-                    latitude: 1
-                    longitude: 10
+                report_sms_2:
+                    from: 9568215736
+                    message: 'report dead bird santa monica pier'
+                        
+            Reports:
+                sms_report_1:
+                    quantity: 1
+                    condition: 'dead'
+                    subject: crab
                     
-            sms_report_2:
-                quantity: 1
-                condition: dead
-                subject: bird
-                
-                Location:
-                    latitude: 10
-                    longitude: 1
+                    Location:
+                        latitude: 1
+                        longitude: 10
+                        
+                sms_report_2:
+                    quantity: 1
+                    condition: dead
+                    subject: bird
+                    
+                    Location:
+                        latitude: 10
+                        longitude: 1

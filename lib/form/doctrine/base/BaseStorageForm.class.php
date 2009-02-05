@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Data form base class.
+ * Storage form base class.
  *
  * @package    form
- * @subpackage data
+ * @subpackage storage
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 8508 2008-04-17 17:39:15Z fabien $
  */
-class BaseDataForm extends BaseFormDoctrine
+class BaseStorageForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -17,11 +17,11 @@ class BaseDataForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'               => new sfValidatorDoctrineChoice(array('model' => 'Data', 'column' => 'id', 'required' => false)),
+      'id'               => new sfValidatorDoctrineChoice(array('model' => 'Storage', 'column' => 'id', 'required' => false)),
       'sf_guard_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser')),
     ));
 
-    $this->widgetSchema->setNameFormat('data[%s]');
+    $this->widgetSchema->setNameFormat('storage[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -30,7 +30,7 @@ class BaseDataForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Data';
+    return 'Storage';
   }
 
 }

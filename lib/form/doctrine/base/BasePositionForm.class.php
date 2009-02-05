@@ -20,7 +20,7 @@ class BasePositionForm extends BaseFormDoctrine
       'longitude'           => new sfWidgetFormInput(),
       'horizontal_accuracy' => new sfWidgetFormInput(),
       'g_p_s_id'            => new sfWidgetFormDoctrineSelect(array('model' => 'GPS', 'add_empty' => true)),
-      'data_id'             => new sfWidgetFormDoctrineSelect(array('model' => 'Data', 'add_empty' => true)),
+      'storage_id'          => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
     ));
@@ -34,7 +34,7 @@ class BasePositionForm extends BaseFormDoctrine
       'longitude'           => new sfValidatorNumber(array('required' => false)),
       'horizontal_accuracy' => new sfValidatorNumber(array('required' => false)),
       'g_p_s_id'            => new sfValidatorDoctrineChoice(array('model' => 'GPS', 'required' => false)),
-      'data_id'             => new sfValidatorDoctrineChoice(array('model' => 'Data', 'required' => false)),
+      'storage_id'          => new sfValidatorDoctrineChoice(array('model' => 'Storage', 'required' => false)),
       'created_at'          => new sfValidatorDateTime(array('required' => false)),
       'updated_at'          => new sfValidatorDateTime(array('required' => false)),
     ));

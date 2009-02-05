@@ -12,7 +12,7 @@ abstract class BaseMessage extends Datum
     $this->hasColumn('_from as from', 'string', 125, array('type' => 'string', 'length' => 125, 'nospace' => true));
     $this->hasColumn('_to as to', 'string', 125, array('type' => 'string', 'length' => 125, 'nospace' => true));
     $this->hasColumn('message', 'string', null, array('type' => 'string'));
-    $this->hasColumn('data_id', 'integer', null, array('type' => 'integer'));
+    $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
     $this->hasColumn('type', 'string', 255, array('type' => 'string', 'length' => 255));
     $this->hasColumn('carbon_copy', 'string', null, array('type' => 'string', 'nospace' => true));
     $this->hasColumn('blind_carbon_copy', 'string', null, array('type' => 'string', 'nospace' => true));
@@ -24,8 +24,8 @@ abstract class BaseMessage extends Datum
   public function setUp()
   {
     parent::setUp();
-    $this->hasOne('Data', array('local' => 'data_id',
-                                'foreign' => 'id',
-                                'onDelete' => 'CASCADE'));
+    $this->hasOne('Storage', array('local' => 'storage_id',
+                                   'foreign' => 'id',
+                                   'onDelete' => 'CASCADE'));
   }
 }

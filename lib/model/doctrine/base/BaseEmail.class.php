@@ -8,8 +8,8 @@ abstract class BaseEmail extends Message
   public function setUp()
   {
     parent::setUp();
-    $this->hasOne('Data', array('local' => 'data_id',
-                                'foreign' => 'id',
-                                'onDelete' => 'CASCADE'));
+    $this->hasOne('Storage', array('local' => 'storage_id',
+                                   'foreign' => 'id',
+                                   'onDelete' => 'CASCADE'));
   }
 }

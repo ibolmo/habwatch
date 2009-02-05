@@ -21,7 +21,7 @@ class BaseSatellitesForm extends BaseFormDoctrine
       'satellites'      => new sfWidgetFormInput(),
       'time_dop'        => new sfWidgetFormInput(),
       'g_p_s_id'        => new sfWidgetFormDoctrineSelect(array('model' => 'GPS', 'add_empty' => true)),
-      'data_id'         => new sfWidgetFormDoctrineSelect(array('model' => 'Data', 'add_empty' => true)),
+      'storage_id'      => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));
@@ -36,7 +36,7 @@ class BaseSatellitesForm extends BaseFormDoctrine
       'satellites'      => new sfValidatorInteger(array('required' => false)),
       'time_dop'        => new sfValidatorNumber(array('required' => false)),
       'g_p_s_id'        => new sfValidatorDoctrineChoice(array('model' => 'GPS', 'required' => false)),
-      'data_id'         => new sfValidatorDoctrineChoice(array('model' => 'Data', 'required' => false)),
+      'storage_id'      => new sfValidatorDoctrineChoice(array('model' => 'Storage', 'required' => false)),
       'created_at'      => new sfValidatorDateTime(array('required' => false)),
       'updated_at'      => new sfValidatorDateTime(array('required' => false)),
     ));

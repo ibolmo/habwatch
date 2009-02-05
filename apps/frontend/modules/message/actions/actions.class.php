@@ -22,7 +22,7 @@ class messageActions extends myActions
     # report [quantity] cond. subj. loc.
     public function executeReport(sfRequest $request)
     {
-        $Report = new Report();
+        $this->User->Storage->Reports[] = $Report = new Report();
         $Report->fromArray($this->parsed);
         $Report->Location = $this->parsed['location'];
         $Report->save();

@@ -16,15 +16,15 @@ abstract class BaseSatellites extends Datum
     $this->hasColumn('satellites', 'integer', 10, array('type' => 'integer', 'length' => 10));
     $this->hasColumn('time_dop', 'float', null, array('type' => 'float'));
     $this->hasColumn('g_p_s_id', 'integer', null, array('type' => 'integer'));
-    $this->hasColumn('data_id', 'integer', null, array('type' => 'integer'));
+    $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
   }
 
   public function setUp()
   {
     parent::setUp();
-    $this->hasOne('Data', array('local' => 'data_id',
-                                'foreign' => 'id',
-                                'onDelete' => 'CASCADE'));
+    $this->hasOne('Storage', array('local' => 'storage_id',
+                                   'foreign' => 'id',
+                                   'onDelete' => 'CASCADE'));
 
     $this->hasOne('GPS', array('local' => 'g_p_s_id',
                                'foreign' => 'id',

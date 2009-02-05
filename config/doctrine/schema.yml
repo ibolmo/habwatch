@@ -78,15 +78,16 @@ PhoneNumber:
             onDelete: CASCADE
 
 # From Partisan
-Data:
+Storage:
     columns:
-        sf_guard_user_id: integer(4)
+        sf_guard_user_id:
+            type: integer
+            length: 4
+            notnull: true
         
     relations:
-        sfGuardUser:
-            type: one
-            local: sf_guard_user_id
-            foreign: id
+        User:
+            class: sfGuardUser
             foreignType: one
             onDelete: CASCADE
 
@@ -143,10 +144,10 @@ Picture:
             length: 25
             
     
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Pictures
@@ -195,10 +196,10 @@ Satellites:
 
         # Foreign Keys
         g_p_s_id: integer
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             onDelete: CASCADE
@@ -225,10 +226,10 @@ Position:
 
         # Foreign Keys
         g_p_s_id: integer
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Positions
@@ -253,10 +254,10 @@ Course:
 
         # Foreign Keys
         g_p_s_id: integer
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Courses
@@ -291,10 +292,10 @@ Message:
             type: string
 
         
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Messages
@@ -305,10 +306,10 @@ SMS:
         type: column_aggregation
         
     columns:
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             onDelete: CASCADE
@@ -330,10 +331,10 @@ Email:
         subject:
             type: string
     
-        data_id: integer            
+        storage_id: integer            
 
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Emails
@@ -351,10 +352,10 @@ Report:
         
         location_id: integer
         message_id: integer
-        data_id: integer
+        storage_id: integer
         
     relations:
-        Data:
+        Storage:
             type: one
             foreignType: many
             foreignAlias: Reports

@@ -22,7 +22,7 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
       'satellites'      => new sfWidgetFormFilterInput(),
       'time_dop'        => new sfWidgetFormFilterInput(),
       'g_p_s_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'GPS', 'add_empty' => true)),
-      'data_id'         => new sfWidgetFormDoctrineChoice(array('model' => 'Data', 'add_empty' => true)),
+      'storage_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
@@ -36,7 +36,7 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
       'satellites'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'time_dop'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'g_p_s_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'GPS', 'column' => 'id')),
-      'data_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Data', 'column' => 'id')),
+      'storage_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Storage', 'column' => 'id')),
       'created_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
@@ -65,7 +65,7 @@ class BaseSatellitesFormFilter extends BaseFormFilterDoctrine
       'satellites'      => 'Number',
       'time_dop'        => 'Number',
       'g_p_s_id'        => 'ForeignKey',
-      'data_id'         => 'ForeignKey',
+      'storage_id'      => 'ForeignKey',
       'created_at'      => 'Date',
       'updated_at'      => 'Date',
     );

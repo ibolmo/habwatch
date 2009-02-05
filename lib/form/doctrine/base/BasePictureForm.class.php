@@ -17,7 +17,7 @@ class BasePictureForm extends BaseFormDoctrine
       'resolution' => new sfWidgetFormInput(),
       'quality'    => new sfWidgetFormInput(),
       'format'     => new sfWidgetFormInput(),
-      'data_id'    => new sfWidgetFormDoctrineSelect(array('model' => 'Data', 'add_empty' => true)),
+      'storage_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -28,7 +28,7 @@ class BasePictureForm extends BaseFormDoctrine
       'resolution' => new sfValidatorInteger(array('required' => false)),
       'quality'    => new sfValidatorString(array('max_length' => 10, 'required' => false)),
       'format'     => new sfValidatorString(array('max_length' => 25, 'required' => false)),
-      'data_id'    => new sfValidatorDoctrineChoice(array('model' => 'Data', 'required' => false)),
+      'storage_id' => new sfValidatorDoctrineChoice(array('model' => 'Storage', 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));
