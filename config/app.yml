@@ -14,3 +14,6 @@ all:
         
     doctrine:
         db_dsn: <?php echo $DOCTRINE_DB_DSN; ?>
+        
+    google:
+        maps_key: <?php echo $GOOGLE_MAPS_KEY; ?>
