@@ -1,9 +1,9 @@
-@import "blueprintcss/reset.css";
-@import "blueprintcss/plugins/liquid.css";
-@import "blueprintcss/typography.css";
-@import "blueprintcss/forms.css";
-@import "blueprintcss/plugins/fancy-type.css";
-@import "blueprintcss/plugins/tabs.css";
+@import "blueprintcss/blueprint/src/reset.css";
+@import "blueprintcss/blueprint/plugins/fluid/liquid.css";
+@import "blueprintcss/blueprint/src/typography.css";
+@import "blueprintcss/blueprint/src/forms.css";
+@import "blueprintcss/blueprint/plugins/fancy-type/screen.css";
+@import "blueprintcss/blueprint/plugins/tabs/screen.css";
 
 .grid { background: url(../images/grid.png); }
 .container {
