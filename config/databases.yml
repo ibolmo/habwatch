@@ -1,5 +1,8 @@
+<?php require_once 'app.php'; ?>
+
 all:
     doctrine:
         class: sfDoctrineDatabase
         param:
-            dsn: 'pgsql://merhab:_5#epIgrAph@localhost:5432/merhab'
+            dsn: <?php echo $DOCTRINE_DB_DSN ?>
+            

@@ -1,20 +1,20 @@
     # Be sure to only have this line once in your configuration
     NameVirtualHost 127.0.0.1:80
 
-    # This is the configuration for merhab
+    # This is the configuration for habwatch
     Listen 127.0.0.1:80
 
     <VirtualHost 127.0.0.1:80>
-      ServerName merhab.localhost
-      DocumentRoot "C:\www\merhab\web"
+      ServerName habwatch.localhost
+      DocumentRoot "C:\www\habwatch\web"
       DirectoryIndex index.php
-      <Directory "C:\www\merhab\web">
+      <Directory "C:\www\habwatch\web">
         AllowOverride All
         Allow from All
       </Directory>
 
-      Alias /sf "C:\www\merhab\data\web\sf"
-      <Directory "C:\www\merhab\data\web\sf">
+      Alias /sf "C:\www\habwatch\data\web\sf"
+      <Directory "C:\www\habwatch\data\web\sf">
         AllowOverride All
         Allow from All
       </Directory>

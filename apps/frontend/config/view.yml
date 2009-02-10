@@ -3,9 +3,9 @@ default:
     content-type: text/html
 
   metas:
-    title:        Merhab
-    description:  Merhab, Monitor Event Response Harmful Algal Bloom
-    keywords:     merhab, hab, participatory sensing, urban sensing, cens
+    title:        <?php echo sfConfig::get('app_project_name') ?>
+    description:  <?php echo sfConfig::get('app_project_description') ?>
+    keywords:     <?php echo sfConfig::get('app_project_keywords') ?>
     language:     en
     robots:       noindex, nofollow
 

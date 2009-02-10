@@ -3,7 +3,7 @@
 /**
  * sfValidatorPhoneNumber Takes an object (array) with number and disabled fields, and cleans the number to an appropiate format defined by the option: pattern.
  *
- * @package        merhab
+ * @package        habwatch
  * @subpackage     validator
  * @author         Olmo Maldonado, <ibolmo@ucla.edu>
  */

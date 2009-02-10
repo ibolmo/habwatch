@@ -16,7 +16,14 @@ class Report extends BaseReport
             $this->Point->longitude = $coordinates['longitude'];
             $this->Point->save();
         } else {
-            # flag
+            //*
+            var_dump(array(
+                'value' => $value,
+                'geocode' => GMap::geocode($value),
+                'coordinates' => GMap::getCoordinates($value)
+            ));
+            //*/
+            die();
         }
     }
 }

@@ -3,7 +3,7 @@
 /**
  * sfValidatorEmailAddress Takes an object (array) with address and disabled fields, and cleans the address to an appropiate format defined by the option: pattern.
  *
- * @package        merhab
+ * @package        habwatch
  * @subpackage     validator
  * @author         Olmo Maldonado, <ibolmo@ucla.edu>
  */

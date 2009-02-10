@@ -2,7 +2,7 @@
 
 /**
  *
- * @package    merhab
+ * @package    habwatch
  * @author     Olmo Maldonado <ibolmo@ucla.edu>
  */
 class EmailAddressesForm extends sfFormDoctrine

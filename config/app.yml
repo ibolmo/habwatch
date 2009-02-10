@@ -2,11 +2,13 @@
 
 all:
     project:
-        name: 'Merhab'
-        contact_email: 'olmo.maldonado@gmail.com'
+        name: 'HAB Watch'
+        description: 'HAB Watch, Harmful Algal Bloom Watch'
+        keywords: 'habwatch, hab, harmful, algal, bloom, poisonous, participatory sensing, urban sensing, cens'
+        contact_email: 'contact@habwatch.com'
     
     outgoing:
-        emails_from: 'no-reply@merhab.cens.ucla.edu'
+        emails_from: 'no-reply@habwatch.com'
         
     smtp:
         username: <?php echo $SMTP_USERNAME; ?>
