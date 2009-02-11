@@ -5,3 +5,4 @@ all:
         class: sfDoctrineDatabase
         param:
             dsn: <?= DOCTRINE_DB_DSN ?>
+            

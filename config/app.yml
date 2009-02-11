@@ -26,7 +26,4 @@ all:
     flickr:
         api_key: <?= FLICKR_API_KEY ?>
         secret: <?= FLICKR_SECRET ?>
-        token:
-            read: <?= FLICKR_TOKEN_READ ?>
-            write: <?= FLICKR_TOKEN_WRITE ?>
-            delete: <?= FLICKR_TOKEN_DELETE ?>
+        token: <?= FLICKR_TOKEN ?>
