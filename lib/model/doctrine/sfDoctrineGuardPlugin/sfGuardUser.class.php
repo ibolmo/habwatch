@@ -29,4 +29,9 @@ class sfGuardUser extends PluginsfGuardUser
         $this->Profile->Emails[0]->address = $email;
         $this->Profile->Emails->save();
     }
+    
+    public function hasMapData()
+    {
+        return false;
+    }
 }

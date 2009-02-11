@@ -12,6 +12,7 @@
 	margin: 0 auto;
 	overflow: hidden;
 }
+.tabs { overflow: hidden; }
 
 body, #body {
 	margin:1.5em 0;
@@ -27,29 +28,28 @@ h2 { border-bottom: 1px solid #eee; }
 	background: url(../images/NetworkedNaturalist.png) no-repeat;
 	//*/
 	width: 708px;
-	height: 94px;
 }
 
 #logo a {
 	display: block;
 	width: 708px;
-	height: 94px;
 	/* text-indent: -100000px; */
 }
 
 #header .tabs {
+    margin: 0;
 	padding: 5px 0px 0px 0px;	
 	color: #222;
-	border-bottom: solid 1px #DADADA;
 	background-color: #F5F5F5;
+	border-bottom: 0;
 }
 #header .tabs li {
-	border: solid 1px #dadada;
 	background-color: #e5e5e5;
-	border-bottom: 0px;
 	margin-right: 5px;
 }
 #header .tabs a {
+    font-weight: normal;
+    border: 0;
 	padding: 5px 10px 8px 10px;
 	color: #333333;
 	text-decoration: none;
@@ -58,23 +58,17 @@ h2 { border-bottom: 1px solid #eee; }
 #header .tabs a:hover {
 	background-color: #fff;
 	text-decoration: underline;
-	color: #333333;
 }
 
 #header .tabs a.active {
-	border-bottom: 1px solid #fff;
-	margin-bottom: -1px;
 	background-color: #fff;
-	color: #333;
 }
 
 #header .tabs a.active a:hover {
 	text-decoration: underline;
 }
 
-#top_nav {
-	 margin-top: 78px;
-}
+#top_nav { padding-top: 18px;}
 
 #site_plant_listing td {
 	vertical-align: top;
@@ -125,14 +119,14 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 .thumbnail {
 	background: #fff;
 	border: 1px solid #ccc;
-	height: 90px;
 	text-align: center;
+	width: 100%;
 }
 
-.thumbnail img {
-	vertical-align: middle;
-	border: 0;
-	height: 100%;
+img.thumbnail {
+	padding: 5px;
+	margin: -5px;
+	margin-right:-10px;
 }
 
 .settings_table { margin-bottom: 0; }
@@ -141,3 +135,7 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 
 .disabled { color: #ccc; }
 ul.log li { list-style: none }
+
+
+#sidebar-recent { margin-left: 0; margin-right: 0;}
+#sidebar-recent li { margin-bottom: 1.5em;}

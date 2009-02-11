@@ -1,8 +1,8 @@
-<?php require_once 'app.php'; ?>
+<?php require 'app.php'; ?>
 
 all:
     doctrine:
         class: sfDoctrineDatabase
         param:
-            dsn: <?php echo $DOCTRINE_DB_DSN ?>
+            dsn: <?php echo $DOCTRINE_DB_DSN; ?>
             
