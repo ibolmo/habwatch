@@ -19,3 +19,6 @@ all:
         
     google:
         maps_key: <?php echo $GOOGLE_MAPS_KEY; ?>
+        
+    phlickr:
+        lib_dir: <?= sfConfig::get('sf_lib_dir') ?>/vendor/phlickr

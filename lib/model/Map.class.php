@@ -4,6 +4,6 @@ class Map
 {
     public static function hasData()
     {
-        return false;
+        
     }
 }
