@@ -9,6 +9,12 @@ class defaultComponents extends sfComponents
             '@homepage' => array(
                 'text' => 'Home'    
             ),
+            '@about' => array(
+                'text' => 'About'
+            ),
+            '@instructions' => array(
+                'text' => 'Instructions'
+            )
             /*
             '@reports' => array(
                 'text' => 'Reported HABs'
@@ -29,9 +35,6 @@ class defaultComponents extends sfComponents
                     'text' => 'Drafts'  
                 ),
                 //*/
-                '@instructions' => array(
-                    'text' => 'Instructions'
-                )
             ));
         }
     }

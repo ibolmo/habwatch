@@ -40,4 +40,8 @@ class defaultActions extends myActions
 	    $this->setLayout(false);
 	    $this->renderText('An error has occurred');
 	}
+    
+    public function executeAbout(sfWebRequest $request)
+    {
+    }
 }
