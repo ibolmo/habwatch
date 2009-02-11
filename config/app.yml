@@ -6,19 +6,27 @@ all:
         description: 'HAB Watch, Harmful Algal Bloom Watch'
         keywords: 'habwatch, hab, harmful, algal, bloom, poisonous, participatory sensing, urban sensing, cens'
         contact_email: 'contact@habwatch.com'
-    
+
     outgoing:
         emails_from: 'no-reply@habwatch.com'
-        
+
     smtp:
-        username: <?php echo $SMTP_USERNAME; ?>
-        password: <?php echo $SMTP_PASSWORD; ?>
-        
+        username: <?= SMTP_USERNAME ?>
+        password: <?= SMTP_PASSWORD ?>
+
     doctrine:
-        db_dsn: <?php echo $DOCTRINE_DB_DSN; ?>
-        
+        db_dsn: <?= DOCTRINE_DB_DSN ?>
+
     google:
-        maps_key: <?php echo $GOOGLE_MAPS_KEY; ?>
-        
+        maps_key: <?= GOOGLE_MAPS_KEY ?>
+
     phlickr:
         lib_dir: <?= sfConfig::get('sf_lib_dir') ?>/vendor/phlickr
+
+    flickr:
+        api_key: <?= FLICKR_API_KEY ?>
+        secret: <?= FLICKR_SECRET ?>
+        token:
+            read: <?= FLICKR_TOKEN_READ ?>
+            write: <?= FLICKR_TOKEN_WRITE ?>
+            delete: <?= FLICKR_TOKEN_DELETE ?>
