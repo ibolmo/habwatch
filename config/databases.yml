@@ -4,5 +4,4 @@ all:
     doctrine:
         class: sfDoctrineDatabase
         param:
-            dsn: <?php echo $DOCTRINE_DB_DSN; ?>
-            
+            dsn: <?= DOCTRINE_DB_DSN ?>
