@@ -39,7 +39,7 @@ class smsActions extends sfActions
         $bits = explode(' ', $message);
         $command = array_shift($bits);
         
-        switch ($command) {
+        switch (strtolower($command)) {
             # report [quantity] condition subject location
             case 'report':
                 $quantity = 1;
@@ -67,7 +67,6 @@ class smsActions extends sfActions
     public function executeError400(sfRequest $request)
     {
         $this->setLayout(false);
-        $this->getResponse()->setStatusCode(400);
         return $this->renderText('Your phone number is not registered');
     }
 }
