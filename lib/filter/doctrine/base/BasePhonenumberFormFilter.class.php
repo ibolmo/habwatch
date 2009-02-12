@@ -3,13 +3,13 @@
 require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
- * Phonenumber filter form base class.
+ * PhoneNumber filter form base class.
  *
  * @package    filters
- * @subpackage Phonenumber *
+ * @subpackage PhoneNumber *
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
+class BasePhoneNumberFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -25,7 +25,7 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
       'profile_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Profile', 'column' => 'id')),
     ));
 
-    $this->widgetSchema->setNameFormat('phonenumber_filters[%s]');
+    $this->widgetSchema->setNameFormat('phone_number_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -34,7 +34,7 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Phonenumber';
+    return 'PhoneNumber';
   }
 
   public function getFields()

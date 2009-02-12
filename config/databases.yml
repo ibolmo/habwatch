@@ -1,4 +1,4 @@
-<?php require 'app.php'; ?>
+<?php require_once 'app.php'; ?>
 
 all:
     doctrine:

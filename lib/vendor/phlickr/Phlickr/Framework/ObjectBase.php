@@ -137,7 +137,7 @@ abstract class Phlickr_Framework_ObjectBase {
      *
      * @return  string
      */
-    abstract static function getRequestMethodName();
+    abstract function getRequestMethodName(){}
     /**
      * Returns an array of parameters to be used when creating a
      * Phlickr_Request to call this object's getInfo API method.
@@ -146,7 +146,7 @@ abstract class Phlickr_Framework_ObjectBase {
      * @return  array
      * @see     getId()
      */
-    abstract static function getRequestMethodParams($id);
+    abstract function getRequestMethodParams($id){}
     /**
      * Return the object's Id.
      *

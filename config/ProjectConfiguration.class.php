@@ -1,6 +1,7 @@
 <?php
 
-require_once 'C:\php\PEAR\symfony/autoload/sfCoreAutoload.class.php';
+require_once 'app.php';
+require_once trim(PEAR_SF_DIR).'/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration

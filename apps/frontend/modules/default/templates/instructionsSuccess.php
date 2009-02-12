@@ -1,54 +1,14 @@
 
-<div class="box span-6 push-0">
-	<h4>Quick List of Commands</h4>
-	<pre><?php //$this->load->view('partials/sms_commands.php') ?></pre>
-</div>
+<h4>Here are some instructions to get started with <?= sfConfig::get('app_project_name') ?>!</h4>	
 
-<h4>Here are some instructions to get started with Networked Naturalist!</h4>	
-<ol>
-    <li>
-        <strong>Additional Information</strong>
-        <p>
-        	Make sure your <?php //echo anchor('account/', 'account') ?> is updated with your cell
-        	phone number so that you can send <strong>SMS</strong> messages.
-			Networked Naturalist only accepts  SMS messages from phone numbers or email addresses 
-			associated with an account. 
-        </p>    
-    </li>
-    <li>
-        <strong>Setup a site</strong>
-        <p>
-            To make observations you need to define plants that live within certain
-            "<?php //echo anchor('sites', 'sites') ?>", or regions of observations. But first you need
-            to <?php //echo anchor('sites/add', 'add a new site') ?> to make your observations.
-        </p>
-    </li>
-    <li>
-        <strong>Add a plant</strong>
-        <p>
-            Once you've created a site you can add a new plant by accessing the "<?php //echo anchor('sites', 'My Data') ?>"
-            tab and selecting "[Add Plant]". The plant is added to the individual site. Once created, you can create observations as explained below.
-        </p>
-    </li>
-    <li>
-        <strong>Make an observation</strong>
-        <p>
-            Now that a plant has been defined in a site, you can begin making observation on that plant. You can
-            make observations with your phone through SMS or MMS, or by emails. The following list of instructions
-            are specific with the method you choose to make your observations.
-        </p>
-    </li>
-</ol>
-
-<h2>Make an Observation</h2>
 <div class="block">
 	<div class="column border span-10 append-1 prepend-1">
         <h3>Phone with SMS</h3>
         <ol>
-            <li>Add <code>+1 310 651 0892</code> to your Contacts</li>
+            <li>Add <code>+1 310 848 7807</code> to your Contacts</li>
             <li>
                 For SMS to function correctly you must abide by the following syntax:
-                <pre><?php //$this->load->view('partials/sms_commands_expanded.php') ?></pre>
+                <pre><?= include_partial('message/helpSuccess.sms.php') ?></pre>
 				<p class="small"> 	
 					Legend: [items in square brackets optional]
 				</p>

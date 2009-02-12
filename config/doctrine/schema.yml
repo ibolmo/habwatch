@@ -347,7 +347,10 @@ Report:
         
     columns:
         quantity: integer
-        condition: string
+        _condition:
+            name: _condition as condition
+            type: string
+            
         subject: string
         location: string
         
