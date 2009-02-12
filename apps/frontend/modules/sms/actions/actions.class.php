@@ -67,6 +67,6 @@ class smsActions extends sfActions
     public function executeError400(sfRequest $request)
     {
         $this->setLayout(false);
-        return $this->renderText('Your phone number is not registered');
+        return $this->renderText('Your phone number is not registered. Please visit '.sfConfig::get('app_project_uri'));
     }
 }
