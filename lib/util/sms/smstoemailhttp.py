@@ -5,9 +5,9 @@ apo = socket.access_point(2)
 socket.set_default_access_point(apo)
 
 # Domain info
-domain = "leonia.cens.ucla.edu"
-handler = "/habwatch/sms/sms.php?"
-keyword = "habwatch@gmail.com"
+domain = "habwatch"
+handler = "/sms.php?"
+keyword = "m@habwatch.com"
 
 print "SMS Gateway Started"
 print "Domain is:", domain
@@ -67,7 +67,7 @@ while 1:
 					continue
 		
 			dt = createdtstring(epoch, "%Y-%m-%d %H:%M:%S")
-			args = {'username':address,'dt':dt,'message':content}
+			args = {'s_phone_number':address,'message':content}
 			args = urllib.urlencode(args)
 
 			try:

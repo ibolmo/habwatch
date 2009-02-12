@@ -26,7 +26,7 @@ class sfGuardUser extends PluginsfGuardUser
     
     public function setEmailAddress($email)
     {
-        $this->Profile->Emails[0]->address = $email;``
+        $this->Profile->Emails[0]->address = $email;
         $this->Profile->Emails->save();
     }
 }

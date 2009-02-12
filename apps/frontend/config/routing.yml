@@ -1,3 +1,7 @@
+sms_:
+    url: /sms
+    param: {module: sms, action: parse, message: '', r_phone_number: '' }
+    
 sms_/:
     url: /sms/:s_phone_number/:message/:r_phone_number/
     param: { module: sms, action: parse, message: '', r_phone_number: '' }
