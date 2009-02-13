@@ -6,6 +6,7 @@ all:
         description: 'HAB Watch, Harmful Algal Bloom Watch'
         keywords: 'habwatch, hab, harmful, algal, bloom, poisonous, participatory sensing, urban sensing, cens'
         contact_email: 'contact@habwatch.com'
+        participate_email: 'm@habwatch.com'
         uri: 'http://habwatch.com'
 
     outgoing:
