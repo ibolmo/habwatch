@@ -1,0 +1,1 @@
+This is for Campaignr Windows Mobile Edition (http://wiki.urban.cens.ucla.edu/)
