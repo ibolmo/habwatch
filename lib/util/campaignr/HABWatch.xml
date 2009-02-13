@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<campaign name="HABWatch" uploadOnStart="true" flushDatabase="false" debug="false">
+    <manual>
+        <sensor type="image" name="image" review="true">
+            <viewfinder />
+            <size>1600:1200</size>
+        </sensor>
+        <sensor type="location" name="location"/>
+        <sensor type="timestamp" name="timestamp"/>
+        <sensor type="imei" name="imei" hash="true" />
+        <sensor type="cellid" name="cellid" />
+        <sensor type="tag" name="tag" multiselect="false">
+            <prompt>
+                Select Billboard Type
+            </prompt>
+            <list>
+                <text>Poster</text>
+                <text>Poster (non-maintained)</text>
+                <text>Electronic</text>
+                <text>Wallscape</text>
+            </list>
+        </sensor>
+        <sensor type="tag" name="owner" multiselect="false">
+            <prompt>
+                Select Billboard Company
+            </prompt>
+            <list>
+                <text>Clear Channel</text>
+                <text>CBS</text>
+                <text>Van Wagner</text>
+                <text>Vista</text>
+                <text>Fuel</text>
+                <text>Regency</text>
+                <text>Unknown</text>
+            </list>
+        </sensor>
+        <sensor type="tag" name="number">
+            <prompt>
+                Enter Billboard Number (optional)
+            </prompt>
+            <text></text>
+        </sensor>
+        
+        <upload type="sensorbase.org" dest="http://sensorbase.org/upload2.php">
+            <project id="477">
+                <table name="Basic">
+                    <field name="timestamp" sensor="timestamp" />
+                    <field name="location" sensor="location" />
+                    <field name="imei" sensor="imei" />
+                    <field name="cellid" sensor="cellid" />
+                    <field name="image" sensor="image" />
+                    <field name="tag" sensor="tag" />
+                    <field name="owner" sensor="tag" />
+                    <field name="number" sensor="tag" />
+                </table>
+            </project>
+        </upload>
+    </manual>
+</campaign>
