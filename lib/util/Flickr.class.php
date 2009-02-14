@@ -28,4 +28,9 @@ class Flickr extends Phlickr_Api
     {
         return !!self::getUser()->getPhotoCount();
     }
+    
+    public static function getPopularTags()
+    {
+        return self::getUser()->getPopularTags();
+    }
 }

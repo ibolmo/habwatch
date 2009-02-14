@@ -37,24 +37,27 @@
 		        <?php endforeach ?>	    	    
 	    	</div>
 	    	
-		    <div id="body" class="block">		        
+		    <div id="body" class="block">
 			    <div id="content" class="column span-20">
 			        <?= $sf_content ?>
 			    </div>
 			    
 			    <div id="sidebar" class="column span-3 prepend-1">
 			        <h3>Recent</h3>
-			        <ul id="sidebar-recent" class="log">
-			            <li><?= image_tag('test_image.png', array('class' => 'thumbnail')) ?></li>
-			            <li><?= image_tag('sample_2.png', array('class' => 'thumbnail')) ?></li>
-			        </ul>
-			        
-                	<h3>Statistics</h3>
-                    <div class="thumbnail">Graph</div>
-                    <hr class="space" />
-                	<p>
-                		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                	</p>
+                    <table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0">
+                        <tr>
+                            <td>
+                                <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=3&display=latest&size=t&layout=v&source=user&user=35147405%40N02"></script>
+                            </td>
+                        </tr>
+                    </table>
+                	
+                	<h3>Tags</h3>
+                	<ul class="log">
+                        <?php foreach (Flickr::getPopularTags() as $tag): ?>
+                    	    <li><a href="http://www.flickr.com/photos/<?= Flickr::getUser()->getId() ?>/tags/<?= $tag ?>"><?= $tag ?></a></li>
+                        <?php endforeach ?>
+                	</ul>
 			    </div>
 			</div>
 			
