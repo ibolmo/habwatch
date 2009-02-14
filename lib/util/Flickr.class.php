@@ -33,4 +33,10 @@ class Flickr extends Phlickr_Api
     {
         return self::getUser()->getPopularTags();
     }
+    
+    public static function getRecentPhotos($count = 5)
+    {        
+        $PhotoList = self::getUser()->getPhotoList($count);
+        return $PhotoList->getPhotos();
+    }
 }

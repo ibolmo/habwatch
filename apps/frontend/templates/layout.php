@@ -38,19 +38,21 @@
 	    	</div>
 	    	
 		    <div id="body" class="block">
-			    <div id="content" class="column span-20">
+			    <div id="content" class="column span-20">			        
 			        <?= $sf_content ?>
 			    </div>
 			    
 			    <div id="sidebar" class="column span-3 prepend-1">
 			        <h3>Recent</h3>
-                    <table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0">
-                        <tr>
-                            <td>
-                                <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=3&display=latest&size=t&layout=v&source=user&user=35147405%40N02"></script>
-                            </td>
-                        </tr>
-                    </table>
+                    <ul id="sidebar-recent" class="log">
+                        <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
+                            <li>
+                                <a href="<?= $Photo->buildUrl() ?>">
+                                    <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
+                                </a>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
                 	
                 	<h3>Tags</h3>
                 	<ul class="log">

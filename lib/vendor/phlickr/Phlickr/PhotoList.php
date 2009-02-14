@@ -112,7 +112,7 @@ class Phlickr_PhotoList implements Phlickr_Framework_IPhotoList {
      *
      * @return  object Plickr_Api
      */
-    public function &getApi() {
+    public function getApi() {
         return $this->_request->getApi();
     }
 

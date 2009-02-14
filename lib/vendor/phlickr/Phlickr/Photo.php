@@ -547,8 +547,7 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
             $sizes = $this->getSizes();
             return $sizes[self::SIZE_ORIGINAL]['source'];
         }
-
-        $url = sprintf("http://farm%d.static.flickr.com/%d/%d_%s%s.%s",
+        $url = sprintf("http://farm%s.static.flickr.com/%s/%s_%s%s.%s",
             $this->getFarm(), $this->getServer(), $this->getId(), $this->getSecret(), $sizeStr, $type);
         return $url;
     }
