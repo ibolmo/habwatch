@@ -21,6 +21,8 @@ all:
 
     google:
         maps_key: <?= GOOGLE_MAPS_KEY ?>
+        analytics: "'UA-5925745-3'"
+
 
     phlickr:
         lib_dir: <?= sfConfig::get('sf_lib_dir') ?>/vendor/phlickr

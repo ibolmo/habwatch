@@ -73,5 +73,9 @@
 	        
 		</div>
 		<?php include_javascripts() ?>
+		<?php if (!preg_match('/^dev/', $_SERVER['HTTP_HOST'])): ?>
+    		<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    	    <script>_gat._getTracker(<?= sfConfig::get('app_google_analytics') ?>)._trackPageview();</script>
+		<?php endif ?>
 	</body>
 </html>

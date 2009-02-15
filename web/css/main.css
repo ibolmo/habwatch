@@ -123,6 +123,10 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 	width: 100%;
 }
 
+.thumbnail:hover {
+    border: 1px solid #0078CC;
+}
+
 img.thumbnail {
 	padding: 5px;
 	margin: -5px;
