@@ -1,5 +1,6 @@
 window.addEvent('domready', function () {
 	myTabs = new SlidingTabs('buttons', 'panes', {
+	    wrap: false,
 	    animateHeight: false
 	});
 		

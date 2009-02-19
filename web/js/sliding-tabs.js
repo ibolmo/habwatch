@@ -35,7 +35,7 @@ var SlidingTabs = new Class({
     
     this.setOptions(options);
     
-    this.fx = new Fx.Scroll(this.outerSlidesBox, this.options.slideEffect);
+    this.fx = new Fx.Scroll(this.outerSlidesBox, this.options.slideEffect, {wheelStops: false});
     this.heightFx = this.outerSlidesBox.tween('height', this.options.slideEffect);
     
     // set up button highlight
