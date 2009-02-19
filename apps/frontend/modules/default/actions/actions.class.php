@@ -33,6 +33,9 @@ class defaultActions extends myActions
 	
 	public function executeInstructions(sfWebRequest $request)
 	{
+	    $this->getResponse()->addJavascript('mootools');
+	    $this->getResponse()->addJavascript('sliding-tabs');
+	    $this->getResponse()->addJavascript('instructions');
 	}
 	
 	public function executeError404($request)

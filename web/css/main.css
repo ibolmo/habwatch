@@ -19,7 +19,7 @@ body, #body {
 	font-family: tahoma, trebuchet ms, arial, sans serif;
 }
 
-a, .link { color: #0078CC; text-decoration: none; cursor: pointer; }
+a, .link, #buttons { color: #0078CC; text-decoration: none; cursor: pointer; }
 a:hover, .link:hover { color: #000; }
 h2 { border-bottom: 1px solid #eee; }
 
@@ -36,35 +36,37 @@ h2 { border-bottom: 1px solid #eee; }
 	/* text-indent: -100000px; */
 }
 
-#header .tabs {
+#header .tabs, #buttons {
     margin: 0;
 	padding: 5px 0px 0px 0px;	
 	color: #222;
 	background-color: #F5F5F5;
 	border-bottom: 0;
 }
-#header .tabs li {
+#header .tabs li, #buttons li {
 	background-color: #e5e5e5;
 	margin-right: 5px;
+	border: 0;
 }
-#header .tabs a {
+#header .tabs a, #buttons li {
+    border: 1px solid #E5E5E5;
+    border-bottom: 0;
     font-weight: normal;
-    border: 0;
 	padding: 5px 10px 8px 10px;
 	color: #333333;
 	text-decoration: none;
 }
 
-#header .tabs a:hover {
+#header .tabs a:hover, #buttons li:hover {
 	background-color: #fff;
 	text-decoration: underline;
 }
 
-#header .tabs a.active {
+#header .tabs a.active, #buttons li.active {
 	background-color: #fff;
 }
 
-#header .tabs a.active a:hover {
+#header .tabs a.active a:hover, #buttons li.active li:hover {
 	text-decoration: underline;
 }
 

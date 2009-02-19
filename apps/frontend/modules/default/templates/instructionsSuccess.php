@@ -41,3 +41,27 @@
         </p>
     </div>
 </div>
+
+<div class="column span-24">
+    <ul id="buttons" class="tabs"> 
+    	<li>iPhone</li> 
+    	<li>N80 + GPS Module</li> 
+    	<li>N95</li>
+    </ul>
+</div>
+
+<div id="panes">
+    <div>
+        <div class="pane">
+            Apple iPhone
+        </div>
+        <div class="pane">
+            Nokia N80 + GPS Module
+        </div>
+        <div class="pane">
+            Nokia N95
+        </div>
+    </div>
+</div>
+
+
