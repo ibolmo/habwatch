@@ -39,9 +39,9 @@
         <p>
 			Follow the instructions above for email from a phone. 
         </p>
-        <hr />
     </div>
     <div class="column span-24">
+        <hr />
         <h3>From a Particular Phone</h3>
         <ul id="buttons" class="tabs"> 
         	<li>iPhone</li> 
@@ -98,7 +98,7 @@
                     </li>
                     <li>Wait 5 seconds.</li>
                     <li>We need to check that the GPS module is receiving a satellite signal.
-                    <ul><li>The <code>Last Location</code> on the <code>Location Tagger</code> will show a coordinate. For example: <code>34&amp;deg;4'6".239N 118&amp;deg;26'35"</code></li></ul></li>
+                    <ul><li>The <code>Last Location</code> on the <code>Location Tagger</code> will show a coordinate. For example: <code>34°4'6".239N 118°26'35"</code></li></ul></li>
                     <li>Select <code>Hide</code> and you're set to take pictures.</li>
                     </ol>
                     
@@ -176,7 +176,7 @@
                     <li>Once the GPS is confirmed as having been paired with the device, we need to check that the GPS module is receiving a satellite signal.
                     <ol><li>The green satellite icon should be blinking slowly. If it is, then you are receiving GPS signals. If it's not, you may need to find a better location to read the GPS signals.</li>
                     <li>After confirming that the GPS module's green satellite icon is blinking (or receiving GPS coordinates), check that the <code>Location Tagger</code> is receiving the data. </li>
-                    <li>The <code>Last Location</code> on the <code>Location Tagger</code> will show a coordinate. For example: <code>34&amp;deg;4'6".239N 118&amp;deg;26'35"</code></li></ol></li>
+                    <li>The <code>Last Location</code> on the <code>Location Tagger</code> will show a coordinate. For example: <code>34°4'6".239N 118°26'35"</code></li></ol></li>
                     <li>We're almost done!</li>
                     <li>Select <code>Hide</code> and you're set to take pictures.</li>
                     </ol>
