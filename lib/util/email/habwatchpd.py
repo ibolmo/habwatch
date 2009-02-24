@@ -208,7 +208,7 @@ class emailparser:
                         msg['To'] = self.smtpaddress
                         msg['Date'] = formatdate(localtime=True)
                         # replace this
-                        msg['Subject'] = "photo tags: %s %s nolabel" % (username, subject)
+                        msg['Subject'] = "photo tags: %s %s" % (username, subject or '')
                         msg.attach(MIMEText("%s\n\n- Camera phone upload powered by HAB Watch" % emailtext))
                         msg.attach(imgpart)
                         
