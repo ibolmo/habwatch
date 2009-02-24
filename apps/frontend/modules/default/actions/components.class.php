@@ -9,9 +9,11 @@ class defaultComponents extends sfComponents
             '@homepage' => array(
                 'text' => 'Home'    
             ),
+            /* 
             '@about' => array(
                 'text' => 'About'
             ),
+            //*/
             '@instructions' => array(
                 'text' => 'Instructions'
             )
