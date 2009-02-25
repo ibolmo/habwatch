@@ -3,5 +3,6 @@
 /web/sf
 cache/*
 log/*
+*.pyc
 
 config/app.php
