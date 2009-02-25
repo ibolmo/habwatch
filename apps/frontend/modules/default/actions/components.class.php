@@ -4,7 +4,7 @@ class defaultComponents extends sfComponents
 {
     public function executeMenu(sfWebRequest $request)
     {
-        $this->requestedUri = $request->getUri();
+        $this->requestedUri = preg_replace('/\?.+$/', '', $request->getUri());
         $this->links = array(
             '@homepage' => array(
                 'text' => 'Home'    
