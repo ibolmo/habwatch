@@ -145,4 +145,14 @@ ul.log li { list-style: none }
 #sidebar-recent { margin-left: 0; margin-right: 0;}
 #sidebar-recent li { margin-bottom: 1.5em;}
 
-#map { margin-top: -64px; width: 100%; height: 800px; }
+#map {
+    margin-top: -64px;
+    width: 100%;
+    height: 800px;
+}
+
+.sub-header .feed {
+    margin-top: 0.75em;
+    float: right;
+}
+

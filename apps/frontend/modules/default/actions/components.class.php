@@ -18,7 +18,7 @@ class defaultComponents extends sfComponents
                 'text' => 'Instructions'
             )
             /*
-            '@reports' => array(
+            '@messages' => array(
                 'text' => 'Reported HABs'
             )
             //*/
@@ -26,6 +26,9 @@ class defaultComponents extends sfComponents
         
         if ($this->getUser()->isAuthenticated()) {
             $this->links = array_merge($this->links, array(
+                '@messages' => array(
+                    'text' => 'Messages'
+                ),
                 '@account' => array(
                     'text' => 'Account'
                 ),

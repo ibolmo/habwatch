@@ -30,9 +30,11 @@ class messageActions extends myActions
         $this->SMSPager->setPage($request->getParameter('sms_page', 1));
         $this->SMSPager->init();
         
+        /*
         $this->EmailPager = new sfDoctrinePager('Email', sfConfig::get('app_max_email_page'));
         $this->EmailPager->setPage($request->getParameter('email_page', 1));
         $this->EmailPager->init();
+        //*/
     }
     
     protected function getParsed()
