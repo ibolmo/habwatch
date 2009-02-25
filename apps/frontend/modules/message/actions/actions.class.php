@@ -32,7 +32,6 @@ class messageActions extends myActions
     
     protected function getParsed()
     {
-        parent::preExecute();
         if (!$this->User && $id = $this->getUser()->getAttribute('user_id')) {
             $this->User = Doctrine::getTable('sfGuardUser')->findOneById($id);
         }
