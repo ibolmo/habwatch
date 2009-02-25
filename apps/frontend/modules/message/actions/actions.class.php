@@ -30,4 +30,10 @@ class messageActions extends myActions
     public function executeHelp(sfRequest $request)
     {
     }
+    
+    public function executeIndex(sfRequest $request)
+    {
+        $this->Messages = $this->User->Storage->Messages;
+        $this->Reports = $this->User->Storage->Reports;
+    }
 }

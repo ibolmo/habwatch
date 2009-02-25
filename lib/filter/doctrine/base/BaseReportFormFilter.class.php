@@ -16,7 +16,7 @@ class BaseReportFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'file'       => new sfWidgetFormFilterInput(),
       'quantity'   => new sfWidgetFormFilterInput(),
-      'condition'  => new sfWidgetFormFilterInput(),
+      'condition' => new sfWidgetFormFilterInput(),
       'subject'    => new sfWidgetFormFilterInput(),
       'location'   => new sfWidgetFormFilterInput(),
       'message_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Message', 'add_empty' => true)),
@@ -28,7 +28,7 @@ class BaseReportFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'file'       => new sfValidatorPass(array('required' => false)),
       'quantity'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'condition'  => new sfValidatorPass(array('required' => false)),
+      'condition' => new sfValidatorPass(array('required' => false)),
       'subject'    => new sfValidatorPass(array('required' => false)),
       'location'   => new sfValidatorPass(array('required' => false)),
       'message_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Message', 'column' => 'id')),

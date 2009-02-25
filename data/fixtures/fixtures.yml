@@ -34,8 +34,8 @@ sfGuardUser:
                     location: 'santa monica'
                     
                     Point:
-                        latitude: 1
-                        longitude: 10
+                        latitude: 34.0079888707242
+                        longitude: -118.48960876464844
                         
                 sms_report_2:
                     quantity: 1
@@ -44,5 +44,5 @@ sfGuardUser:
                     location: 'santa monica pier'
                     
                     Point:
-                        latitude: 10
-                        longitude: 1
+                        latitude: 34.00938518138472
+                        longitude: -118.49724769592285
