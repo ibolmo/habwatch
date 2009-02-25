@@ -26,8 +26,13 @@ class messageActions extends myActions
     
     public function executeIndex(sfRequest $request)
     {
-        $this->Messages = $this->User->Storage->Messages;
-        $this->Reports = $this->User->Storage->Reports;
+        $this->SMSPager = new sfDoctrinePager('SMS', sfConfig::get('app_max_sms_page'));
+        $this->SMSPager->setPage($request->getParameter('sms_page', 1));
+        $this->SMSPager->init();
+        
+        $this->EmailPager = new sfDoctrinePager('Email', sfConfig::get('app_max_email_page'));
+        $this->EmailPager->setPage($request->getParameter('email_page', 1));
+        $this->EmailPager->init();
     }
     
     protected function getParsed()

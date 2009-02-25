@@ -1,2 +1,6 @@
 <?= include_partial('sms/list', array('sms' => $sms )) ?>
-<?= include_partial('email/list', arary('emails' => $emails )) ?>
+
+<?php if ($emails->count()): ?>
+    <hr />
+    <?= include_partial('email/list', array('emails' => $emails )) ?>
+<?php endif ?>

@@ -1,2 +1,4 @@
 # default values
-#all:
+all:
+    max_sms_page: 10
+    max_emails_page: 10

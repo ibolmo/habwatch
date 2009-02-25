@@ -4,13 +4,13 @@
         <th>From</th>
         <th>Message</th>
     </tr>
-<?php foreach ($messages as $i => $message): ?>
+<?php foreach ($sms as $i => $s): ?>
     <tr class="<?php echo fmod($i, 2) ? 'even' : 'odd' ?>">
         <td class="from phone_number">
-            <?= $message['from'] ?>
+            <?= $s['from'] ?>
         </td>
         <td class="message">
-            <?= $message['message'] ?>
+            <?= $s['message'] ?>
         </td>
     </tr>
 <?php endforeach; ?>
