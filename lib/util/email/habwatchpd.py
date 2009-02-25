@@ -1,9 +1,11 @@
+'''
+Will connect to an IMAP, get an email and send it to a URI
+'''
 #!/usr/bin/python
 
 import imaplib, re, email, datetime, os, time, smtplib, validate, sys
 sys.path.append("/usr/local/lib/python")
 import logging, daemon
-from pysqlite2 import dbapi2 as sqlite
 from email.Parser import Parser
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
