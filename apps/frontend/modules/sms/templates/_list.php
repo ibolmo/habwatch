@@ -2,6 +2,7 @@
     <div class="feed"><a href="">Feed</a></div>
     <h2>SMS</h2>
 </div>
+
 <table class="messages">
     <tr>
         <?php if ($sf_user->isAuthenticated()): ?>
