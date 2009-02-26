@@ -1,7 +1,14 @@
+
 messages:
     url: /messages
     param: { module: message, action: index }
 
+##
+
+email_create:
+    url: /email/new
+    param: { module: email, action: create }
+    requirements: { sf_method: post }
 ##
 
 sms_/:

@@ -15,6 +15,9 @@ all:
     smtp:
         username: <?= SMTP_USERNAME ?>
         password: <?= SMTP_PASSWORD ?>
+    
+    imap:
+        uri: imap://<?= trim(SMTP_USERNAME) ?>:<?= trim(SMTP_PASSWORD) ?>@imap.gmail.com:993/INBOX#ssl
 
     doctrine:
         db_dsn: <?= DOCTRINE_DB_DSN ?>
@@ -22,7 +25,6 @@ all:
     google:
         maps_key: <?= GOOGLE_MAPS_KEY ?>
         analytics: "'UA-5925745-3'"
-
 
     phlickr:
         lib_dir: <?= sfConfig::get('sf_lib_dir') ?>/vendor/phlickr
