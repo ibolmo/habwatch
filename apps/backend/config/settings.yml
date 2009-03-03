@@ -1,6 +1,6 @@
 prod:
   .settings:
-    no_script_name:         off
+    no_script_name:         on
     logging_enabled:        off
 
 dev:
@@ -10,8 +10,7 @@ dev:
     cache:                  off
     no_script_name:         off
     etag:                   off
-    logging_enabled:        off
-
+    logging_enabled:        on
 
 test:
   .settings:
@@ -22,6 +21,13 @@ test:
     etag:                   off
 
 all:
+  .actions:
+    login_module:               sfGuardAuth
+    login_action:               signin
+    
+    secure_module:              sfGuardAuth
+    secure_action:              secure
+      
   .settings:
     # Form security secret (CSRF protection)
     csrf_secret:       false     # Unique secret to enable CSRF protection or false to disable
@@ -30,7 +36,7 @@ all:
     escaping_strategy:      false            # Determines how variables are made available to templates. Accepted values: on, off.
     escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
 
-    enabled_modules:        [default, sfGuardUser, sfGuardGroup, sfGuardPermissions]
+    enabled_modules:        [default, sfGuardAuth]
 #all:
 #  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised
