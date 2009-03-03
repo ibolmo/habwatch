@@ -1,3 +1,7 @@
+tag:
+    url: /tag
+    param: { module: tag, action: index }
+
 ##
 
 sf_guard_signin:

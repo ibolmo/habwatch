@@ -1,2 +1,4 @@
 # default values
-#all:
+all:
+    tag:
+        photos_page_max: 4
