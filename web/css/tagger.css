@@ -1,0 +1,14 @@
+#tagger { text-align: center; }
+
+#tagger .inline {
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+#tagger .inline:hover {
+    border: 1px solid #0078CC;
+}
+#tagger img {
+    height: 10.25%;
+    vertical-align: middle;
+}

@@ -140,7 +140,7 @@ img.thumbnail {
 .settings_table td input { width: 100%; }
 
 .disabled { color: #ccc; }
-ul.log li { list-style: none }
+.log ul, .log li { list-style: none }
 
 #sidebar-recent { margin-left: 0; margin-right: 0;}
 #sidebar-recent li { margin-bottom: 1.5em;}
@@ -154,4 +154,13 @@ ul.log li { list-style: none }
 .sub-header .feed {
     margin-top: 0.75em;
     float: right;
+}
+
+.inline {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
 }

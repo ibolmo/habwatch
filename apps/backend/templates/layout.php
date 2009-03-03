@@ -21,7 +21,7 @@
 	    		<div class="column span-21">
 	    			<h1 id="logo"><?= link_to(sfConfig::get('app_project_name'), '@homepage') ?></h1>
 	    		</div>
-		    	<div id="top_nav" class="column last span-3 right">A
+		    	<div id="top_nav" class="column last span-3 right">
 		    	    <?php include_partial('default/top_nav')?>
 	    		</div>
 	    		<div id="menu" class="column span-24">

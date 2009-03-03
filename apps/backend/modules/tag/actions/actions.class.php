@@ -23,6 +23,6 @@ class tagActions extends myActions
         $response = $this->getResponse();
         $response->addStylesheet('tagger', 'last');
         $response->addJavascript('mootools');
-        $response->addJavascript('tagger');
+        $this->getResponse()->addJavascript('tagger');
     }
 }
