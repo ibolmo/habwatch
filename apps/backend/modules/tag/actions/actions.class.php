@@ -20,7 +20,9 @@ class tagActions extends myActions
         $this->page = $request->getParameter('page', 1);
         $this->PhotoPager = Flickr::getPager($this->page, sfConfig::get('app_tag_photos_page_max'));
         
-        $this->getResponse()->addStylesheet('tagger');
-        $this->getResponse()->addJavascript('tagger');
+        $response = $this->getResponse();
+        $response->addStylesheet('tagger', 'last');
+        $response->addJavascript('mootools');
+        $response->addJavascript('tagger');
     }
 }

@@ -6,7 +6,7 @@
     <?php endif ?>
     
     <?php foreach ($PhotoPager->getResults() as $i => $Photo): ?>
-        <img alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
+        <img class="span-4" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
     <?php endforeach ?>
     
     <?php if ($PhotoPager->haveToPaginate()): ?>
