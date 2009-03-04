@@ -61,13 +61,7 @@ class sfFlickrPager extends sfPager
     {
         $this->setNbResults($this->class->getCount());
         $this->setMaxRecordLimit(Phlickr_PhotoList::PER_PAGE_MAX);
-        
-        if ($this->getPage() == 0 || $this->getMaxPerPage() == 0 || $this->getNbResults() == 0) {
-            $this->setLastPage(0);
-        } else {
-            $offset = ($this->getPage() - 1) * $this->getMaxPerPage();
-            $this->setLastPage(ceil($this->getNbResults() / $this->getMaxPerPage()));
-        }
+        $this->setLastPage($this->class->getPageCount() - 1);
     }
     
     public function getResults()
