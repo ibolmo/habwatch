@@ -9,6 +9,8 @@ var Tagger = new Class({
         this.parent({ triggers: [this.container] });
         this.selectables = this.container.getElements('.inline img').map(this.add.bind(this));
         
+        this.status = new Element('p').addClass('invisible').injectBefore(this.list);
+        
         new Element('p').adopt(
             new Element('a', {
                 'class': 'button',
@@ -62,6 +64,8 @@ var Tagger = new Class({
     onSubmit: function(){
         this.request = this.request || new Request.JSON({
             url: 'tag/submit',
+            onRequest: this.onRequest.bind(this),
+            onError: this.onError.bind(this),
             onSuccess: this.onSuccess.bind(this)
         });
         
@@ -70,8 +74,16 @@ var Tagger = new Class({
         });
     },
     
+    onRequest: function(){
+        this.status.set('text', 'Submitting').removeClass('invisible');
+    },
+    
+    onError: function(){
+        this.status.set('text', 'Error');
+    },
+    
     onSuccess: function(){
-        
+        this.status.set('text', 'Success').addClass.delay(1000, this.status, 'invisible');
     },
     
     onReset: function(){
