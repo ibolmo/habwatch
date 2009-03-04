@@ -473,7 +473,7 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
      * @see     getTags(), removeTag()
      */
     public function addTags($tags) {
-        $quotedTags = '"' . implode($tags, '" "') . '"';
+        $quotedTags = '"' . implode((array)$tags, '" "') . '"';
 
         $resp = $this->getApi()->executeMethod(
             'flickr.photos.addTags',
@@ -498,7 +498,7 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
         foreach ($this->_cachedXml->tags[0] as $xmlTag) {
             // compare both the raw and cleaned tags
             if ((string) $xmlTag == $tag || (string) $xmlTag['raw'] == $tag) {
-                $tagid = (integer) $xmlTag['id'];
+                $tagid = $xmlTag['id'];
                 break;
             }
         }

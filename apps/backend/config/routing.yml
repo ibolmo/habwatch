@@ -1,3 +1,7 @@
+tag_submit:
+    url: /tag/submit
+    param: { module: tag, action: update }
+    
 tag:
     url: /tag
     param: { module: tag, action: index }

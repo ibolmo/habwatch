@@ -53,6 +53,11 @@ class Flickr extends Phlickr_Api
         $Pager->init();
         return $Pager;
     }
+    
+    public static function getPhoto($photo_id)
+    {
+        return new Phlickr_Photo(self::getUser()->getApi(), $photo_id);
+    }
 }
 
 class sfFlickrPager extends sfPager

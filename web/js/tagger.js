@@ -48,7 +48,7 @@ var Tagger = new Class({
                 'styles': {
                     'height': ''
                 }  
-            })
+            }).store('owner', img)
         ).inject(this.list));
     },
     
@@ -60,9 +60,18 @@ var Tagger = new Class({
     },
     
     onSubmit: function(){
-        this.request = this.request || new Request({
-            
+        this.request = this.request || new Request.JSON({
+            url: 'tag/submit',
+            onSuccess: this.onSuccess.bind(this)
         });
+        
+        this.request.post({
+            selected: this.list.getElements('img').map(function(el){ return el.retrieve('owner').get('id'); })
+        });
+    },
+    
+    onSuccess: function(){
+        
     },
     
     onReset: function(){

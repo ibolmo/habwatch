@@ -108,7 +108,7 @@ var Rubberband = new Class({
 		}
 	},
 	
-	start : function(event){		
+	start : function(event){
 		var greenlight = false;
 		
 		this.triggers.each(function(el){
@@ -196,8 +196,6 @@ var Rubberband = new Class({
 		if(Math.min(box.end.x, elb.right) > Math.max(box.left, elb.left) && Math.max(box.top, elb.top) < Math.min(box.end.y, elb.bottom)){
 			this.select(el);
 			this.selected.push(el);
-		} else {
-			if(!this.control) this.deselect(el);
 		}
 	},   
 	
