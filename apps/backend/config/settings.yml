@@ -6,11 +6,11 @@ prod:
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              on
+    web_debug:              off
     cache:                  off
     no_script_name:         off
     etag:                   off
-    logging_enabled:        on
+    logging_enabled:        off
 
 test:
   .settings:

@@ -50,6 +50,7 @@ class Flickr extends Phlickr_Api
         ));
         $Pager = new sfFlickrPager(new Phlickr_PhotoList($request, $count));
         $Pager->setPage($page);
+        $Pager->init();
         return $Pager;
     }
 }

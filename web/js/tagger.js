@@ -31,6 +31,7 @@ var Tagger = new Class({
     
     add: function(el, obj){
         this.parent(el, obj);
+        if (el.getParent('div.inline').hasClass('green')) this.select(el);
 		return el;
     },
     
