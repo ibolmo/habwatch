@@ -1,14 +1,46 @@
 #tagger { text-align: center; }
 
 #tagger .inline {
+    width: 120px;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 #tagger .inline:hover {
-    border: 1px solid #0078CC;
+    border: 2px solid #0078CC !important;
 }
+
 #tagger img {
-    height: 10.25%;
+    height: 90px;
     vertical-align: middle;
+}
+
+.green {
+    border-color: #0c0 !important;
+}
+
+.toggle {
+    border: 1px solid #0078CC;
+    margin: 0; padding: 0;
+    line-height: 9px;
+    width: 9px;
+    height: 9px;
+    font-size: 9px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#sidebar .button {
+    font-size: 75%;
+    padding: 4px; margin: 3px;
+}
+
+#sidebar .thumbnail {
+    margin: auto;
+}
+
+#tagger-selected {
+    text-align: center;
+    margin-left: 0;
 }

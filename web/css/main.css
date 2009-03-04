@@ -4,6 +4,7 @@
 @import "blueprintcss/blueprint/src/forms.css";
 @import "blueprintcss/blueprint/plugins/fancy-type/screen.css";
 @import "blueprintcss/blueprint/plugins/tabs/screen.css";
+@import "blueprintcss/blueprint/plugins/buttons/screen.css";
 
 .grid { background: url(../images/grid.png); }
 .container {
