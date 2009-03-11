@@ -5,7 +5,7 @@ Symfony 1.2.x
 PHP 5.2.x
 
 ## PEAR Modules
-
+FirePHP (development, only)
 
 Ideas
 -----

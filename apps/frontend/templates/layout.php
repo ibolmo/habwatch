@@ -43,23 +43,27 @@
 			    </div>
 			    
 			    <div id="sidebar" class="column span-3 prepend-1">
-			        <h3>Recent</h3>
-                    <ul id="sidebar-recent" class="log">
-                        <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
-                            <li>
-                                <a href="<?= $Photo->buildUrl() ?>">
-                                    <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
-                                </a>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                	
-                	<h3>Tags</h3>
-                	<ul class="log">
-                        <?php foreach (Flickr::getPopularTags() as $tag): ?>
-                    	    <li><a href="http://www.flickr.com/photos/<?= Flickr::getUser()->getId() ?>/tags/<?= $tag ?>"><?= $tag ?></a></li>
-                        <?php endforeach ?>
-                	</ul>
+                	<?php if (!include_slot('sidebar')): ?>
+    			        <h3>Recent</h3>
+                        <ul id="sidebar-recent" class="log">
+                            <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
+                                <li>
+                                    <a href="<?= $Photo->buildUrl() ?>">
+                                        <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
+                                    </a>
+                                </li>
+                            <?php endforeach ?>
+                        </ul>
+                        
+                        <?php $sf_response->addJavascript('mootools') ?>
+                    	<?php $sf_response->addJavascript('flickr-tags') ?>
+                    	<h3>Tags</h3>
+                    	<ul id="flickr-tags" class="log">
+                            <?php foreach (Flickr::getPopularTags() as $tag): ?>
+                        	    <li><a href="http://www.flickr.com/photos/<?= Flickr::getUser()->getId() ?>/tags/<?= $tag ?>"><?= $tag ?></a></li>
+                            <?php endforeach ?>
+                    	</ul>
+                    <?php endif ?>
 			    </div>
 			</div>
 			
