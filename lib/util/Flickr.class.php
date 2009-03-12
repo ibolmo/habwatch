@@ -12,6 +12,8 @@ class Flickr extends Phlickr_Api
     {
         if (!isset(self::$instance)) {
             self::$instance = new Flickr(sfConfig::get('app_flickr_api_key'), sfConfig::get('app_flickr_secret'), sfConfig::get('app_flickr_token'));
+            self::$instance->setCacheFilename(sfConfig::get('app_flickr_cache_dir'));
+            self::$instance->setCache(Phlickr_Cache::createFrom(sfConfig::get('app_flickr_cache_dir')));
         }
         return self::$instance;
     }
@@ -40,9 +42,6 @@ class Flickr extends Phlickr_Api
         return $PhotoList->getPhotos();
     }
     
-    /**
-     * Phlickr, loads page 1 by default. Not good.
-     */
     public static function getPager($page = 0, $count = 5)
     {
         $request = self::getUser()->getApi()->createRequest('flickr.photos.search', array(

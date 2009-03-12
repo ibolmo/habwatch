@@ -33,3 +33,4 @@ all:
         api_key: <?= FLICKR_API_KEY ?>
         secret: <?= FLICKR_SECRET ?>
         token: <?= FLICKR_TOKEN ?>
+        cache_dir: <?= sfConfig::get('sf_cache_dir') ?>/phlickr.cache
