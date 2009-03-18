@@ -57,9 +57,9 @@
                         
                         <?php $sf_response->addJavascript('mootools') ?>
                     	<?php $sf_response->addJavascript('flickr-tags') ?>
-                    	<h3>Tags</h3>
+                    	<h3>Filter By Tags</h3>
                     	<ul id="flickr-tags" class="log">
-                            <?php foreach (Flickr::getPopularTags() as $tag): ?>
+                            <?php foreach (Flickr::getPopularTags(10, true) as $tag): ?>
                         	    <li><a href="http://www.flickr.com/photos/<?= Flickr::getUser()->getId() ?>/tags/<?= $tag ?>"><?= $tag ?></a></li>
                             <?php endforeach ?>
                     	</ul>
