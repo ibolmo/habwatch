@@ -1,17 +1,13 @@
 #tagger { text-align: center; }
 
 #tagger .inline {
-    width: 120px;
+    width: 125px;
     text-align: center;
-    border: 2px solid #ccc;
-}
-
-#tagger .inline:hover {
-    border: 2px solid #0078CC !important;
+    border: 1px solid #ccc;
 }
 
 #tagger img {
-    height: 90px;
+    height: 94px;
     vertical-align: middle;
 }
 
