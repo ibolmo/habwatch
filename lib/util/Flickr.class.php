@@ -55,7 +55,7 @@ class Flickr extends Phlickr_Api
         $request = self::getUser()->getApi()->createRequest('flickr.photos.search', array(
             'user_id' => self::getUser()->getId()
         ));
-        $Pager = new sfFlickrPafger(new Phlickr_PhotoList($request, $count));
+        $Pager = new sfFlickrPager(new Phlickr_PhotoList($request, $count));
         $Pager->setPage($page);
         $Pager->init();
         return $Pager;
