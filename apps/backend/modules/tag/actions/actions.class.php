@@ -25,7 +25,7 @@ class tagActions extends myActions
         $response->addStylesheet('tagger', 'last');
         $response->addStylesheet('star_rating');
         $response->addJavascript('mootools');
-        $response->addJavascript('tagger.v2');
+        $response->addJavascript('tagger.v2.js');
     }
     
     public function executeUpdate(sfWebRequest $request)

@@ -1,6 +1,6 @@
 var Tagger = new Class({
     
-
+    
 
 });
 

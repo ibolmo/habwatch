@@ -55,7 +55,7 @@ class Flickr extends Phlickr_Api
         $request = self::getUser()->getApi()->createRequest('flickr.photos.search', array(
             'user_id' => self::getUser()->getId()
         ));
-        $Pager = new sfFlickrPager(new Phlickr_PhotoList($request, $count));
+        $Pager = new sfFlickrPager(new Flickr_PhotoList($request, $count));
         $Pager->setPage($page);
         $Pager->init();
         return $Pager;
@@ -63,7 +63,7 @@ class Flickr extends Phlickr_Api
     
     public static function getPhoto($photo_id)
     {
-        return new Phlickr_Photo(self::getUser()->getApi(), $photo_id);
+        return new Flickr_Photo(self::getUser()->getApi(), $photo_id);
     }
     
     public static function isTagPublic($tag, $strict = false)
@@ -93,6 +93,79 @@ class Flickr_AuthedUser extends Phlickr_AuthedUser
                 'extras' => 'tags'
             )
         );
-        return new Phlickr_PhotoList($request, $perPage);
+        return new Flickr_PhotoList($request, $perPage);
     }
 }
+
+/**
+* 
+*/
+class Flickr_PhotoList extends Phlickr_PhotoList
+{
+    public function getPhotosFromPage($page, $allowCached = true) {
+        if ($allowCached) {
+            $this->load($page);
+        } else {
+            $this->refresh($page);
+        }
+
+        $ret = array();
+        foreach ($this->_cachedXml[$page]->{self::getResponseElement()} as $xmlPhoto) {
+            if ($xmlPhoto['owner'] == $this->getApi()->getUserId()) {
+                $ret[] = new Flickr_AuthedPhoto($this->getApi(), $xmlPhoto);
+            } else {
+                $ret[] = new Flickr_Photo($this->getApi(), $xmlPhoto);
+            }
+        }
+        return $ret;
+    }
+}
+
+class Flickr_Photo extends Phlickr_Photo
+{
+    protected $Rating;
+    
+    public function getRating()
+    {
+        if (!$this->Rating) $this->Rating = new Flickr_Photo_Rating($this);
+        return $this->Rating;
+    }
+}
+
+
+class Flickr_AuthedPhoto extends Flickr_Photo
+{
+}
+
+class Flickr_Photo_Rating
+{
+    
+    function __construct(Flickr_Photo $Photo)
+    {
+        $this->Photo = $Photo;
+    }
+    
+    public function getPhoto()
+    {
+        return $this->Photo;
+    }
+    
+    public function getCurrent()
+    {
+        return '<li class="current-rating" style="width:60%;">Currently 3/5 Stars.</li>';
+    }
+    
+    public function getStars()
+    {
+        return array(
+            '<li><a href="#" title="1 star out of 5" class="one-star">1</a></li>',
+            '<li><a href="#" title="2 stars out of 5" class="two-stars">2</a></li>',
+            '<li><a href="#" title="3 stars out of 5" class="three-stars">3</a></li>',
+            '<li><a href="#" title="4 stars out of 5" class="four-stars">4</a></li>',
+            '<li><a href="#" title="5 stars out of 5" class="five-stars">5</a></li>'
+        );
+    }
+}
+
+
+
