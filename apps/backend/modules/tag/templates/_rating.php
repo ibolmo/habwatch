@@ -1,7 +1,6 @@
 <ul class="star-rating"> 
-    <?= $Rating->getCurrent() ?>
+    <li class="current-rating" style="width:<?= $Rating->getPercent() ?>">Currently <?= $Rating ?>/<?= $Rating->nbrStars ?> Stars.</li>
 	<?php foreach ($Rating->getStars() as $Star): ?>
 	    <?= $Star ?>
-	    <?php /*<li><a href="#" title="<?= $Star->getTitle() ?>" class="<?= $Star->getSlog() ?>"><?= $Star ?></a></li>  */?>
 	<?php endforeach ?>
 </ul>

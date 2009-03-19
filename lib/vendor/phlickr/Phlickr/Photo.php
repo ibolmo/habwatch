@@ -593,9 +593,4 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
         }
         curl_close($ch);
     }
-    
-    public function hasTag($tag)
-    {
-        return in_array($tag, $this->getTags());
-    }
 }

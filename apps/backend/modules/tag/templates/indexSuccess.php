@@ -1,3 +1,5 @@
+<?php slot('no-sidebar') ?>1<?php end_slot() ?>
+
 <h2>Tagger</h2>
 
 <h4>Instructions <a href="javascript:void(0)" class="toggle" rel="tagger-instructions">-</a></h4>
@@ -14,7 +16,6 @@
 <div id="tagger" class="block">
     <?php if ($PhotoPager->haveToPaginate()): ?>    
         <?= include_partial('tag/nav', array('PhotoPager' => $PhotoPager)) ?>
-        <hr />
     <?php endif ?>
     
     <?php foreach ($PhotoPager->getResults() as $i => $Photo): ?>
@@ -25,12 +26,6 @@
     <?php endforeach ?>
     
     <?php if ($PhotoPager->haveToPaginate()): ?>
-        <hr />
         <?= include_partial('tag/nav', array('PhotoPager' => $PhotoPager)) ?>
     <?php endif ?>
 </div>
-
-<?php slot('sidebar') ?>
-<h2>Selected</h2>
-<ul id="tagger-selected" class="log"></ul>
-<?php end_slot() ?>

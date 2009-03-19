@@ -123,12 +123,33 @@ class Flickr_PhotoList extends Phlickr_PhotoList
 
 class Flickr_Photo extends Phlickr_Photo
 {
-    protected $Rating;
+    protected $Rating, $machine_tags;
     
     public function getRating()
     {
         if (!$this->Rating) $this->Rating = new Flickr_Photo_Rating($this);
         return $this->Rating;
+    }
+    
+    public function hasTag($tag)
+    {
+        return in_array($tag, $this->getTags());
+    }
+    
+    public function getMachineTag($name, $pred, $default = 1)
+    {
+        if (!$this->machine_tags) {
+            $raw_machine_tags = array_filter($this->getTags(), create_function('$tag', 'return strpos($tag, \':\') !== false;'));
+            $this->machine_tags = array();
+            foreach ($raw_machine_tags as $tag) {
+                preg_match('/^(?P<namespace>[\w]*):(?P<predicate>[\w]*)=[\'\"]?(?P<value>[\w]*)[\'\"]?$/', $tag, $matches);
+                list($namespace, $predicate, $value) = array($matches['namespace'], $matches['predicate'], $matches['value']);
+                
+                if (!array_key_exists($namespace, $this->machine_tags)) $this->machine_tags[$namespace] = array();
+                $this->machine_tags[$namespace][$predicate] = $value;
+            }
+        }
+        return @$this->machine_tags[$name][$pred];
     }
 }
 
@@ -143,16 +164,12 @@ class Flickr_Photo_Rating
     function __construct(Flickr_Photo $Photo)
     {
         $this->Photo = $Photo;
+        $this->value = (integer) $Photo->getMachineTag('habwatch', 'rating');
     }
     
-    public function getPhoto()
+    public function getPercent()
     {
-        return $this->Photo;
-    }
-    
-    public function getCurrent()
-    {
-        return '<li class="current-rating" style="width:60%;">Currently 3/5 Stars.</li>';
+        return round($this->value * 20).'%';
     }
     
     public function getStars()
@@ -166,6 +183,4 @@ class Flickr_Photo_Rating
         );
     }
 }
-
-
 

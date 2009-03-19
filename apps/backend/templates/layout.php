@@ -38,12 +38,12 @@
 	    	</div>
 	    	
 		    <div id="body" class="block">
-			    <div id="content" class="column span-20">			        
+			    <div id="content" class="column span-<?= has_slot('no-sidebar') ? 24 : 20 ?>">
 			        <?= $sf_content ?>
 			    </div>
 			    
 			    <div id="sidebar" class="column span-3 prepend-1">
-                	<?php if (!include_slot('sidebar')): ?>
+                	<?php if (!has_slot('no-sidebar') && !include_slot('sidebar') && (!isset($sidebar) || $sidebar)): ?>
     			        <h3>Recent</h3>
                         <ul id="sidebar-recent" class="log">
                             <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
