@@ -1,3 +1,9 @@
+<?php if (isset($Introduction)): ?>
+    <div class="squeezebox invisible">
+        <?= $Introduction ?>
+    </div>
+<?php endif ?>
+
 <div class="block">
     <?php if (Flickr::hasPhotos()): ?>
         <iframe id="map" name="map" src="http://www.flickr.com/photos/35147405@N02/map" marginwidth="0" marginheight="0" frameborder="no" scrolling="no">Please upgrade your browser</iframe>
