@@ -23,49 +23,22 @@ class tagActions extends myActions
         
         $response = $this->getResponse();
         $response->addStylesheet('tagger', 'last');
+        $response->addStylesheet('star_rating');
         $response->addJavascript('mootools');
-        $response->addJavascript('RubberBand');
-        $response->addJavascript('tagger');
+        $response->addJavascript('rater.js');
     }
     
     public function executeUpdate(sfWebRequest $request)
     {
-        switch (true) {
-            case !$request->isXmlHttpRequest(): return $this->jsonError('Use the correct interface');
-            case !$page = $this->getUser()->getAttribute('tagger-page'): return $this->jsonError('No page set');
-        }
-        $this->selected = $request->getParameter('selected', array());
+        if (!$request->isXmlHttpRequest()) return $this->jsonError('Use the correct interface');
+        if (!$this->photo_id = $request->getParameter('photo_id')) return $this->jsonError('No photo id provided');
+        
         $this->errors = array();
         
-        $PhotoPager = Flickr::getPager($page, sfConfig::get('app_tag_photos_page_max'));
-        $previous = array_filter($PhotoPager->getResults(), array($this, 'useful_photos'));
-        $noLongerUseful = array_values(array_filter($previous, array($this, 'no_longer_useful')));
-        
-        foreach ($noLongerUseful as $Photo) {
-            try {
-                $Photo->removeTag('useful');
-            } catch (Exception $e) {
-                $errors[] = array('photo_id' => $Photo->getId(), 'message' => 'Tag not found');
-            }
-        }
-        
-        foreach ($this->selected as $photo_id) {
-            $Photo = Flickr::getPhoto($photo_id);
-            if (!$Photo) $this->errors[] = array('photo_id' => $photo_id, 'message' => 'Could not be found');
-            $Photo->addTags('useful');
-        }
+        $Photo = new Flickr_AuthedPhoto(Flickr::getInstance(), $this->photo_id);
+        $Photo->getRating()->set($request->getParameter('star', 0));
         
         $this->setLayout(false);
-    }
-    
-    public function useful_photos($Photo)
-    {
-        return $Photo->hasTag('useful');
-    }
-    
-    public function no_longer_useful($Photo)
-    {
-        return !in_array($Photo->getId(), $this->selected);
     }
     
     public function jsonError($message)
