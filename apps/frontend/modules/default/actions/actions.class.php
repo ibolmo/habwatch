@@ -24,7 +24,7 @@ class defaultActions extends myActions
     	    $response->addJavascript('SqueezeBox');
 	        $response->addJavascript('prompt');
     	    $this->getUser()->setAttribute('visited', true);
-    	    $this->Introduction = $this->getPartial('default/intro');
+    	    $this->introduce = true;
 	    }
 	}
 	

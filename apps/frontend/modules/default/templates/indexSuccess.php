@@ -1,6 +1,6 @@
-<?php if (isset($Introduction)): ?>
-    <div class="squeezebox invisible">
-        <?= $Introduction ?>
+<?php if (isset($introduce)): ?>
+    <div id="introduction" class="squeezebox invisible">
+        <?= include_partial('default/intro') ?>
     </div>
 <?php endif ?>
 
