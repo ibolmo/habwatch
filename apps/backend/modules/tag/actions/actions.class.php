@@ -25,6 +25,28 @@ class tagActions extends myActions
         $response->addStylesheet('tagger', 'last');
         $response->addStylesheet('star_rating');
         $response->addJavascript('mootools');
-        $response->addJavascript('tagger.v2.js');
+        $response->addJavascript('rater.js');
+    }
+    
+    public function executeUpdate(sfWebRequest $request)
+    {
+        if (!$request->isXmlHttpRequest()) return $this->jsonError('Use the correct interface');
+        if (!$this->photo_id = $request->getParameter('photo_id')) return $this->jsonError('No photo id provided');
+        
+        $this->errors = array();
+        
+        $Photo = new Flickr_AuthedPhoto(Flickr::getInstance(), $this->photo_id);
+        $Photo->getRating()->set($request->getParameter('star', 0));
+        
+        $this->setLayout(false);
+    }
+    
+    public function jsonError($message)
+    {
+        if (class_exists('FB')) FB::error($message);
+        $this->getResponse()->setContentType('text/plain');
+        return $this->renderText(json_encode(array(
+            'error' => $message
+        )));
     }
 }

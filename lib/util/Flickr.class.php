@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class Flickr extends Phlickr_Api
 {
     static protected 
@@ -81,9 +78,6 @@ class Flickr extends Phlickr_Api
     }
 }
 
-/**
-* 
-*/
 class Flickr_AuthedUser extends Phlickr_AuthedUser
 {
     public function getPhotoListWithoutGeoData($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT) {
@@ -97,9 +91,6 @@ class Flickr_AuthedUser extends Phlickr_AuthedUser
     }
 }
 
-/**
-* 
-*/
 class Flickr_PhotoList extends Phlickr_PhotoList
 {
     public function getPhotosFromPage($page, $allowCached = true) {
@@ -165,6 +156,16 @@ class Flickr_Photo_Rating
     {
         $this->Photo = $Photo;
         $this->value = (integer) $Photo->getMachineTag('habwatch', 'rating');
+    }
+    
+    public function set($to = 0)
+    {
+        try {
+            $this->Photo->removeTag('habwatch:rating='.$this->value);
+        } catch (Exception $e){}
+        
+        $this->Photo->addTags(array('habwatch:rating='.$to));
+        $this->value = $to;
     }
     
     public function getPercent()

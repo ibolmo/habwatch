@@ -20,7 +20,7 @@
     
     <?php foreach ($PhotoPager->getResults() as $i => $Photo): ?>
         <div class="photo_box inline">
-            <div><img id="<?= $Photo->getId() ?>" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" /></div>
+            <img id="<?= $Photo->getId() ?>" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
             <?= include_partial('tag/rating', array('Rating' => $Photo->getRating())) ?>
         </div>
     <?php endforeach ?>

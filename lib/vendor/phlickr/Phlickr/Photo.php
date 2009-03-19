@@ -477,7 +477,8 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
 
         $resp = $this->getApi()->executeMethod(
             'flickr.photos.addTags',
-            array('photo_id' => $this->getId(), 'tags' => $quotedTags)
+            array('photo_id' => $this->getId(), 'tags' => $quotedTags),
+            false
         );
         $this->refresh();
     }
