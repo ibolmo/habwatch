@@ -46,3 +46,9 @@ sfGuardUser:
                     Point:
                         latitude: 34.00938518138472
                         longitude: -118.49724769592285
+
+    caronlab:
+        username: caronlab
+        password: cens
+        is_super_admin: true
+            

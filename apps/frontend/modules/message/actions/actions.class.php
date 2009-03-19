@@ -27,6 +27,7 @@ class messageActions extends myActions
     public function executeIndex(sfRequest $request)
     {
         $this->SMSPager = new sfDoctrinePager('SMS', sfConfig::get('app_max_sms_page'));
+        $this->SMSPager->getQuery()->where('SMS.Storage.User.id = ?', $this->User->id);
         $this->SMSPager->setPage($request->getParameter('sms_page', 1));
         $this->SMSPager->init();
         
