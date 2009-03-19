@@ -8,12 +8,10 @@ class defaultComponents extends sfComponents
         $this->links = array(
             '@homepage' => array(
                 'text' => 'Home'    
-            ),
-            /* 
+            ), 
             '@about' => array(
                 'text' => 'About'
             ),
-            //*/
             '@instructions' => array(
                 'text' => 'Instructions'
             )

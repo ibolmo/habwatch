@@ -17,7 +17,7 @@ class defaultActions extends myActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-	    if (!$this->User || true && !$this->getUser()->getAttribute('visited')){
+	    if (!$this->User && !$this->getUser()->getAttribute('visited')){
 	        $response = $this->getResponse();
 	        $response->addStylesheet('SqueezeBox/SqueezeBox.css');
 	        $response->addJavascript('mootools');

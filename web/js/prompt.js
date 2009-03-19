@@ -7,7 +7,8 @@ window.addEvent('domready', function(){
         onClose: function(){
             intro.addClass('invisible');
         },
-        handler: 'adopt'
+        handler: 'adopt',
+		size: {x: 600, y: 525},
     });
     
 });
