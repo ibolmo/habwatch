@@ -157,7 +157,7 @@ img.thumbnail {
     float: right;
 }
 
-.inline {
+.inline, .log.inline li {
     display: -moz-inline-stack;
     display: inline-block;
     vertical-align: top;
@@ -167,3 +167,18 @@ img.thumbnail {
 }
 
 p.right { float:right; margin:0 0 1.5em 1.5em; padding:0;}
+
+.sponsors-logos li {
+	height: 40px;
+}
+.sponsors-logos img {
+	height: 100%;
+}
+
+#footer .sponsors-logos, #footer .sponsors-logos li {
+	margin: 0; padding: 0;
+}
+
+#footer .sponsors-logos li {
+	height: 25px !important;
+}
