@@ -5,4 +5,6 @@
 		&middot; <?php echo link_to('Instructions', '@instructions') ?> 
 	<?php endif ?>
 </div>
-<div class="column span-6 right quiet small">&copy; 2007 - <?php echo date("Y"); ?> <a href="http://cens.ucla.edu/">CENS</a> &middot; All Rights Reserved.</div>
+<div class="column span-8 right quiet small">
+	&copy; 2007 - <?php echo date("Y"); ?> <?= sfConfig::get('app_project_copyright') ?> &middot; All Rights Reserved.
+</div>

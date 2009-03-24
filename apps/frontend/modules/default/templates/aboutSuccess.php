@@ -5,4 +5,3 @@
 
 <hr class="space" />
 <?= include_partial('default/sponsors') ?>
-<?= include_partial('default/sponsors_logos') ?>
