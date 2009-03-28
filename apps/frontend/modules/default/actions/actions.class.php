@@ -18,14 +18,20 @@ class defaultActions extends myActions
 	public function executeIndex(sfWebRequest $request)
 	{
 	    if (!$this->User && !$this->getUser()->getAttribute('visited')){
-	        $response = $this->getResponse();
-	        $response->addStylesheet('SqueezeBox/SqueezeBox.css');
-	        $response->addJavascript('mootools');
-    	    $response->addJavascript('SqueezeBox');
-	        $response->addJavascript('prompt');
-    	    $this->getUser()->setAttribute('visited', true);
-    	    $this->introduce = true;
+	    	$this->addIntro($request);
 	    }
+	}
+	
+	public function addIntro($request)
+	{
+		if (preg_match('/^dev/', $request->getHost())) return;
+        $response = $this->getResponse();
+        $response->addStylesheet('SqueezeBox/SqueezeBox.css');
+        $response->addJavascript('mootools');
+	    $response->addJavascript('SqueezeBox');
+        $response->addJavascript('prompt');
+	    $this->getUser()->setAttribute('visited', true);
+	    $this->introduce = true;
 	}
 	
 	public function executeContact()
