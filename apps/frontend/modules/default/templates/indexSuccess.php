@@ -7,7 +7,13 @@
 
 <div class="block">
     <?php if (Flickr::hasPhotos()): ?>
-        <iframe id="map" name="map" src="http://www.flickr.com/photos/35147405@N02/map" marginwidth="0" marginheight="0" frameborder="no" scrolling="no">Please upgrade your browser</iframe>
+    	<?php 
+    		use_javascript('mootools');
+    		use_javascript('http://maps.google.com/maps?file=api&amp;v=2&amp;key='.sfConfig::get('app_google_maps_key'));
+    		use_javascript('openlayers');
+    		use_javascript('default/map.js');
+    	?>
+        <div id="map"></div>
     <?php else: ?>
         <h2>Welcome to <?php echo sfConfig::get('app_project_name') ?>!</h2>
         <?= include_partial('default/intro') ?>
