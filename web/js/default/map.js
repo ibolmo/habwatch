@@ -1,6 +1,8 @@
 window.addEvent('load', function(){
-
-    map = new OpenLayers.Map('map');
+    OpenLayers.ImgPath = '/images/openlayers/';
+    map = new OpenLayers.Map('map', {
+        theme: null
+    });
     map.addControl(new OpenLayers.Control.LayerSwitcher());
     
     var gphy = new OpenLayers.Layer.Google('Google Physical', {
@@ -21,7 +23,7 @@ window.addEvent('load', function(){
         numZoomLevels: 20
     });
 
-    map.addLayers([gphy, gmap, ghyb, gsat]);
+    map.addLayers([gmap, gphy, ghyb, gsat]);
     map.setCenter(new OpenLayers.LonLat(10.2, 48.9), 5);
 	
 });

@@ -147,7 +147,6 @@ img.thumbnail {
 #sidebar-recent li { margin-bottom: 1.5em;}
 
 #map {
-    margin-top: -64px;
     width: 100%;
     height: 800px;
 }
