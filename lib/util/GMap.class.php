@@ -30,8 +30,7 @@ class GMap
                 'longitude' => $coordinates[0],
                 'latitude' => $coordinates[1]
             );
-        } else {
-            return false;
         }
+        return false;
     }
 }
