@@ -8,6 +8,7 @@
 <div class="block">
     <?php if (Flickr::hasPhotos()): ?>
     	<?php 
+    		use_stylesheet('openlayers/style');
     		use_javascript('mootools');
     		use_javascript('http://maps.google.com/maps?file=api&amp;v=2&amp;key='.sfConfig::get('app_google_maps_key'));
     		use_javascript('openlayers');
