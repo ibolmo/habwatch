@@ -122,6 +122,17 @@ class Flickr_Photo extends Phlickr_Photo
         return $this->Rating;
     }
     
+    public function getLicense()
+    {
+        return (integer) $this->_cachedXml['license'];
+    }
+    
+    public function getLocation()
+    {
+        if (!isset($this->_cachedXml->location)) return false;
+        return $this->_cachedXml->location;
+    }
+    
     public function hasTag($tag)
     {
         return in_array($tag, $this->getTags());
