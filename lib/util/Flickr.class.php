@@ -89,6 +89,13 @@ class Flickr_AuthedUser extends Phlickr_AuthedUser
         );
         return new Flickr_PhotoList($request, $perPage);
     }
+    
+    public function getPhotoList($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT) {
+        $request = $this->getApi()->createRequest('flickr.photos.search',
+            array('user_id'=>$this->getId())
+        );
+        return new Flickr_PhotoList($request, $perPage);
+    }
 }
 
 class Flickr_PhotoList extends Phlickr_PhotoList
