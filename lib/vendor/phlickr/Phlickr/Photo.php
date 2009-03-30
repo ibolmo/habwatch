@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version $Id$
+ * @version $Id: Photo.php 535 2007-09-05 03:23:51Z drewish $
  * @author  Andrew Morton <drewish@katherinehouse.com>
  * @license http://opensource.org/licenses/lgpl-license.php
  *          GNU Lesser General Public License, Version 2.1
@@ -548,7 +548,8 @@ class Phlickr_Photo extends Phlickr_Framework_ObjectBase {
             $sizes = $this->getSizes();
             return $sizes[self::SIZE_ORIGINAL]['source'];
         }
-        $url = sprintf("http://farm%s.static.flickr.com/%s/%s_%s%s.%s",
+        
+			$url = sprintf("http://farm%s.static.flickr.com/%s/%s_%s%s.%s",
             $this->getFarm(), $this->getServer(), $this->getId(), $this->getSecret(), $sizeStr, $type);
         return $url;
     }
