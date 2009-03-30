@@ -41,7 +41,8 @@ class GeoJSON_Flickr_Adapter implements GeoJSON_Adapter
 	public function getObjectGeometry($object)
 	{
 		$location = $object->getLocation();
-		return $location ? "POINT({$location['longitude']},{$location['latitude']})" : null;
+		if (!$location) throw new Exception("Flickr Object does not have a location");
+		return "POINT({$location['longitude']} {$location['latitude']})";
 	}
 
 	/**
@@ -68,13 +69,12 @@ class GeoJSON_Flickr_Adapter implements GeoJSON_Adapter
 	    $location = $object->getLocation();
 	    
 		return array_merge(array(
-		    'id' => $object->getId(),
 		    'server' => $object->getServer(),
 		    'license' => $object->getLicense(),
 		    'owner_id' => $object->getUserId(),
 		    'title' => $object->getTitle(),
 		    'description' => $object->getDescription(),
-		    'isfamily' => , $object->isForFamily(),
+		    'isfamily' => $object->isForFamily(),
 		    'ispublic' => $object->isForPublic(),
 		    'isfriend' => $object->isForFriends(),
 		    'posted_timestamp' => $object->getPostedTimestamp(),
