@@ -11,7 +11,6 @@ class SMSTest extends sfTestBrowser
     public function __construct($hostname = null, $remote = null, $options = array())
     {
         parent::__construct($hostname, $remote, $options);
-        
     }
     
     public function sms($message, $from = IN_PHONE, $to = '')
