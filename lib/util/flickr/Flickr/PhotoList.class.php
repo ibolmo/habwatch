@@ -11,11 +11,9 @@ class Flickr_PhotoList extends Phlickr_PhotoList
 
         $ret = array();
         foreach ($this->_cachedXml[$page]->{self::getResponseElement()} as $xmlPhoto) {
-            if ($xmlPhoto['owner'] == $this->getApi()->getUserId()) {
-                $ret[] = new Flickr_AuthedPhoto($this->getApi(), $xmlPhoto);
-            } else {
-                $ret[] = new Flickr_Photo($this->getApi(), $xmlPhoto);
-            }
+            $class = ($xmlPhoto['owner'] == $this->getApi()->getUserId()) ? Flickr_AuthedPhoto : Flickr_Photo;
+            $ret[] = $photo = new $class($this->getApi(), $xmlPhoto);
+            $photo->load();
         }
         return $ret;
     }

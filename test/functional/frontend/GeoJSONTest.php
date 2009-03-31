@@ -22,3 +22,9 @@ $t->isa_ok($Feature, Feature, 'Flickr_Photo becomes a Feature');
 $t->diag('Check loadFrom Flickr_PhotoList');
 $FeatureCollection = GeoJSON::loadFrom($PhotoList, $Flickr_Adapter);
 $t->isa_ok($FeatureCollection, FeatureCollection, 'Flickr_PhotoList becomes a FeatureCollection');
+
+//*
+var_dump(array(
+    'message' => GeoJSON::dump($FeatureCollection)
+));
+//*/
