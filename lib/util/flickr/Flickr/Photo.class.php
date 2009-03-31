@@ -17,8 +17,8 @@ class Flickr_Photo extends Phlickr_Photo
     
     public function getLocation()
     {
-        if (!isset($this->_cachedXml->location)) return false;
-        return $this->_cachedXml->location;
+        if (!isset($this->_cachedXml->location) && !isset($this->_cachedXml['longitude'])) return false;
+        return isset($this->_cachedXml->location) ? $this->_cachedXml->location : $this->_cachedXml;
     }
     
     public function hasTag($tag)

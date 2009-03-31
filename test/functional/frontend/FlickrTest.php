@@ -14,3 +14,9 @@ $t->isa_ok(Flickr::getUser(), Flickr_AuthedUser, 'User is a Flickr_AuthedUser');
 
 $t->ok($Photo = current(Flickr::getRecentPhotos(1)), 'Photo loaded');
 $t->isa_ok($Photo, Flickr_AuthedPhoto, 'Photo is a Flickr_AuthedPhoto');
+
+$User = Flickr::getUser();
+$t->diag('Flickr_AuthedUser.getPhotoListWithGeoData');
+foreach ($User->getPhotoListWithGeoData(3)->getPhotos() as $Photo) {
+    $t->ok($location = $Photo->getLocation(), $Photo->getId()." has POINT({$location['longitude']} {$location['latitude']})");
+}
