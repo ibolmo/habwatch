@@ -1,3 +1,6 @@
-OpenLayers.ImgPath = '/images/openlayers/';
-//OpenLayers.ProxyHost = (window.location.host == "localhost") ? "/cgi-bin/proxy.cgi?url=" : "proxy.cgi?url=";
-OpenLayers.Util.OSM.MISSING_TILE_URL = '/images/openlayers/blank.gif';
+HABWatch = HABWatch || {};
+HABWatch.Flickr = HABWatch.Flickr || {};
+HABWatch.Flickr.URI = '<?= url_for("@flickr-pub-geojson") ?>';
+
+OpenLayers.ImgPath = '<?= $sf_request->getRelativeUrlRoot() ?>images/openlayers/';
+OpenLayers.Util.OSM.MISSING_TILE_URL = OpenLayers.ImgPath + 'blank.gif';

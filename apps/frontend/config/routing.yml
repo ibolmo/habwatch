@@ -1,3 +1,9 @@
+flickr-pub-geojson:
+    url: /flickr/geojson
+    param: { module: flickr, action: geojson }
+
+##
+
 config-openlayers:
     url: /openlayers/config
     param: { module: default, action: configOpenLayers }
