@@ -61,4 +61,8 @@ class defaultActions extends myActions
     public function executeAbout(sfWebRequest $request)
     {
     }
+    
+    public function executeConfigOpenLayers()
+    {
+    }
 }

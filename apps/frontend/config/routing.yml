@@ -1,3 +1,8 @@
+config-openlayers:
+    url: /openlayers/config
+    param: { module: default, action: configOpenLayers }
+
+##
 
 messages:
     url: /messages
