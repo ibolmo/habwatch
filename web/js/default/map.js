@@ -78,17 +78,23 @@ window.addEvent('domready', function(){
 	    		});
 	    		map.zoomToExtent(photos.getExtent(), 2);
 	    	},
-	    	featureadded: function(event){
-	    		//console.dir(event.feature);
-	    	},
 	    	scope: map
 	    }
 	});
 	
-	var select = new OpenLayers.Control.SelectFeature(photos, {hover: true});
-	map.addControl(select);
+	var hover = new OpenLayers.Control.SelectFeature(photos, {
+		hover: true,
+		callbacks: {
+			dblclick: function(layer){
+				var bounds = new OpenLayers.Bounds();
+				layer.cluster.each(function(point){
+					bounds.extend(new OpenLayers.LonLat(point.geometry.x, point.geometry.y));
+				});
+				map.zoomToExtent(bounds, 1);
+			}
+		}
+	});
+	map.addControl(hover);
 	map.addLayer(photos);
-	select.activate();
-	//photos.events.on({'featureselected': display});
-    
+	hover.activate();
 });
