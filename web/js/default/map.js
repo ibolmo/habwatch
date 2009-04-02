@@ -1,9 +1,15 @@
 window.addEvent('domready', function(){
-    
+    var zoom = new OpenLayers.Control.ZoomPanel();
+    var photoBounds = false
+    zoom.controls[1].trigger = function(){
+    	if (photoBounds) map.zoomToExtent(photoBounds, 2);
+    };
+	
     var map = new OpenLayers.Map ('map', {
         controls: [
             new OpenLayers.Control.Navigation(),
-            new OpenLayers.Control.Attribution()
+            new OpenLayers.Control.Attribution(),
+            zoom
         ],
         maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
         maxResolution: 156543.0399,
@@ -13,7 +19,9 @@ window.addEvent('domready', function(){
         displayProjection: new OpenLayers.Projection('EPSG:4326')
     });
 
-    var osm = new OpenLayers.Layer.OSM.Mapnik('OSM');
+    var osm = new OpenLayers.Layer.OSM.Mapnik('OSM', {
+    	buffer: 2
+    });
     osm.url = ([
         'http://a.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/4/256/',
         'http://b.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/4/256/',
@@ -76,7 +84,8 @@ window.addEvent('domready', function(){
 	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(function(){
 	    			loading.dispose();
 	    		});
-	    		map.zoomToExtent(photos.getExtent(), 2);
+	    		if (!photoBounds) photoBounds = photos.getExtent();
+	    		map.zoomToExtent(photoBounds, 2);
 	    	},
 	    	scope: map
 	    }
