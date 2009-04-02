@@ -68,14 +68,18 @@ window.addEvent('domready', function(){
 	        }
 	    }),
 	    eventListeners: {
-	    	'loadstart': function(){
+	    	loadstart: function(){
 	    		loading.injectTop(this.div);
 	    	},
-	    	'loadend': function(){
+	    	loadend: function(){
 	    		var last = loading.getLast();
 	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(function(){
 	    			loading.dispose();
 	    		});
+	    		map.zoomToExtent(photos.getExtent(), 2);
+	    	},
+	    	featureadded: function(event){
+	    		//console.dir(event.feature);
 	    	},
 	    	scope: map
 	    }
