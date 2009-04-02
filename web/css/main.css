@@ -149,6 +149,7 @@ img.thumbnail {
 #map {
     width: 100%;
     height: 600px;
+    position: relative;
 }
 
 .sub-header .feed {

@@ -22,6 +22,19 @@ window.addEvent('domready', function(){
     map.addLayer(osm);
     map.setCenter(new OpenLayers.LonLat(-118.489609, 33.757989).transform(new OpenLayers.Projection('EPSG:4326'), map.getProjectionObject()), 10);
     
+    var loading = new Element('div', {
+    	'id': 'loading-overlay',
+    	'style': 'position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 65554',
+    }).adopt(
+    	new Element('h3', {
+    		'style': 'position: absolute; top: 50%; left: 46%; color: #fff; z-index: 65553',
+    		'html': 'Loading'
+    	}),
+    	new Element('div', {
+	    	'style': 'width: 100%; height: 100%; background-color: #000;'
+	    }).setOpacity(0.7)
+    );
+    
     var photos = new OpenLayers.Layer.Vector('Photos', {
 	    strategies: [
 	        new OpenLayers.Strategy.Fixed({ preload: true }), //should use BBox
@@ -56,12 +69,15 @@ window.addEvent('domready', function(){
 	    }),
 	    eventListeners: {
 	    	'loadstart': function(){
-	    		console.log('starting', $time());
+	    		loading.injectTop(this.div);
 	    	},
 	    	'loadend': function(){
-	    		console.log('complete', $time());	
+	    		var last = loading.getLast();
+	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(function(){
+	    			loading.dispose();
+	    		});
 	    	},
-	    	scope: this
+	    	scope: map
 	    }
 	});
 	

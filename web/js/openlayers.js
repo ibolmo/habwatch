@@ -5580,7 +5580,18 @@ OpenLayers.Ajax.Request = OpenLayers.Class(OpenLayers.Ajax.Base, {
     setRequestHeaders: function() {
         var headers = {
             'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'text/javascript, text/html, application/xml, text/xml, *
+            'Accept': 'text/javascript, text/html, application/xml, text/xml, */*',
+            'OpenLayers': true
+        };
+        
+        if (this.method == 'post') {
+            headers['Content-type'] = this.options.contentType +
+                (this.options.encoding ? '; charset=' + this.options.encoding : '');
+    
+            /* Force "Connection: close" for older Mozilla browsers to work
+             * around a bug where XMLHttpRequest sends an incorrect
+             * Content-length header. See Mozilla Bugzilla #246651.
+             */
             if (this.transport.overrideMimeType &&
                 (navigator.userAgent.match(/Gecko\/(\d{4})/) || [0,2005])[1] < 2005) {
                 headers['Connection'] = 'close';
