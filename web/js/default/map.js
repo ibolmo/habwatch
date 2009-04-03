@@ -1,8 +1,9 @@
-window.addEvent('domready', function(){
+window.addEvent('load', function(){
     var zoom = new OpenLayers.Control.ZoomPanel();
-    var photoBounds = false
+    var photoBounds = new OpenLayers.Bounds();
+    var bounded = false;
     zoom.controls[1].trigger = function(){
-    	if (photoBounds) map.zoomToExtent(photoBounds, 2);
+    	if (photoBounds) map.zoomToExtent(photoBounds);
     };
 	
     var map = new OpenLayers.Map ('map', {
@@ -66,7 +67,7 @@ window.addEvent('domready', function(){
 	        }, {
 	            context: {
 	                radius: function(feature) {
-	                    return Math.min(feature.attributes.count, 10) + 5;
+	                    return Math.min(feature.attributes.count, 5) + 5;
 	                }
 	            }
 	        }),
@@ -84,10 +85,13 @@ window.addEvent('domready', function(){
 	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(function(){
 	    			loading.dispose();
 	    		});
-	    		if (!photoBounds) photoBounds = photos.getExtent();
-	    		map.zoomToExtent(photoBounds, 2);
+	    		if (!bounded) bounded = true;
+	    		map.zoomToExtent(photoBounds);
 	    	},
-	    	scope: map
+	    	scope: map,
+	    	featureadded: function(event){
+	    		if (!bounded) photoBounds.extend(event.feature.geometry);
+	    	}
 	    }
 	});
 	
@@ -97,7 +101,7 @@ window.addEvent('domready', function(){
 			dblclick: function(layer){
 				var bounds = new OpenLayers.Bounds();
 				layer.cluster.each(function(point){
-					bounds.extend(new OpenLayers.LonLat(point.geometry.x, point.geometry.y));
+					bounds.extend(point.geometry);
 				});
 				map.zoomToExtent(bounds, 1);
 			}
