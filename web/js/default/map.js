@@ -12,6 +12,7 @@ window.addEvent('load', function(){
             new OpenLayers.Control.Attribution(),
             zoom
         ],
+        theme: null,
         maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
         maxResolution: 156543.0399,
         numZoomLevels: 19,
@@ -33,7 +34,7 @@ window.addEvent('load', function(){
     
     var loading = new Element('div', {
     	'id': 'loading-overlay',
-    	'style': 'position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 65554',
+    	'style': 'position: absolute; margin: 0; padding: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 65554',
     }).adopt(
     	new Element('h3', {
     		'style': 'position: absolute; top: 50%; left: 46%; color: #fff; z-index: 65553',
@@ -67,7 +68,7 @@ window.addEvent('load', function(){
 	        }, {
 	            context: {
 	                radius: function(feature) {
-	                    return Math.pow(2, feature.attributes.count/1.25).limit(4, 12);
+	                    return Math.pow(2, feature.attributes.count/1.5).limit(4, 12);
 	                }
 	            }
 	        }),
@@ -82,9 +83,7 @@ window.addEvent('load', function(){
 	    	},
 	    	loadend: function(){
 	    		var last = loading.getLast();
-	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(function(){
-	    			loading.dispose();
-	    		});
+	    		last.get('tween').setOptions({ duration: 1500 }).start('opacity', 0).chain(loading.dispose.bind(loading));
 	    		if (!bounded) bounded = true;
 	    		map.zoomToExtent(photoBounds);
 	    	},

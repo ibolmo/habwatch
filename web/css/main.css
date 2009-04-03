@@ -1,11 +1,3 @@
-@import "blueprintcss/blueprint/src/reset.css";
-@import "blueprintcss/blueprint/plugins/fluid/liquid.css";
-@import "blueprintcss/blueprint/src/typography.css";
-@import "blueprintcss/blueprint/src/forms.css";
-@import "blueprintcss/blueprint/plugins/fancy-type/screen.css";
-@import "blueprintcss/blueprint/plugins/tabs/screen.css";
-@import "blueprintcss/blueprint/plugins/buttons/screen.css";
-
 .grid { background: url(../images/grid.png); }
 .container {
 	min-width: 790px;
@@ -132,8 +124,6 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 
 img.thumbnail {
 	padding: 5px;
-	margin: -5px;
-	margin-right:-10px;
 }
 
 .settings_table { margin-bottom: 0; }
@@ -144,10 +134,9 @@ img.thumbnail {
 .log ul, .log li { list-style: none }
 
 #sidebar-recent { margin-left: 0; margin-right: 0;}
-#sidebar-recent li { margin-bottom: 1.5em;}
+#sidebar-recent li { margin-bottom: 0.5em;}
 
 #map {
-    width: 100%;
     height: 500px;
     position: relative;
 }

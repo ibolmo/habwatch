@@ -38,33 +38,11 @@
 	    	</div>
 	    	
 		    <div id="body" class="block">
-			    <div id="content" class="column span-20">			        
+			    <div id="content" class="<?= has_slot('sidebar') ? 'column span-20' : '' ?>">			        
 			        <?= $sf_content ?>
 			    </div>
 			    
-			    <div id="sidebar" class="column span-3 prepend-1">
-                	<?php if (!include_slot('sidebar')): ?>
-    			        <h3>Recent</h3>
-                        <ul id="sidebar-recent" class="log">
-                            <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
-                                <li>
-                                    <a href="<?= $Photo->buildUrl() ?>">
-                                        <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
-                                    </a>
-                                </li>
-                            <?php endforeach ?>
-                        </ul>
-                        
-                        <?php $sf_response->addJavascript('mootools') ?>
-                    	<?php $sf_response->addJavascript('flickr-tags') ?>
-                    	<h3>Filter By Tags</h3>
-                    	<ul id="flickr-tags" class="log">
-                            <?php foreach (Flickr::getPopularTags(10, true) as $tag): ?>
-                        	    <li><a href="http://www.flickr.com/photos/<?= Flickr::getUser()->getId() ?>/tags/<?= $tag ?>"><?= $tag ?></a></li>
-                            <?php endforeach ?>
-                    	</ul>
-                    <?php endif ?>
-			    </div>
+			    <?= include_slot('sidebar') ?>
 			</div>
 			
 			<hr class="space" />
