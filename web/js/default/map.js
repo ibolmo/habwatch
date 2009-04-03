@@ -67,7 +67,7 @@ window.addEvent('load', function(){
 	        }, {
 	            context: {
 	                radius: function(feature) {
-	                    return Math.min(feature.attributes.count, 5) + 5;
+	                    return Math.pow(2, feature.attributes.count/1.25).limit(4, 12);
 	                }
 	            }
 	        }),
@@ -91,6 +91,9 @@ window.addEvent('load', function(){
 	    	scope: map,
 	    	featureadded: function(event){
 	    		if (!bounded) photoBounds.extend(event.feature.geometry);
+	    	},
+	    	featureselected: function(feature){
+	    		// hover
 	    	}
 	    }
 	});
@@ -98,6 +101,9 @@ window.addEvent('load', function(){
 	var hover = new OpenLayers.Control.SelectFeature(photos, {
 		hover: true,
 		callbacks: {
+			click: function(){
+				
+			},
 			dblclick: function(layer){
 				var bounds = new OpenLayers.Bounds();
 				layer.cluster.each(function(point){
