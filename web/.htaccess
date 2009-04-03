@@ -6,7 +6,10 @@ Options +FollowSymLinks +ExecCGI
   # uncomment the following line, if you are having trouble
   # getting no_script_name to work
   #RewriteBase /
-
+  
+  # Combine and minify JavaScript and CSS with Minify.
+  #RewriteRule ^(.*\.(css|js))$ sfMinifyPlugin/sfMinifyPlugin.php?f=/$1 [L,NC]
+  
   # we skip all files with .something
   #RewriteCond %{REQUEST_URI} \..+$
   #RewriteCond %{REQUEST_URI} !\.html$

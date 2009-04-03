@@ -6,4 +6,8 @@ security:
 
 cache:     ~
 common:    ~
+#  class: sfMinifyFilter 
+#  param:
+#    javascripts:    true
+#    stylesheets:    false
 execution: ~

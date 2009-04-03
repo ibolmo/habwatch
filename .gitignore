@@ -4,5 +4,6 @@
 cache/*
 log/*
 *.pyc
+plugins/.*
 
 config/app.php

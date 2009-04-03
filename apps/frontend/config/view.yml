@@ -9,7 +9,15 @@ default:
     language:     en
     robots:       noindex, nofollow
 
-  stylesheets:    [main]
+  stylesheets: 
+     - blueprintcss/blueprint/src/reset.css
+     - blueprintcss/blueprint/plugins/fluid/liquid.css
+     - blueprintcss/blueprint/src/typography.css
+     - blueprintcss/blueprint/src/forms.css
+     - blueprintcss/blueprint/plugins/fancy-type/screen.css
+     - blueprintcss/blueprint/plugins/tabs/screen.css
+     - blueprintcss/blueprint/plugins/buttons/screen.css
+     - main
 
   has_layout:     on
   layout:         layout

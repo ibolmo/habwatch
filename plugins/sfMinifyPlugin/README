@@ -1,0 +1,56 @@
+# sfMinify plugin
+
+Integrate the minify library see [http://code.google.com/p/minify/](http://code.google.com/p/minify/ "minify") into symfony.
+
+## Overview
+
+Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads.
+
+## Usage
+
+  * add this to your ``.htaccess`` file
+
+        [plain]
+        # Combine and minify JavaScript and CSS with Minify.
+        RewriteRule ^(.*\.(css|js))$ ../plugins/sfMinifyPlugin/sfMinifyPlugin.php?f=/$1 [L,NC]  
+
+    if you have run symfony on a subdirectory change it to
+
+        [plain]
+        # Combine and minify JavaScript and CSS with Minify.
+        RewriteRule ^(.*\.(css|js))$ ../plugins/sfMinifyPlugin/sfMinifyPlugin.php?f=/subdirectory/$1 [L,NC]  
+
+  * copy ``plugins/sfMinifyPlugin/web/sfMinifyPlugin.php`` to your ``web`` directory and edit the project configuration
+
+### Filter or Helper
+
+you can activate minify over the filter or with the helpers
+
+  * change the common filter in your ``filters.yml`` to
+
+        [plain]
+        common:
+          class: sfMinifyFilter   # Filter class
+          param:
+            javascripts:        true
+            stylesheets:        true
+
+  * or add/change the helper in your layout file (default ``layout.php``) to
+
+        [php]
+        use_helper('SfMinify');
+        minify_include_javascript();
+        minify_include_stylesheets();
+
+### Configuration
+
+you can enable and disable javascript or stylesheet minify by setting the params in ``filter.yml`` by default both types will be minified
+
+#### Compression
+
+to compress the files simple set the ``compressed`` option to on in ``settings.yml``
+
+        [plain]
+        all:
+          .settings:
+            compressed:         on
