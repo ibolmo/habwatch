@@ -34,7 +34,7 @@ window.addEvent('load', function(){
     
     var loading = new Element('div', {
     	'id': 'loading-overlay',
-    	'style': 'position: absolute; margin: 0; padding: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 65554',
+    	'style': 'position: absolute; margin: 0; padding: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 65554'
     }).adopt(
     	new Element('h3', {
     		'style': 'position: absolute; top: 50%; left: 46%; color: #fff; z-index: 65553',

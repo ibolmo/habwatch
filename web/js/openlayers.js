@@ -1,5 +1,4 @@
 
-
 var OpenLayers = {
     singleFile: true
 };
@@ -540,8 +539,8 @@ OpenLayers.Util.getElement = function() {
     return elements;
 };
 
-if ($ == null) {
-    var $ = OpenLayers.Util.getElement;
+if (window.$ == null) {
+    window.$ = OpenLayers.Util.getElement;
 }
 
 OpenLayers.Util.extend = function(destination, source) {
