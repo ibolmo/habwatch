@@ -180,12 +180,12 @@ var Map = new Class({
 	},
 	
 	onPhotoMouseEnter: function(event){
-		// show a pop of summary: # of reports, and most recent?
+		var count = event.feature.attributes.count, position = this.element.getPosition();
+		var element = new Element('div').store('tip:title', 'Count').store('tip:text', count + ' report' + ((count > 1) ? 's' : ''));
+		
 		event.page = this.getPixelFromGeometry(event.feature.geometry);
-		var position = this.element.getPosition();
 		event.page.x += position.x;
 		event.page.y += position.y;
-		var element = new Element('div').store('tip:title', 'Count').store('tip:text', event.feature.attributes.count + ' reports');
 		this.tip.elementEnter(event, element);
 	},
 	
