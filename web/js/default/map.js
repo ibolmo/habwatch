@@ -140,7 +140,7 @@ var Map = new Class({
 	            })
 		    }),
 		    styleMap: new OpenLayers.StyleMap({
-		        'default': new OpenLayers.Style(this.options.photos.styles.default, {
+		        'default': new OpenLayers.Style(this.options.photos.styles['default'], {
 		            context: {
 		                radius: this.options.photos.styles.radius
 		            }
