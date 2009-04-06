@@ -19,7 +19,7 @@
         </ul>
         
         <h3>Selected</h3>
-        <ul class="log">
+        <ul id="sidebar-selected" class="log">
         	<li class="default">
         		<p>You haven't selected a HAB sighting.</p>
         		<p>Explore the map or use the available filters to narrow your choices</p>

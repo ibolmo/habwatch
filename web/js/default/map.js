@@ -29,7 +29,7 @@ var Map = new Class({
 		            strokeOpacity: 0.8
 		        }, 
 		        'radius': function(feature) {
-	                return Math.pow(2, feature.attributes.count/1.5).limit(4, 12);
+	                return (feature.attributes.count * 3).limit(3, 24);
 	            },
 		        'select': {
 		            fillColor: '#0078CC',
@@ -45,12 +45,16 @@ var Map = new Class({
 	        onHide: function(tip){
 	            tip.fade('out');
 	        }
+	    },
+	    
+	    thumb: {
+	        count: 8
 	    }
 	},
 	
-	initialize: function(element, options){
+	initialize: function(map, options){
 		this.setOptions(options);
-		this.element = $(element);			    
+		this.element = $(map);			    
 	    this.vectors = {};
 	    this.events = {
 	    	photos: {
@@ -74,10 +78,9 @@ var Map = new Class({
 	},
 	
 	configure: function(){
-		this.configureMap();
-		this.configureLoading();
-		this.configureTips();
-		this.configurePhotos();
+	    ['map', 'loading', 'tips', 'photos', 'selected'].each(function(item){
+	        this['configure' + item.capitalize()].call(this);
+	    }, this);
 	},
 	
 	configureMap: function(){
@@ -156,6 +159,11 @@ var Map = new Class({
 		hover.activate();
 	},
 	
+	configureSelected: function(){
+	    this.selected = $('sidebar-selected');
+	    this.selected.store('map:default', this.selected.get('html'));
+	},
+	
 	reset: function(center){
 		if (center) this.center = center;
 		this.map.setCenter(this.center.coordinate, this.center.zoom);
@@ -190,11 +198,41 @@ var Map = new Class({
 	},
 	
 	onPhotoMouseLeave: function(event){
+	    //console.log('unselect', event);
 	    this.tip.elementLeave();
 	},
 	
-	onPhotoClick: function(){
-		// load pictures on the left bar
+	onPhotoClick: function(feature){
+		var that = this.callbacks.scope;		
+		that.selected.empty();
+		var children = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length).map(function(vector){
+		    return new Element('li').adopt(
+		        new Element('a', {
+		            'href': 'javascript:void(0)',
+		            'title': vector.data.title
+		        }).adopt(
+		            new Element('img').set({
+		                'class': 'thumbnail',
+		                'src': vector.data.img_url,
+		                'alt': vector.data.description || 'Reported Photo'
+		            })
+		        )
+		    )
+		})
+		if (children.length != feature.cluster.length){
+		    children.push(new Element('li').adopt(
+		        new Element('a', {
+		            'href': 'javascript:void(0)',
+		            'title': 'See more',
+		            'html': 'See more reports',
+		            'events': {
+		                'click': that.onPhotoDblClick.pass(feature, that)
+		            }
+		        })
+	        ));
+		}
+		children = new Elements(children).inject(that.selected);
+		if (that.options.thumb) new Thumbs(children.getElements('.thumbnail'), that.options.thumb);
 	},
 	
 	onPhotoDblClick: function(layer){

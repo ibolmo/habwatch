@@ -133,8 +133,8 @@ img.thumbnail {
 .disabled { color: #ccc; }
 .log ul, .log li { list-style: none }
 
-#sidebar-recent { margin-left: 0; margin-right: 0;}
-#sidebar-recent li { margin-bottom: 0.5em;}
+#sidebar-recent, #sidebar-selected { margin-left: 0; margin-right: 0;}
+#sidebar-recent li, #sidebar-selected li { margin-bottom: 0.5em;}
 
 #map {
     height: 500px;

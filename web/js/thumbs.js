@@ -3,21 +3,27 @@ var Thumbs = new Class({
 	Implements: Options,
 	
 	options: {
-		offset: null
+		offset: 20
 	},
 	
 	initialize: function(elements, options){
 		this.setOptions(options);
 		
-		this.configure(elements);
+		this.elements = $$(elements);
+		if (!this.elements.length) return;
+		
+		this.configure();
 		this.attach();
 	},
 	
-	configure: function(elements){
-		this.elements = $$(elements);
+	configure: function(){
 		this.last = this.elements.getLast();
-		this.offset = $defined(this.options.offset) ? this.options.offset : this.elements[0].offsetHeight * 0.8;
-		this.elements.erase(this.last).setStyle('margin-bottom', -this.offset);
+		var prev = null;
+		this.elements.each(function(element){
+		    var parent = element.getParent('li');
+		    if (prev) prev.setStyle('margin-bottom', -prev.retrieve('thumb:offset', Math.min(prev.getParent('li').offsetHeight, parent.offsetHeight) - this.options.offset));
+		    prev = element;
+		}, this);
 	},
 	
 	attach: function(){
@@ -38,11 +44,11 @@ var Thumbs = new Class({
 	},
 	
 	onMouseEnter: function(e){
-		e.target.tween('margin-bottom', 0);
+	    e.target.tween('margin-bottom', 0);
 	},
 	
 	onMouseLeave: function(e){
-		e.target.tween('margin-bottom', -this.offset);
+		e.target.tween('margin-bottom', -e.target.retrieve('thumb:offset') || 0);
 	},
 	
 	onClick: function(e){
