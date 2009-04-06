@@ -198,14 +198,13 @@ var Map = new Class({
 	},
 	
 	onPhotoMouseLeave: function(event){
-	    //console.log('unselect', event);
 	    this.tip.elementLeave();
 	},
 	
 	onPhotoClick: function(feature){
 		var that = this.callbacks.scope;		
 		that.selected.empty();
-		var children = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length).map(function(vector){
+		var children = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length).reverse().map(function(vector){
 		    return new Element('li').adopt(
 		        new Element('a', {
 		            'href': 'javascript:void(0)',
