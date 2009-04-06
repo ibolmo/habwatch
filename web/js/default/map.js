@@ -231,7 +231,7 @@ var Map = new Class({
 	        ));
 		}
 		children = new Elements(children).inject(that.selected);
-		if (that.options.thumb) new Thumbs(children.getElements('.thumbnail'), that.options.thumb);
+		if (that.options.thumb) (function(){ new Thumbs(children.getElements('.thumbnail'), that.options.thumb); }).delay(100);
 	},
 	
 	onPhotoDblClick: function(layer){
