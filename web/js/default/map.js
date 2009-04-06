@@ -16,19 +16,72 @@ var Map = new Class({
 	    
 	    loading: {
 	    	opacity: 0.7	
+	    },
+	    
+	    photos: {
+	    	styles: {
+		        'default': {
+		            pointRadius: '${radius}',
+		            fillColor: '#67B1E6',
+		            fillOpacity: 0.8,
+		            strokeColor: '#004E85',
+		            strokeWidth: 2,
+		            strokeOpacity: 0.8
+		        }, 
+		        'radius': function(feature) {
+	                return Math.pow(2, feature.attributes.count/1.5).limit(4, 12);
+	            },
+		        'select': {
+		            fillColor: '#0078CC',
+		            strokeColor: '#004E85'
+		        }
+		    }
+	    },
+	    
+	    tips: {
+	        onShow: function(tip){
+	            tip.fade('in')
+	        },
+	        onHide: function(tip){
+	            tip.fade('out');
+	        }
 	    }
 	},
 	
 	initialize: function(element, options){
 		this.setOptions(options);
-		this.element = $(element);
+		this.element = $(element);			    
+	    this.vectors = {};
+	    this.events = {
+	    	photos: {
+				loadstart: this.onLoadStart,
+		    	loadend: this.onLoadEnd,
+		    	featureadded: this.onPhotoAdded,
+		    	featureselected: this.onPhotoMouseEnter,
+		    	featureunselected: this.onPhotoMouseLeave,
+		    	moveend: this.onMoveEnd,
+		    	click: this.onPhotoClick,
+		    	dblclick: this.onPhotoDblClick,
+				scope: this
+		    }
+	    };
+	    this.bounded = false;
+	    this.projection = {
+	        internal: new OpenLayers.Projection('EPSG:900913'),
+	        external: new OpenLayers.Projection('EPSG:4326')
+	    };
 		this.configure();
 	},
 	
 	configure: function(){
-		this.boundary = new OpenLayers.Bounds();
-	    this.bounded = false;
-		
+		this.configureMap();
+		this.configureLoading();
+		this.configureTips();
+		this.configurePhotos();
+	},
+	
+	configureMap: function(){
+		this.boundary = new OpenLayers.Bounds();		
 		var zoom = new OpenLayers.Control.ZoomPanel();
 	    zoom.controls[1].trigger = function(){
 	    	if (this.boundary) this.map.zoomToExtent(this.boundary);
@@ -45,36 +98,32 @@ var Map = new Class({
 	        maxResolution: 156543.0399,
 	        numZoomLevels: 19,
 	        units: 'm',
-	        projection: new OpenLayers.Projection('EPSG:900913'),
-	        displayProjection: new OpenLayers.Projection('EPSG:4326')
-	    });
+	        projection: this.projection.internal,
+	        displayProjection: this.projection.external
+	    });	
 	    
-	    var osm = new OpenLayers.Layer.OSM.Mapnik('OSM', this.options.osm);
-	    osm.url = this.options.osm.url;
-	    this.map.addLayer(osm);
+	    this.vectors.osm = new OpenLayers.Layer.OSM.Mapnik('OSM', this.options.osm);
+	    this.vectors.osm.url = this.options.osm.url;
+	    this.map.addLayer(this.vectors.osm);
 	    
 	    this.reset({
-	    	coordinate: new OpenLayers.LonLat(this.options.longitude, this.options.latitude).transform(new OpenLayers.Projection('EPSG:4326'), this.map.getProjectionObject()),
+	    	coordinate: new OpenLayers.LonLat(this.options.longitude, this.options.latitude).transform(this.projection.external, this.projection.internal),
 	    	zoom: 10	    	
 	    });    
-	    
-	    this.vectors = {};
+	},
+	
+	configureLoading: function(){
 	    this.vectors.loading = new Element('div', {'id': 'map-loading'}).adopt(
 	    	new Element('h3', {'class': 'text', 'html': 'Loading'}),
 	    	new Element('div', {'class': 'background'}).setOpacity(this.options.loading.opacity)
-	    );
-	    
-	    this.events = {};
-	    this.events.photos = {
-			loadstart: this.onLoadStart,
-	    	loadend: this.onLoadEnd,
-	    	featureadded: this.onPhotoAdded,
-	    	featureselected: this.onPhotoMouseEnter,
-	    	click: this.onPhotoClick,
-	    	dblclick: this.onPhotoDblClick,
-			scope: this
-	    };
-	    
+	    );	
+	},
+	
+	configureTips: function(){
+		this.tip = new Tips(this.options.tips);
+	},
+	
+	configurePhotos: function(){
 	    this.vectors.photos = new OpenLayers.Layer.Vector('Photos', {
 		    strategies: [
 		        new OpenLayers.Strategy.Fixed({ preload: true }),
@@ -83,29 +132,17 @@ var Map = new Class({
 		    protocol: new OpenLayers.Protocol.HTTP({
 		        url: this.options.photos.url,
 		        format: new OpenLayers.Format.GeoJSON({
-	                'internalProjection': new OpenLayers.Projection('EPSG:900913'),
-	                'externalProjection': new OpenLayers.Projection('EPSG:4326')
+	                'internalProjection': this.projection.internal,
+	                'externalProjection': this.projection.external
 	            })
 		    }),
 		    styleMap: new OpenLayers.StyleMap({
-		        'default': new OpenLayers.Style({
-		            pointRadius: '${radius}',
-		            fillColor: '#67B1E6',
-		            fillOpacity: 0.8,
-		            strokeColor: '#004E85',
-		            strokeWidth: 2,
-		            strokeOpacity: 0.8
-		        }, {
+		        'default': new OpenLayers.Style(this.options.photos.styles.default, {
 		            context: {
-		                radius: function(feature) {
-		                    return Math.pow(2, feature.attributes.count/1.5).limit(4, 12);
-		                }
+		                radius: this.options.photos.styles.radius
 		            }
 		        }),
-		        'select': {
-		            fillColor: '#0078CC',
-		            strokeColor: '#004E85'
-		        }
+		        'select': this.options.photos.styles.select
 		    }),
 		    eventListeners: this.events.photos
 		});
@@ -124,6 +161,10 @@ var Map = new Class({
 		this.map.setCenter(this.center.coordinate, this.center.zoom);
 	},
 	
+	getPixelFromGeometry: function(geometry){
+        return this.map.getPixelFromLonLat(new OpenLayers.LonLat(geometry.x, geometry.y));  
+	},
+	
 	onLoadStart: function(){
 		this.vectors.loading.injectTop(this.element);
 	},
@@ -138,12 +179,23 @@ var Map = new Class({
 		if (!this.bounded) this.boundary.extend(event.feature.geometry);
 	},
 	
-	onPhotoMouseEnter: function(feature){
-		// hover
+	onPhotoMouseEnter: function(event){
+		// show a pop of summary: # of reports, and most recent?
+		event.page = this.getPixelFromGeometry(event.feature.geometry);
+		var position = this.element.getPosition();
+		event.page.x += position.x;
+		event.page.y += position.y;
+		console.log(event);
+		var element = new Element('div').store('tip:title', 'Count').store('tip:text', event.feature.attributes.count + ' reports');
+		this.tip.elementEnter(event, element);
+	},
+	
+	onPhotoMouseLeave: function(event){
+	    this.tip.elementLeave();
 	},
 	
 	onPhotoClick: function(){
-		
+		// load pictures on the left bar
 	},
 	
 	onPhotoDblClick: function(layer){
@@ -152,7 +204,11 @@ var Map = new Class({
 			bounds.extend(point.geometry);
 		});
 		this.map.zoomToExtent(bounds, 1);
-	}	
+	},
+	
+	onMoveEnd: function(event){
+	    this.tip.fireEvent('hide', this.tip.tip);
+	}
 
 });
 

@@ -196,3 +196,22 @@ p.right { float:right; margin:0 0 1.5em 1.5em; padding:0;}
 	height: 100%;
 	background-color: #000;
 }
+
+.tip {
+	color: #fff;
+	width: 139px;
+	z-index: 13000;
+}
+
+.tip-title {
+	font-weight: bold;
+	font-size: 11px;
+	color: #9FD4FF;
+	padding: 8px 8px 4px;
+	background: url(bubble.png) top left;
+}
+
+.tip-text {
+	font-size: 11px;
+	background: url(bubble.png) bottom left;
+}
