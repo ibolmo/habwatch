@@ -185,7 +185,6 @@ var Map = new Class({
 		var position = this.element.getPosition();
 		event.page.x += position.x;
 		event.page.y += position.y;
-		console.log(event);
 		var element = new Element('div').store('tip:title', 'Count').store('tip:text', event.feature.attributes.count + ' reports');
 		this.tip.elementEnter(event, element);
 	},
@@ -207,7 +206,7 @@ var Map = new Class({
 	},
 	
 	onMoveEnd: function(event){
-	    this.tip.fireEvent('hide', this.tip.tip);
+	    this.tip.elementLeave();
 	}
 
 });
