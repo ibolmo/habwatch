@@ -1941,7 +1941,7 @@ Native.implement([Element, Window, Document], {
 	addEvent: function(type, fn){
 		var events = this.retrieve('events', {});
 		events[type] = events[type] || {'keys': [], 'values': []};
-		if (events[type].keys.contains(fn)) return this;
+		if (!fn || events[type].keys.contains(fn)) return this;
 		events[type].keys.push(fn);
 		var realType = type, custom = Element.Events.get(type), condition = fn, self = this;
 		if (custom){
@@ -2693,7 +2693,7 @@ Selectors.Filters = {
 	},
 
 	byClass: function(self, klass){
-		return (self.className && self.className.contains(klass, ' '));
+		return (self.className && (self.className+'').contains(klass, ' '));
 	},
 
 	byPseudo: function(self, parser, argument, local){

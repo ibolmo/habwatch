@@ -9,20 +9,28 @@
 	<div id="map-content" class="column span-3 append-1">
         <h3>Recent</h3>
         <ul id="sidebar-recent" class="log">
-            <?php foreach (Flickr::getRecentPhotos(3) as $Photo): ?>
+            <?php foreach (array_reverse(Flickr::getRecentPhotos(3)) as $Photo): ?>
                 <li>
-                    <a href="<?= $Photo->buildUrl() ?>">
+                    <a href="javascript:void(0)">
                         <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
                     </a>
                 </li>
             <?php endforeach ?>
         </ul>
+        
+        <h3>Selected</h3>
+        <ul class="log">
+        </ul>
+        <?php
+		use_javascript('mootools');
+		use_javascript('thumbs');
+        ?>
 	</div>
 	<?php 
 		use_stylesheet('openlayers/style');
 		use_javascript('mootools');
 		use_javascript('openlayers');
-		use_javascript('http://www.openstreetmap.org/openlayers/OpenStreetMap.js');
+		use_javascript('OpenStreetMap');
 		use_dynamic_javascript('@config-openlayers');
 		use_javascript('default/map.js');
 	?>
