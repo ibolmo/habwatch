@@ -20,6 +20,10 @@
         
         <h3>Selected</h3>
         <ul class="log">
+        	<li class="default">
+        		<p>You haven't selected a HAB sighting.</p>
+        		<p>Explore the map or use the available filters to narrow your choices</p>
+        	</li>
         </ul>
         <?php
 		use_javascript('mootools');

@@ -46,7 +46,7 @@ var Thumbs = new Class({
 	},
 	
 	onClick: function(e){
-		if (this.selected) this.selected.addEvent('mouseleave', this.events.mouseleave).fireEvent('mouseleave', {target: this.selected});
+		if (this.selected && this.selected != this.last) this.selected.addEvent('mouseleave', this.events.mouseleave).fireEvent('mouseleave', {target: this.selected});
 		this.selected = e.target.removeEvent('mouseleave', this.events.mouseleave);
 	}
 	
