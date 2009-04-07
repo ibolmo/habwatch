@@ -1,2 +1,5 @@
 geojsonSuccess:
     has_layout:     off
+    
+photoInfoSuccess:
+    has_layout:     off

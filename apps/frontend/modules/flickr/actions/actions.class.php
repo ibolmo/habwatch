@@ -28,4 +28,11 @@ class flickrActions extends sfActions
 		
 		$this->json = json_encode($result);
 	}
+	
+	public function executePhotoInfo(sfWebRequest $request)
+	{
+	    $this->forward404Unless($photo_id = $request->getParameter('photo_id'));
+	    $this->forward404Unless($this->Photo = Flickr::getPhoto($photo_id));
+	    $this->Info = $this->Photo->getInfo();
+	}
 }

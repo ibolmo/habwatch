@@ -48,8 +48,14 @@ var Map = new Class({
 	    },
 	    
 	    thumb: {
-	        count: 8
+	        count: 8,
+    	    squeezebox: {
+    	        handler: 'ajax',
+    	        size: {x: 600, y: 525},
+    	        url: '/photo/info'
+    	    }
 	    }
+	    
 	},
 	
 	initialize: function(map, options){
@@ -211,6 +217,7 @@ var Map = new Class({
 		            'title': vector.data.title
 		        }).adopt(
 		            new Element('img').set({
+		                'id': vector.fid,
 		                'class': 'thumbnail',
 		                'src': vector.data.img_url,
 		                'alt': vector.data.description || 'Reported Photo'
@@ -223,7 +230,7 @@ var Map = new Class({
 		        new Element('a', {
 		            'href': 'javascript:void(0)',
 		            'title': 'See more',
-		            'html': 'See more reports',
+		            'html': 'See more',
 		            'events': {
 		                'click': that.onPhotoDblClick.pass(feature, that)
 		            }
@@ -231,7 +238,9 @@ var Map = new Class({
 	        ));
 		}
 		children = new Elements(children).inject(that.selected);
-		if (that.options.thumb) (function(){ new Thumbs(children.getElements('.thumbnail'), that.options.thumb); }).delay(100);
+		if (that.options.thumb) (function(){
+		    new Thumbs(children.getElements('.thumbnail'), that.options.thumb);
+		}).delay(100);
 	},
 	
 	onPhotoDblClick: function(layer){

@@ -26,10 +26,6 @@ class defaultActions extends myActions
 	{
 		if (preg_match('/^dev/', $request->getHost())) return;
         $response = $this->getResponse();
-        $response->addStylesheet('SqueezeBox/SqueezeBox.css');
-        $response->addJavascript('mootools');
-	    $response->addJavascript('SqueezeBox');
-        $response->addJavascript('prompt');
 	    $this->getUser()->setAttribute('visited', true);
 	    $this->introduce = true;
 	}

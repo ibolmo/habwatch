@@ -40,4 +40,33 @@ class Flickr_Photo extends Phlickr_Photo
         }
         return @$this->machine_tags[$name][$pred];
     }
+    
+    public function getInfo()
+    {
+        $location = $this->getLocation();
+	    
+		return array_merge(array(
+		    'server' => $this->getServer(),
+		    'license' => $this->getLicense(),
+		    'owner_id' => $this->getUserId(),
+		    'title' => $this->getTitle(),
+		    'description' => $this->getDescription(),
+		    'isfamily' => $this->isForFamily(),
+		    'ispublic' => $this->isForPublic(),
+		    'isfriend' => $this->isForFriends(),
+		    'posted_timestamp' => $this->getPostedTimestamp(),
+		    'taken_timestamp' => $this->getTakenTimestamp(),
+		    'tags' => implode(' ', $this->getTags()),
+		    'accuracy' => false,
+		    'place_id' => false,
+		    'woeid' => false,
+		    'img_url' => $this->buildImgUrl(),
+		    'farm' => $this->getFarm(),
+    		'rating' => $this->getRating()
+		), $location ? array(
+		    'accuracy' => $location['accuracy'],
+		    'place_id' => $location['place_id'],
+		    'woeid' => $location['woeid']
+        ) : array());
+    }
 }

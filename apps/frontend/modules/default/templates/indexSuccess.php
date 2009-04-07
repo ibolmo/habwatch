@@ -3,16 +3,22 @@
         <h3>Welcome to <?= sfConfig::get('app_project_name') ?></h3>
         <?= include_partial('default/intro') ?>
     </div>
+    <?php  
+        use_stylesheet('SqueezeBox/SqueezeBox.css');
+        use_javascript('mootools');
+        use_javascript('SqueezeBox');
+        use_javascript('prompt');
+    ?>
 <?php endif ?>
 
 <?php if (Flickr::hasPhotos()): ?>
-	<div id="map-content" class="column span-3 append-1">
+	<div id="map-content" class="column span-4 append-1">
         <h3>Recent</h3>
         <ul id="sidebar-recent" class="log">
             <?php foreach (array_reverse(Flickr::getRecentPhotos(3)) as $Photo): ?>
                 <li>
                     <a href="javascript:void(0)">
-                        <img class="thumbnail" alt="<?= $Photo->getDescription() ?>" src="<?= $Photo->buildImgUrl() ?>" />
+                        <?= image_tag($Photo->buildImgUrl(), array('id' => $Photo->getId(), 'class' => 'thumbnail', 'alt' => $Photo->getDescription())) ?>
                     </a>
                 </li>
             <?php endforeach ?>
@@ -26,7 +32,9 @@
         	</li>
         </ul>
         <?php
-		use_javascript('mootools');
+        use_stylesheet('SqueezeBox/SqueezeBox.css');
+        use_javascript('mootools');
+        use_javascript('SqueezeBox');
 		use_javascript('thumbs');
         ?>
 	</div>
@@ -38,8 +46,8 @@
 		use_dynamic_javascript('@config-openlayers');
 		use_javascript('default/map.js');
 	?>
-    <div id="map" class="column span-16"></div>
-    
+    <div id="map" class="column span-15"></div>
+
 	<div id="map-filters" class="column span-3 prepend-1">
         <?php use_javascript('mootools') ?>
     	<?php use_javascript('flickr-tags') ?>
@@ -50,6 +58,7 @@
             <?php endforeach ?>
     	</ul>
 	</div>
+
 <?php else: ?>
     <h2>Welcome to <?php echo sfConfig::get('app_project_name') ?>!</h2>
     <?= include_partial('default/intro') ?>

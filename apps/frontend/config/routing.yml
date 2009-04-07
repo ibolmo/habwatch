@@ -1,3 +1,7 @@
+photo_info:
+    url: /photo/info
+    param: { module: flickr, action: photoInfo }
+
 flickr-pub-geojson:
     url: /flickr/geojson
     param: { module: flickr, action: geojson }

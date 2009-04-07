@@ -66,31 +66,7 @@ class GeoJSON_Flickr_Adapter implements GeoJSON_Adapter
 	 */
 	public function getObjectProperties($object)
 	{
-	    $location = $object->getLocation();
-	    
-		return array_merge(array(
-		    'server' => $object->getServer(),
-		    'license' => $object->getLicense(),
-		    'owner_id' => $object->getUserId(),
-		    'title' => $object->getTitle(),
-		    'description' => $object->getDescription(),
-		    'isfamily' => $object->isForFamily(),
-		    'ispublic' => $object->isForPublic(),
-		    'isfriend' => $object->isForFriends(),
-		    'posted_timestamp' => $object->getPostedTimestamp(),
-		    'taken_timestamp' => $object->getTakenTimestamp(),
-		    'tags' => implode(' ', $object->getTags()),
-		    'accuracy' => false,
-		    'place_id' => false,
-		    'woeid' => false,
-		    'img_url' => $object->buildImgUrl(),
-		    'farm' => $object->getFarm(),
-    		'rating' => $object->getRating()
-		), $location ? array(
-		    'accuracy' => $location['accuracy'],
-		    'place_id' => $location['place_id'],
-		    'woeid' => $location['woeid']
-        ) : array());
+	    return $object->getInfo();
 	}
 
 }

@@ -27,7 +27,7 @@
 
 <h5>Get involved</h5>
 <ol>
-    <li>Browser the site</li>
+    <li>Browse the site</li>
     <li>Become familiar with <?= link_to('HABs', '@about') ?></li>
     <li><?= link_to('Contribute', '@instructions') ?> your own sightings of HABs!</li>
 </ol>

@@ -172,7 +172,7 @@ p.right { float:right; margin:0 0 1.5em 1.5em; padding:0;}
 	height: 25px !important;
 }
 
-#map-loading {
+#map-loading, #map-loading .background {
 	position: absolute;
 	margin: 0;
 	padding: 0;
@@ -180,7 +180,7 @@ p.right { float:right; margin:0 0 1.5em 1.5em; padding:0;}
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 65554
+	z-index: 10000
 }
 
 #map-loading .text {
@@ -188,12 +188,10 @@ p.right { float:right; margin:0 0 1.5em 1.5em; padding:0;}
 	top: 50%;
 	left: 46%;
 	color: #fff;
-	z-index: 65553
+	z-index: 10001
 }
 
 #map-loading .background {
-	width: 100%;
-	height: 100%;
 	background-color: #000;
 }
 
