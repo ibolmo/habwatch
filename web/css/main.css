@@ -88,7 +88,7 @@ p + p  { margin-top: 1.5em; text-indent:0; }
 .plant_image img { width: 100%; }
 .plant_box_info { font-size: 0.80em;}
 .note { color: #f00; }
-.invisible { visibility: hidden; position: absolute; width:0; height:0; margin:0; padding:0; top:0; left:0; }
+.invisible { visibility: hidden; position: absolute; top:0; left:0; }
 
 
 #sms_demo_phone {

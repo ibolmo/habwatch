@@ -26,7 +26,7 @@ var SqueezeBox = {
 		onMove: $empty,
 		onShow: $empty,
 		onHide: $empty,
-		size: {x: 600, y: 450},
+		size: null,
 		sizeLoading: {x: 200, y: 150},
 		marginInner: {x: 20, y: 20},
 		marginImage: {x: 50, y: 75},
@@ -215,9 +215,13 @@ var SqueezeBox = {
 		var box = this.doc.getSize(), scroll = this.doc.getScroll();
 		this.size = this.options.sizeLoading;
 		if (!this.isLoading){
-		    var temp = new Element('div', {'style': 'position: absolute; top:0; left:0; visibility: hidden'}).inject(document.body).adopt(this.content.clone());
-		    this.size = temp.getSize();
-		    temp.destroy();
+		    if (this.options.size){
+		        this.size = this.options.size;
+		    } else {
+    		    var temp = new Element('div', {'class': 'invisible'}).inject(document.body).adopt(this.content.clone());
+    		    this.size = temp.getSize();
+    		    temp.destroy();
+    		}
 		}
 		var to = {
 			width: this.size.x,

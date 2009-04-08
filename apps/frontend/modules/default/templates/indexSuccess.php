@@ -1,5 +1,5 @@
 <?php if (isset($introduce)): ?>
-    <div id="introduction" class="squeezebox invisible">
+    <div id="introduction" class="invisible">
         <h3>Welcome to <?= sfConfig::get('app_project_name') ?></h3>
         <?= include_partial('default/intro') ?>
     </div>

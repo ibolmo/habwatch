@@ -1,4 +1,4 @@
-window.addEvent('domready', function(){    
+window.addEvent('load', function(){    
     var intro = $('introduction');
     if (intro) SqueezeBox.fromElement(intro, {
         onOpen: function(sbox){

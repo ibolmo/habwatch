@@ -6,7 +6,6 @@ var Thumbs = new Class({
 		offset: 20,
 	    squeezebox: {
 	        handler: 'ajax',
-	        size: {x: 525, y: 500},
 	        url: '/photo/info',
 	        overlayOpacity: 0.0
 	    }

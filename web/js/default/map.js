@@ -51,7 +51,6 @@ var Map = new Class({
 	        count: 8,
     	    squeezebox: {
     	        handler: 'ajax',
-    	        size: {x: 600, y: 525},
     	        url: '/photo/info',
     	        overlayOpacity: 0.0
     	    }
