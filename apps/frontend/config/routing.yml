@@ -1,5 +1,5 @@
 photo_info:
-    url: /photo/info
+    url: /photo/info/:photo_id
     param: { module: flickr, action: photoInfo }
 
 flickr-pub-geojson:

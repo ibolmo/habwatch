@@ -20,6 +20,11 @@ class Flickr_Photo extends Phlickr_Photo
         return isset($this->_cachedXml->location) ? $this->_cachedXml->location : false;
     }
     
+    public function getRotation()
+    {
+        return (integer) $this->_cachedXml['rotation'];
+    }
+    
     public function hasTag($tag)
     {
         return in_array($tag, $this->getTags());

@@ -48,18 +48,18 @@ The browser accepts absolute and relative URIs
     $b->get('http://www.example.com/test.html');
     $b->get('test.html');
 
-The `get()` method accepts parameters either as a query string, or as an array.
+The `get()` method accepts parameters either as a query string, or as an associative array.
 
     [php]
     $b->get('http://www.example.com/test.php?foo=bar');
-    $b->get('http://www.example.com/test.php', array('foo', 'bar'));
+    $b->get('http://www.example.com/test.php', array('foo' => 'bar'));
 
 POST, PUT and DELETE requests are also supported.
 
     [php]
-    $b->post('http://www.example.com/test.php', array('foo', 'bar'));
-    $b->put('http://www.example.com/test.php', array('foo', 'bar'));
-    $b->delete('http://www.example.com/test.php', array('foo', 'bar'));
+    $b->post('http://www.example.com/test.php', array('foo' => 'bar'));
+    $b->put('http://www.example.com/test.php', array('foo' => 'bar'));
+    $b->delete('http://www.example.com/test.php', array('foo' => 'bar'));
 
 You can access the response in various formats, at your convenience:
 
@@ -106,10 +106,15 @@ Currenly, `sfCurlAdapter` offers slightly more functionality than the other adap
     [php]
     // upload files via a form
     $b = new sfWebBrowser();
-    $b->post($url_of_form, array('file_field' => '/path/to/my/local/file.jpg'));
+    $b->post($url_of_form, array(
+      'file_field' => '/path/to/my/local/file.jpg'
+    ));
     // login to a website
     $b = new sfWebBrowser(array(), 'sfCurlAdapter', array('cookies' => true));
-    $b->post($url_of_login_form, array('user_field' => $username, 'pass_field' => $password));
+    $b->post($url_of_login_form, array(
+      'user_field' => $username,
+      'pass_field' => $password
+    ));
 
 Full examples are available in the unit tests.
 
@@ -168,7 +173,11 @@ Changelog
 
 ### Trunk
 
-### 2008-09-23 | 1.1.0 Stable
+### 2009-03-06 | Trunk
+
+  * francois: Fixed README syntax for parameters array
+  
+### 2009-09-23 | 1.1.0 Stable
 
   * francois: Translated README to Markdown
   * francois: Added support for custom options in `sfCurlAdapter`

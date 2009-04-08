@@ -6,8 +6,9 @@ var Thumbs = new Class({
 		offset: 20,
 	    squeezebox: {
 	        handler: 'ajax',
-	        size: {x: 400, y: 300},
-	        url: '/photo/info'
+	        size: {x: 525, y: 500},
+	        url: '/photo/info',
+	        overlayOpacity: 0.0
 	    }
 	},
 	
@@ -25,7 +26,7 @@ var Thumbs = new Class({
 		this.last = this.elements.getLast();
 		var prev = null;
 		this.elements.each(function(element){
-		    SqueezeBox.assign(element, $merge(this.options.squeezebox, {url: this.options.squeezebox.url + '?photo_id=' + element.id}));
+		    SqueezeBox.assign(element, $merge(this.options.squeezebox, {url: this.options.squeezebox.url + '/' + element.id}));
 		        
 		    var parent = element.getParent('li');
 		    if (prev) prev.setStyle('margin-bottom', -prev.retrieve('thumb:offset', Math.min(prev.getParent('li').offsetHeight, parent.offsetHeight) - this.options.offset));

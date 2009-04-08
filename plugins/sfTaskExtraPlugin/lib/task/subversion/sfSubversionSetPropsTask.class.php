@@ -8,7 +8,7 @@ require_once dirname(__FILE__).'/sfTaskExtraSubversionBaseTask.class.php';
  * @package     sfTaskExtraPlugin
  * @subpackage  task
  * @author      Kris Wallsmith <kris.wallsmith@symfony-project.com>
- * @version     SVN: $Id: sfSubversionSetPropsTask.class.php 15353 2009-02-08 21:12:33Z Kris.Wallsmith $
+ * @version     SVN: $Id: sfSubversionSetPropsTask.class.php 16234 2009-03-12 08:51:46Z Kris.Wallsmith $
  */
 class sfSubversionSetPropsTask extends sfTaskExtraSubversionBaseTask
 {
@@ -51,21 +51,13 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $this->addIgnore(array(
-      'cache',
-      'data/sql',
-      'lib/form/base',
-      'lib/form/doctrine/base',
-      'lib/form/doctrine/*Plugin/base',
-      'lib/filter/base',
-      'lib/filter/doctrine/base',
-      'lib/filter/doctrine/*Plugin/base',
-      'lib/model/doctrine/base',
-      'lib/model/doctrine/*Plugin/base',
-      'lib/model/om',
-      'lib/model/map',
-      'log',
-      'web/uploads',
+    $finder = sfFinder::type('dir')->name('base');
+
+    $this->addIgnore(array_merge(
+      $finder->in('lib/form/doctrine'),
+      $finder->in('lib/filter/doctrine'),
+      $finder->in('lib/model/doctrine'),
+      array('cache', 'data/sql', 'lib/model/om', 'lib/model/map', 'log', 'web/uploads')
     ));
 
     $this->setSubversionProperty('svn:ignore', array('*transformed*', '*generated*'), 'config');

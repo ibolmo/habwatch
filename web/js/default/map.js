@@ -5,9 +5,9 @@ var Map = new Class({
 	options: {    
 	    osm: {
 	    	url: [
-		        'http://a.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/4/256/',
-		        'http://b.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/4/256/',
-		        'http://c.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/4/256/'
+		        'http://a.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/1/256/',
+		        'http://b.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/1/256/',
+		        'http://c.tile.cloudmade.com/9ea55b2fb8ff5059accd298987268530/1/256/'
 		    ]
 	    },
 	    
@@ -52,7 +52,8 @@ var Map = new Class({
     	    squeezebox: {
     	        handler: 'ajax',
     	        size: {x: 600, y: 525},
-    	        url: '/photo/info'
+    	        url: '/photo/info',
+    	        overlayOpacity: 0.0
     	    }
 	    }
 	    

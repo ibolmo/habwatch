@@ -172,7 +172,7 @@ var SqueezeBox = {
 
 	onError: function() {
 		this.asset = null;
-		this.setContent('string', this.options.errorMsg || 'An error occurred');
+		this.setContent('string', this.options.errorMsg || 'An error occurred. Try again.');
 	},
 
 	setContent: function(handler, content) {
@@ -213,7 +213,12 @@ var SqueezeBox = {
 	resize: function(size, instantly) {
 		this.showTimer = $clear(this.showTimer || null);
 		var box = this.doc.getSize(), scroll = this.doc.getScroll();
-		this.size = $merge((this.isLoading) ? this.options.sizeLoading : this.options.size, size);
+		this.size = this.options.sizeLoading;
+		if (!this.isLoading){
+		    var temp = new Element('div', {'style': 'position: absolute; top:0; left:0; visibility: hidden'}).inject(document.body).adopt(this.content.clone());
+		    this.size = temp.getSize();
+		    temp.destroy();
+		}
 		var to = {
 			width: this.size.x,
 			height: this.size.y,
