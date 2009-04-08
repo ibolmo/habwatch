@@ -17,14 +17,14 @@ class defaultActions extends myActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-	    if (true || !$this->User && !$this->getUser()->getAttribute('visited')){
+	    if ($this->User && !$this->getUser()->getAttribute('visited')){
 	    	$this->addIntro($request);
 	    }
 	}
 	
 	public function addIntro($request)
 	{
-		if (!preg_match('/^dev/', $request->getHost())) return;
+		if (preg_match('/^dev/', $request->getHost())) return;
         $response = $this->getResponse();
 	    $this->getUser()->setAttribute('visited', true);
 	    $this->introduce = true;
