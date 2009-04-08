@@ -218,7 +218,7 @@ var SqueezeBox = {
 		    if (this.options.size){
 		        this.size = this.options.size;
 		    } else {
-    		    var temp = new Element('div', {'class': 'invisible'}).inject(document.body).adopt(this.content.clone());
+    		    var temp = new Element('div', {'style': 'position: absolute; top:0; left:0; visibility: hidden'}).inject(document.body).adopt(this.content.clone());
     		    this.size = temp.getSize();
     		    temp.destroy();
     		}

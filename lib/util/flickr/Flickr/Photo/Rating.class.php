@@ -34,4 +34,9 @@ class Flickr_Photo_Rating
             '<li><a href="#" title="5 stars out of 5" class="five-stars">5</a></li>'
         );
     }
+    
+    public function __toString()
+    {
+        return (string) $this->value;
+    }
 }

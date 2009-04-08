@@ -3,6 +3,7 @@
 class Flickr_Photo extends Phlickr_Photo
 {
     protected $Rating, $machine_tags;
+    public static $machine_tag_pattern = '/(?P<namespace>[\w]*):(?P<predicate>[\w]*)=[\'\"]?(?P<value>[\w]*)[\'\"]?/';
     
     public function getRating()
     {
@@ -36,7 +37,7 @@ class Flickr_Photo extends Phlickr_Photo
             $raw_machine_tags = array_filter($this->getTags(), create_function('$tag', 'return strpos($tag, \':\') !== false;'));
             $this->machine_tags = array();
             foreach ($raw_machine_tags as $tag) {
-                preg_match('/^(?P<namespace>[\w]*):(?P<predicate>[\w]*)=[\'\"]?(?P<value>[\w]*)[\'\"]?$/', $tag, $matches);
+                preg_match(self::$machine_tag_pattern, $tag, $matches);
                 list($namespace, $predicate, $value) = array($matches['namespace'], $matches['predicate'], $matches['value']);
                 
                 if (!array_key_exists($namespace, $this->machine_tags)) $this->machine_tags[$namespace] = array();

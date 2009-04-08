@@ -28,11 +28,15 @@ class flickrActions extends sfActions
 		
 		$this->json = json_encode($result);
 	}
-	
+
 	public function executePhotoInfo(sfWebRequest $request)
 	{
 	    $this->forward404Unless($photo_id = $request->getParameter('photo_id'));
 	    $this->forward404Unless($this->Photo = Flickr::getPhoto($photo_id));
 	    $this->Info = $this->Photo->getInfo();
+	    
+	    $this->Info['tags'] = trim(preg_replace('/ {1}/', ' ', preg_replace(Flickr_Photo::$machine_tag_pattern, '', $this->Info['tags'])));
+	    $this->Sizes = $this->Photo->getSizes();
+	    $this->Size = $this->Sizes[Phlickr_Photo::SIZE_500PX];
 	}
 }
