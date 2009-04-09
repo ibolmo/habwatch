@@ -16,8 +16,8 @@ class defaultActions extends myActions
 	 * @param sfRequest $request A request object
 	 */
 	public function executeIndex(sfWebRequest $request)
-	{
-	    if ($this->User && !$this->getUser()->getAttribute('visited')){
+	{    
+	    if (!$this->User && !$this->getUser()->getAttribute('visited')){
 	    	$this->addIntro($request);
 	    }
 	}
