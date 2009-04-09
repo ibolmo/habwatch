@@ -10,13 +10,19 @@
  */
 class flickrActions extends sfActions
 {
+    public function preExecute()
+    {
+        sfConfig::set('sf_web_debug', false);
+    }
+    
 	public function executeGeojson(sfWebRequest $request)
 	{
 		$User = Flickr::getUser();
 		$count = $User->getPhotoCount();
-		$Photos = array();
-		for ($i = 0; $i < $count; $i += Flickr_PhotoList::PER_PAGE_MAX) { 
-			$Photos[] = $User->getPhotoListWithGeoData(Flickr_PhotoList::PER_PAGE_MAX);
+		$amount = Flickr_PhotoList::PER_PAGE_MAX - Flickr_PhotoList::PER_PAGE_DEFAULT;
+		$Photos = array($User->getPhotoListWithGeoData(Flickr_PhotoList::PER_PAGE_DEFAULT, false));
+		for ($i = Flickr_PhotoList::PER_PAGE_DEFAULT; $i < $count; $i += $amount) { 
+			$Photos[] = $User->getPhotoListWithGeoData($amount);
 		}
 		
 		$Adapter = new GeoJSON_Flickr_Adapter();

@@ -43,8 +43,8 @@ class Flickr extends Phlickr_Api
     
     public static function getRecentPhotos($count = 5)
     {        
-        $PhotoList = self::getUser()->getPhotoList($count);
-        return $PhotoList->getPhotos();
+        $PhotoList = self::getUser()->getPhotoList($count, false);
+        return array_slice($PhotoList->getPhotos(), 0, $count);
     }
     
     public static function getPager($page = 0, $count = 5)

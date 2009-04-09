@@ -10,18 +10,18 @@ class Flickr_AuthedUser extends Phlickr_AuthedUser
         return new Flickr_PhotoList($request, $perPage);
     }
     
-    public function getPhotoListWithGeoData($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT) {
+    public function getPhotoListWithGeoData($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT, $useCache = true) {
         $request = $this->getApi()->createRequest('flickr.photos.getWithGeoData', array(
             'user_id' => $this->getId(),
         ));
-        return new Flickr_PhotoList($request, $perPage);
+        return new Flickr_PhotoList($request, $perPage, $useCache);
     }
     
-    public function getPhotoList($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT) {
+    public function getPhotoList($perPage = Phlickr_PhotoList::PER_PAGE_DEFAULT, $useCache = true) {
         $request = $this->getApi()->createRequest('flickr.people.getPublicPhotos', array(
             'user_id' => $this->getId()
         ));
         
-        return new Flickr_PhotoList($request, $perPage);
+        return new Flickr_PhotoList($request, $perPage, $useCache);
     }
 }
