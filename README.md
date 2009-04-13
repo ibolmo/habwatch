@@ -6,10 +6,10 @@ Our goal is to facilitate, improve, and inform: to facilitate current monitoring
 
 Team Members
 ------------
-Olmo Maldoando | ibolmo@ucla.edu | Graduate Student Researcher
-Nithya Ramanathan | nithya@cs.ucla.edu | Research Staff
-Eric Graham | egraham@cens.ucla.edu | Research Staff
-Deborah Estrin | destrin@cs.ucla.edu | Director
+Olmo Maldoando | ibolmo@ucla.edu | Graduate Student Researcher  
+Nithya Ramanathan | nithya@cs.ucla.edu | Research Staff  
+Eric Graham | egraham@cens.ucla.edu | Research Staff  
+Deborah Estrin | destrin@cs.ucla.edu | Director  
 
 Data Feed
 ---------
@@ -17,9 +17,9 @@ feed://api.flickr.com/services/feeds/photos_public.gne?id=35147405@N02&lang=en-u
 
 Requirements
 ------------
-Doctrine 1.1.x  
-Symfony 1.2.x  
-PHP 5.2.x  
+Doctrine 1.1.x
+Symfony 1.2.x
+PHP 5.2.x
 
 ## PEAR Modules
 FirePHP (development, only)
@@ -47,6 +47,6 @@ Todo
 ----
 Use sfDoctrineActAsTaggable -- http://www.symfony-project.org/plugins/sfDoctrineActAsTaggablePlugin  
 Use sfFeed2Plugin -- http://www.symfony-project.org/plugins/sfFeed2Plugin  
-Use sfGoogleAnalytics -- http://www.symfony-project.org/plugins/sfGoogleAnalyticsPlugin
-Use sfErrorHandler -- http://www.symfony-project.org/plugins/sfErrorHandlerPlugin
-Use xsPChartPlugin -- http://www.symfony-project.org/plugins/xsPChartPlugin
+Use sfGoogleAnalytics -- http://www.symfony-project.org/plugins/sfGoogleAnalyticsPlugin  
+Use sfErrorHandler -- http://www.symfony-project.org/plugins/sfErrorHandlerPlugin  
+Use xsPChartPlugin -- http://www.symfony-project.org/plugins/xsPChartPlugin  
