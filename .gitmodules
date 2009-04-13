@@ -1,3 +1,0 @@
-[submodule "web/css/blueprintcss"]
-	path = web/css/blueprintcss
-	url = git://github.com/joshuaclayton/blueprint-css.git
