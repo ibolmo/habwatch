@@ -11,7 +11,7 @@ default:
 
   stylesheets: 
      - blueprintcss/blueprint/src/reset.css
-     - blueprintcss/blueprint/plugins/fluid/liquid.css
+     - blueprintcss/blueprint/plugins/liquid/liquid.css
      - blueprintcss/blueprint/src/typography.css
      - blueprintcss/blueprint/src/forms.css
      - blueprintcss/blueprint/plugins/fancy-type/screen.css

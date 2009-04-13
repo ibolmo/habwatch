@@ -1,0 +1,3 @@
+[submodule "web/css/blueprintcss"]
+	path = web/css/blueprintcss
+	url = git://github.com/ibolmo/blueprint-css.git
