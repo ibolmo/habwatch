@@ -43,3 +43,10 @@ Ideas
 -----
 SMS Authorization (instead of relying on known #s)
 
+Todo 
+----
+Use sfDoctrineActAsTaggable -- http://www.symfony-project.org/plugins/sfDoctrineActAsTaggablePlugin  
+Use sfFeed2Plugin -- http://www.symfony-project.org/plugins/sfFeed2Plugin  
+Use sfGoogleAnalytics -- http://www.symfony-project.org/plugins/sfGoogleAnalyticsPlugin
+Use sfErrorHandler -- http://www.symfony-project.org/plugins/sfErrorHandlerPlugin
+Use xsPChartPlugin -- http://www.symfony-project.org/plugins/xsPChartPlugin
