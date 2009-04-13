@@ -160,12 +160,12 @@ var Map = new Class({
 		});
 		this.map.addLayer(this.vectors.photos);
 		
-		var hover = new OpenLayers.Control.SelectFeature(this.vectors.photos, {
+		this.controls.hover = new OpenLayers.Control.SelectFeature(this.vectors.photos, {
 			hover: true,
 			callbacks: this.events.photos
 		});
-		this.map.addControl(hover);
-		hover.activate();
+		this.map.addControl(this.controls.hover);
+		this.controls.hover.activate();
 	},
 	
 	configureSelected: function(){
@@ -224,7 +224,7 @@ var Map = new Class({
 	},
 	
 	onPhotoClick: function(feature){
-		var that = this.callbacks.scope;		
+		var that = this.callbacks.scope;	
 		that.selected.empty();
 		var children = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length).reverse().map(function(vector){
 		    return new Element('li').adopt(
@@ -240,7 +240,7 @@ var Map = new Class({
 		            })
 		        )
 		    )
-		})
+		});
 		if (children.length != feature.cluster.length){
 		    children.push(new Element('li').adopt(
 		        new Element('a', {
