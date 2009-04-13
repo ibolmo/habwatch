@@ -24,11 +24,22 @@ PHP 5.2.x
 ## PEAR Modules
 FirePHP (development, only)
 
+Installation
+------------
+After installing the aforementioned dependencies, you will need to download a copy of habwatch into a directory, or for development:
+
+    > git clone git://github.com/ibolmo/habwatch.git habwatch; cd habwatch
+    > git submodule update --init
+    > cd web/css/blueprintcss
+    > git submodule update --init
+    
+    // Summary: clone the latest habwatch and update (init) the submodules used in habwatch as well as the blueprintcss submodules.
+
+Lastly, modify app.sample.php to reflect your configuration:
+
+    > mv ./config/app.sample.php ./config/app.php; vim ./config/app.php
+
 Ideas
 -----
 SMS Authorization (instead of relying on known #s)
 
-
-Programming
------------
-Use SMS Model to do the parsing and Report generation?
