@@ -1,0 +1,1 @@
+<?php require_once(sfConfig::get('sf_apps_dir').'/frontend/modules/default/templates/_sponsors_logos.php');

@@ -17,9 +17,9 @@ feed://api.flickr.com/services/feeds/photos_public.gne?id=35147405@N02&lang=en-u
 
 Requirements
 ------------
-Doctrine 1.1.x
-Symfony 1.2.x
-PHP 5.2.x
+Doctrine 1.1.x  
+Symfony 1.2.x  
+PHP 5.2.x  
 
 ## PEAR Modules
 FirePHP (development, only)
