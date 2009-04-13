@@ -63,11 +63,13 @@ var Map = new Class({
 		this.setOptions(options);
 		this.element = $(map).store('map', this);	    
 	    this.vectors = {};
+	    this.controls = {};
 	    this.events = {
 	    	photos: {
 				loadstart: this.onLoadStart,
 		    	loadend: this.onLoadEnd,
 		    	featureadded: this.onPhotoAdded,
+		    	featuresadded: this.onPhotosAdded,
 		    	beforefeaturesadded: this.onBeforePhotosAdded,
 		    	featureselected: this.onPhotoMouseEnter,
 		    	featureunselected: this.onPhotoMouseLeave,
@@ -79,6 +81,7 @@ var Map = new Class({
 	    };
 	    this.bounded = false;
 	    this.features = null;
+	    this.filtering = false;
 	    this.projection = {
 	        internal: new OpenLayers.Projection('EPSG:900913'),
 	        external: new OpenLayers.Projection('EPSG:4326')
@@ -93,18 +96,14 @@ var Map = new Class({
 	    }, this);
 	},
 	
-	configureMap: function(){
-		this.boundary = new OpenLayers.Bounds();		
-		var zoom = new OpenLayers.Control.ZoomPanel();
-	    zoom.controls[1].trigger = function(){
-	    	if (this.boundary) this.map.zoomToExtent(this.boundary);
-	    }.bind(this);
+	configureMap: function(){	
+		this.controls.zoom = new OpenLayers.Control.ZoomPanel();
 		
 		this.map = new OpenLayers.Map(this.element.id, {
 			controls: [
 		        new OpenLayers.Control.Navigation(),
 		        new OpenLayers.Control.Attribution(),
-		        zoom
+		        this.controls.zoom
 		    ],
 	        theme: null,
 	        maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
@@ -189,11 +188,12 @@ var Map = new Class({
 	
 	onLoadEnd: function(){
 		this.vectors.loading.getLast().get('tween').start('opacity', 0).chain(function(){ this.vectors.loading.dispose(); }.bind(this));
-		if (!this.bounded) this.bounded = true;
 		this.map.zoomToExtent(this.boundary);
+		this.controls.zoom.controls[1].trigger = this.map.zoomToExtent.pass(this.boundary.clone(), this.map);
 	},
 	
 	onBeforePhotosAdded: function(event){
+		this.boundary = new OpenLayers.Bounds();
 	    if (!this.features) this.features = event.features;
 	    event.features = event.features.filter(function(feature){
 	        if (feature.cluster) feature = feature.cluster[0]; // TODO
@@ -202,7 +202,11 @@ var Map = new Class({
 	},
 	
 	onPhotoAdded: function(event){
-		if (!this.bounded) this.boundary.extend(event.feature.geometry);
+		this.boundary.extend(event.feature.geometry);
+	},
+	
+	onPhotosAdded: function(event){
+	    if (this.filtering) this.map.zoomToExtent(this.boundary);
 	},
 	
 	onPhotoMouseEnter: function(event){
@@ -272,7 +276,9 @@ var Map = new Class({
 	    this.vectors.photos.strategies[1].clearCache(); // todo, extend Vector and add getStrategy...
 	    this.vectors.photos.strategies[1].clusters.length = 0;
 	    this.filter = this.getFilterBy(key, value);
+	    this.filtering = true;
 	    this.vectors.photos.addFeatures(this.features);
+	    this.filtering = false;
 	},
 	
 	getFilterBy: function(key, value){
