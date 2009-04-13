@@ -6,10 +6,10 @@ Our goal is to facilitate, improve, and inform: to facilitate current monitoring
 
 Team Members
 ------------
-Olmo Maldoando | ibolmo@ucla.edu | Graduate Student Researcher
-Nithya Ramanathan | nithya@cs.ucla.edu | Research Staff
-Eric Graham | egraham@cens.ucla.edu | Research Staff
-Deborah Estrin | destrin@cs.ucla.edu | Director
+Olmo Maldoando | ibolmo@ucla.edu | Graduate Student Researcher  
+Nithya Ramanathan | nithya@cs.ucla.edu | Research Staff  
+Eric Graham | egraham@cens.ucla.edu | Research Staff  
+Deborah Estrin | destrin@cs.ucla.edu | Director  
 
 Data Feed
 ---------
