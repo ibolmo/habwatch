@@ -6,12 +6,10 @@ window.addEvent('domready', function(){
         'text': 'none'
     })).injectTop($('flickr-tags'));
     
-    $$('#flickr-tags > li').addEvent('click', function(){
-        var map = $('map');
-        if (!map) return;
-        var el = this.href ? this : this.getElement('a');
-        var matched = el.href.match(/\/tags.+$/i);
-        map.set('src', base_url + (matched && matched[0] || '') + '/map');
-        return false;
+    $$('#flickr-tags a').addEvent('click', function(e){
+        var map = $('map')
+        if (!map || !(map = map.retrieve('map'))) return;
+        e.stop();
+        map.filterBy('tag', this.get('text'));
     });
 });

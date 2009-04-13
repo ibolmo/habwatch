@@ -1,3 +1,4 @@
+OpenLayers.Util.OSM.MISSING_TILE_URL = OpenLayers.ImgPath + 'blank.gif';
 var Map = new Class({
 	
 	Implements: Options,
@@ -60,13 +61,14 @@ var Map = new Class({
 	
 	initialize: function(map, options){
 		this.setOptions(options);
-		this.element = $(map);			    
+		this.element = $(map).store('map', this);	    
 	    this.vectors = {};
 	    this.events = {
 	    	photos: {
 				loadstart: this.onLoadStart,
 		    	loadend: this.onLoadEnd,
 		    	featureadded: this.onPhotoAdded,
+		    	beforefeaturesadded: this.onBeforePhotosAdded,
 		    	featureselected: this.onPhotoMouseEnter,
 		    	featureunselected: this.onPhotoMouseLeave,
 		    	moveend: this.onMoveEnd,
@@ -76,6 +78,7 @@ var Map = new Class({
 		    }
 	    };
 	    this.bounded = false;
+	    this.features = null;
 	    this.projection = {
 	        internal: new OpenLayers.Projection('EPSG:900913'),
 	        external: new OpenLayers.Projection('EPSG:4326')
@@ -84,6 +87,7 @@ var Map = new Class({
 	},
 	
 	configure: function(){
+	    this.filter = this.getFilterBy('none');
 	    ['map', 'loading', 'tips', 'photos', 'selected'].each(function(item){
 	        this['configure' + item.capitalize()].call(this);
 	    }, this);
@@ -189,6 +193,14 @@ var Map = new Class({
 		this.map.zoomToExtent(this.boundary);
 	},
 	
+	onBeforePhotosAdded: function(event){
+	    if (!this.features) this.features = event.features;
+	    event.features = event.features.filter(function(feature){
+	        if (feature.cluster) feature = feature.cluster[0]; // TODO
+	        return this.filter.evaluate(feature.attributes);
+	    }, this);
+	},
+	
 	onPhotoAdded: function(event){
 		if (!this.bounded) this.boundary.extend(event.feature.geometry);
 	},
@@ -253,12 +265,40 @@ var Map = new Class({
 	
 	onMoveEnd: function(event){
 	    this.tip.elementLeave();
-	}
+	},
+	
+	filterBy: function(key, value){
+	    this.vectors.photos.removeFeatures(this.vectors.photos.features);
+	    this.vectors.photos.strategies[1].clearCache(); // todo, extend Vector and add getStrategy...
+	    this.vectors.photos.strategies[1].clusters.length = 0;
+	    this.filter = this.getFilterBy(key, value);
+	    this.vectors.photos.addFeatures(this.features);
+	},
+	
+	getFilterBy: function(key, value){
+	    return this.filters[key] && this.filters[key].call(this, value) || this.filters.none(); 
+	},
+	
+	filters: {
+    
+        none: function(){
+            return new OpenLayers.Filter();
+        },
+        
+        tag: function(tag){
+            return (tag == 'none') ? this.filters.none() : new OpenLayers.Filter.Comparison({
+                value: tag,
+                type: '~',
+                property: 'tags'
+            });
+        }
+          
+    }
 
 });
 
 window.addEvent('load', function(){
-    new Map('map', {
+    habmap = new Map('map', {
     	photos: {
     		url: HABWatch.Flickr.URL
     	}

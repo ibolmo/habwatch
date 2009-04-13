@@ -22262,7 +22262,6 @@ OpenLayers.Layer.Vector = OpenLayers.Class(OpenLayers.Layer, {
             }
             features = event.features;
         }
-
         for (var i=0, len=features.length; i<len; i++) {
             if (i != (features.length - 1)) {
                 this.renderer.locked = true;
