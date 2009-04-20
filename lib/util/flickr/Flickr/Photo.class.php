@@ -62,6 +62,7 @@ class Flickr_Photo extends Phlickr_Photo
 		    'isfriend' => $this->isForFriends(),
 		    'posted_timestamp' => $this->getPostedTimestamp(),
 		    'taken_timestamp' => $this->getTakenTimestamp(),
+    		'taken_date' => $this->getTakenDate(),
 		    'tags' => implode(' ', $this->getTags()),
 		    'accuracy' => false,
 		    'place_id' => false,

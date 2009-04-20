@@ -12,7 +12,7 @@
 <?php endif ?>
 
 <?php if (Flickr::hasPhotos()): ?>
-	<div id="map-content" class="column span-4 append-1">
+	<div id="map-content" class="column span-3 append-1">
         <h3>Recent</h3>
         <ul id="sidebar-recent" class="log">
             <?php foreach (array_reverse(Flickr::getRecentPhotos(3)) as $Photo): ?>
@@ -46,8 +46,12 @@
 		use_dynamic_javascript('@config-openlayers');
 		use_javascript('default/map.js');
 	?>
-    <div id="map" class="column span-15"></div>
-
+	<div class="column span-16">
+        <div id="map"></div>
+        
+        <? use_javascript('default/cali.js') ?>
+        <?= include_partial('default/cali', array('year' => 2009)) ?>
+    </div>
 	<div id="map-filters" class="column span-3 prepend-1">
         <?php use_javascript('mootools') ?>
     	<?php use_javascript('flickr-tags') ?>

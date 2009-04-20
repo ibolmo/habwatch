@@ -64,6 +64,7 @@ var Map = new Class({
 		this.element = $(map).store('map', this);	    
 	    this.vectors = {};
 	    this.controls = {};
+	    this.strategies = {};
 	    this.events = {
 	    	photos: {
 				loadstart: this.onLoadStart,
@@ -91,7 +92,7 @@ var Map = new Class({
 	
 	configure: function(){
 	    this.filter = this.getFilterBy('none');
-	    ['map', 'loading', 'tips', 'photos', 'selected'].each(function(item){
+	    ['map', 'loading', 'tips', 'photos', 'selected', 'cali'].each(function(item){
 	        this['configure' + item.capitalize()].call(this);
 	    }, this);
 	},
@@ -136,11 +137,10 @@ var Map = new Class({
 	},
 	
 	configurePhotos: function(){
+	    this.strategies.fixed = new OpenLayers.Strategy.Fixed({ preload: true });
+		this.strategies.cluster = new OpenLayers.Strategy.Cluster();
 	    this.vectors.photos = new OpenLayers.Layer.Vector('Photos', {
-		    strategies: [
-		        new OpenLayers.Strategy.Fixed({ preload: true }),
-		        new OpenLayers.Strategy.Cluster()
-		    ],
+		    strategies: [this.strategies.fixed, this.strategies.cluster],
 		    protocol: new OpenLayers.Protocol.HTTP({
 		        url: this.options.photos.url,
 		        format: new OpenLayers.Format.GeoJSON({
@@ -186,7 +186,7 @@ var Map = new Class({
 		this.vectors.loading.injectTop(this.element);
 	},
 	
-	onLoadEnd: function(){
+	onLoadEnd: function(event){
 		this.vectors.loading.getLast().get('tween').start('opacity', 0).chain(function(){ this.vectors.loading.dispose(); }.bind(this));
 		this.map.zoomToExtent(this.boundary);
 		this.controls.zoom.controls[1].trigger = this.map.zoomToExtent.pass(this.boundary.clone(), this.map);
@@ -269,6 +269,9 @@ var Map = new Class({
 	
 	onMoveEnd: function(event){
 	    this.tip.elementLeave();
+	    this.cali.set(event.object.features.filter(function(feature){
+	        return !(feature.id in event.object.unrenderedFeatures);
+	    }));
 	},
 	
 	filterBy: function(key, value){
@@ -299,6 +302,10 @@ var Map = new Class({
             });
         }
           
+    },
+    
+    configureCali: function(){
+        this.cali = new Cali('cali');
     }
 
 });

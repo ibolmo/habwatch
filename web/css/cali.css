@@ -1,5 +1,7 @@
 
     #cali {
+        cursor: default;
+        margin-top: 5px;
         font-size: 0.75em;
         border-bottom: 1px dotted #eee;
     }
@@ -22,7 +24,7 @@
         color: #000;
     }
     
-    #cali th, #cali .month, #cali .hit, #cali-months {   
+    #cali .hit { /* #cali th, #cali .month, #cali-months { */
         cursor: pointer;   
     }
         
