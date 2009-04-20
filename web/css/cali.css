@@ -1,0 +1,74 @@
+
+    #cali {
+        font-size: 0.75em;
+        border-bottom: 1px dotted #eee;
+    }
+
+    #cali th, #cali td {
+        width: 20px;
+        padding: 2px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    #cali th {
+        font-weight: normal;
+        border-bottom: 1px solid #9EAABF;
+        color: #fff;
+    }
+    
+    #cali th:hover {
+        background-color: #DEEAFF;   
+        color: #000;
+    }
+    
+    #cali th, #cali .month, #cali .hit, #cali-months {   
+        cursor: pointer;   
+    }
+        
+    #cali tr:hover {
+        background: #eee;   
+    }
+    
+    #cali td {
+        border-right: 1px dotted #eee;
+    }
+    
+    #cali .month {
+        font-weight: bold;
+        text-align: center;
+        background-color: #ECF3FF;
+        border-right: 1px solid #B5B9BF;
+        padding: 0 5px;
+        color: #000;   
+    }
+    
+    #cali .month:hover {
+        background-color: #D2E3FF;
+    }
+    
+    #cali .day:hover, #cali .hit.day:hover {
+        padding: 0;
+    }
+    
+    #cali .day:hover {
+        border: 1px solid #fff;
+    }
+    
+    #cali .hit {
+        cursor: pointer;
+        background: #FFF2BD;
+        border-right: 0;  
+    }
+    #cali .hit.day:hover {
+        border: 1px solid #BFB7A9;
+    }
+    
+    #cali-months {
+        background-color: #3F65A6 !important;
+        border-bottom: 0 !important;
+    }
+    
+    #cali-months:hover {
+        background-color: #aaa !important;
+    }

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>cali</title>
+        <link rel="stylesheet" href="/css/master.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+        <style type="text/css" media="screen">
+            
+        </style>
+    </head>
+    <body>
+        <table id="cali">
+    		<thead>
+    			<tr>
+    			    <th scope="col" id="cali-months">&nbsp;</th>
+    			    <?php foreach (range(1,31) as $day): ?>
+    				<th scope="col" id="cali-day-<?= $day ?>"><?= $day ?></th>
+    			    <?php endforeach ?>
+    			</tr>
+    		</thead>
+    		<tfoot>
+    	        <tr>
+    	            <td colspan="32">Footer</td>
+    	        </tr>
+    		</tfoot>
+    		<tbody>
+    		    <?php foreach (range(1,12) as $month_n): $month_s = date('F', strtotime("$month/1/2009")); ?>
+    			<tr>
+    			    <th scope="col" id="cali-month-<?= $month_n ?>">&nbsp;</th>
+    			    <?php foreach (range(1,31) as $day): ?>
+    				<th scope="col" id="cali-<?= $month_n ?>-<?= $day ?>"><?= $month_n ?>/<?= $day ?></th>
+    			    <?php endforeach ?>
+    			</tr>
+    		    <?php endforeach ?>
+    		</tbody>
+        
+        </table>
+
+    </body>
+</html>
