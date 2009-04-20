@@ -15,7 +15,7 @@
 		<tr id="cali-month-<?= $month_n ?>">
 		    <td class="month" title="<?= date('F Y', $time) ?>"><?= $month_s ?></td>
 		    <?php foreach (range(1,31) as $day): ?>
-			<td id="cali-<?= $month_n ?>-<?= $day ?>" class="day<?= (rand(0,10) == 5) ? ' hit' : '' ?>" title="<?= date('D, d M Y', strtotime("$month_n/$day/$year")) ?>">&nbsp;</td>
+			<td id="cali-<?= $month_n ?>-<?= $day ?>" class="day" title="<?= date('D, d M Y', strtotime("$month_n/$day/$year")) ?>">&nbsp;</td>
 		    <?php endforeach ?>
 		</tr>
 	    <?php endforeach ?>
