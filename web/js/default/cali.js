@@ -50,9 +50,18 @@ var Cali = new Class({
     },
     
     onClick: function(e){
-        if (this.selected) this.selected.removeClass('selected');
-        this.selected = e.target.addClass('selected');
+        this.select(e.target);
         this.fireEvent('click', e.target);
+    },
+    
+    select: function(td){
+        this.deselect();
+        this.selected = td.addClass('selected');
+    },
+    
+    deselect: function(td){
+        td = td || this.selected;
+        if (td) td.removeClass('selected');
     },
     
     onDblClick: function(e){

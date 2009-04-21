@@ -189,7 +189,11 @@ var Map = new Class({
 	onLoadEnd: function(event){
 		this.vectors.loading.getLast().get('tween').start('opacity', 0).chain(function(){ this.vectors.loading.dispose(); }.bind(this));
 		this.map.zoomToExtent(this.boundary);
-		this.controls.zoom.controls[1].trigger = this.map.zoomToExtent.pass(this.boundary.clone(), this.map);
+		this.controls.zoom.controls[1].trigger = function(){ //TODO
+		    this.map.zoomToExtent(this.boundary.clone());
+		    this.cali.deselect();
+		    this.deselect();
+		}.bind(this);
 	},
 	
 	onBeforePhotosAdded: function(event){
@@ -226,12 +230,12 @@ var Map = new Class({
 	onPhotoClick: function(feature){
 		var that = this.callbacks.scope;	
 		var features = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length);
+		that.selected.empty();
 		that.select(features);
 	},
 	
 	select: function(features){
 	    var children = features.reverse().map(this.createSelected);
-		this.selected.empty();
 		if (children.length && this.options.thumb && children.length == this.options.thumb.count){
 		    children.push(new Element('li').adopt(
 		        new Element('a', {
@@ -248,6 +252,11 @@ var Map = new Class({
 		if (this.options.thumb) (function(){
 		    new Thumbs(children.getElements('.thumbnail'), this.options.thumb);
 		}).delay(100, this);  
+	},
+	
+	deselect: function(){
+	    this.selected.empty();
+	    this.selected.set('html', this.selected.retrieve('map:default'));
 	},
 	
 	createSelected: function(vector){
@@ -334,6 +343,7 @@ var Map = new Class({
     },
     
     onClick: function(cell){
+        this.selectedTD = cell;
         this.select(cell.retrieve('map:vectors'));
     },
     
