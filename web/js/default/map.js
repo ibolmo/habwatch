@@ -230,11 +230,11 @@ var Map = new Class({
 	onPhotoClick: function(feature){
 		var that = this.callbacks.scope;	
 		var features = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length);
-		that.selected.empty();
 		that.select(features);
 	},
 	
 	select: function(features){
+		this.selected.empty();
 	    var children = features.reverse().map(this.createSelected);
 		if (children.length && this.options.thumb && children.length == this.options.thumb.count){
 		    children.push(new Element('li').adopt(
@@ -284,7 +284,7 @@ var Map = new Class({
 		features.each(function(point){
 			bounds.extend(point.geometry);
 		});
-		this.map.zoomToExtent(bounds, 1);
+		this.map.zoomToExtent(bounds);
 	},
 	
 	onMoveEnd: function(event){
