@@ -1,13 +1,22 @@
 var Cali = new Class({
    
-    Implements: Options,
+    Implements: [Events, Options],
     
     initialize: function(element, options){
         this.setOptions(options);
         this.table = $(element);
         if (!this.table) return;
         this.table.store('cali', this);
-        this.selected = [];
+        
+        this.configure();
+    },
+    
+    configure: function(){
+        this.days = [];
+        this.selected = false;
+        this.events = {
+            click: this.onClick.bind(this)
+        };
     },
     
     set: function(object){
@@ -16,12 +25,12 @@ var Cali = new Class({
     },
     
     reset: function(){
-        this.selected.forEach(this.remove, this);
-        this.selected.empty();
+        this.days.forEach(this.remove, this);
+        this.days.empty();
     },
     
-    remove: function(item){
-        item.removeClass('hit');  
+    remove: function(day){
+        this.fireEvent('remove', day.removeClass('hit').set('html', '&nbsp;'));
     },
     
     add: function(item, i){
@@ -31,11 +40,19 @@ var Cali = new Class({
     
     addVector: function(vector){
         var date = Cali.getDate(vector.data.taken_timestamp), day;
-        //console.log(vector.data.taken_timestamp, date);
-        if ((day = this.table.getElement('#cali-{month}-{day}'.substitute(date)))){
-            this.selected.push(day.addClass('hit'));
-        }
-    },    
+        if ((day = this.table.getElement('#cali-{month}-{day}'.substitute(date)))) this.attach(day.store('map:vector', vector));
+    },
+    
+    attach: function(day){
+        this.days.push(day);
+        this.fireEvent('attach', day.addClass('hit').addEvents(this.events).set('text', (+day.get('text') || 0) + 1));
+    },
+    
+    onClick: function(e){
+        if (this.selected) this.selected.removeClass('selected');
+        this.selected = e.target.addClass('selected');
+        this.fireEvent('click', e.target);
+    }
     
 });
 

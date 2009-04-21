@@ -225,43 +225,50 @@ var Map = new Class({
 	
 	onPhotoClick: function(feature){
 		var that = this.callbacks.scope;	
-		that.selected.empty();
-		var children = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length).reverse().map(function(vector){
-		    return new Element('li').adopt(
-		        new Element('a', {
-		            'href': 'javascript:void(0)',
-		            'title': vector.data.title
-		        }).adopt(
-		            new Element('img').set({
-		                'id': vector.fid,
-		                'class': 'thumbnail',
-		                'src': vector.data.img_url,
-		                'alt': vector.data.description || 'Reported Photo'
-		            })
-		        )
-		    )
-		});
-		if (children.length != feature.cluster.length){
+		var features = feature.cluster.slice(0, that.options.thumb && that.options.thumb.count || feature.cluster.length);
+		that.select(features);
+	},
+	
+	select: function(features){
+	    var children = features.reverse().map(this.createSelected);
+		this.selected.empty();
+		if (children.length && this.options.thumb && children.length == this.options.thumb.count){
 		    children.push(new Element('li').adopt(
 		        new Element('a', {
 		            'href': 'javascript:void(0)',
 		            'title': 'See more',
 		            'html': 'See more',
 		            'events': {
-		                'click': that.onPhotoDblClick.pass(feature, that)
+		                'click': this.onPhotoDblClick.pass(features, this)
 		            }
 		        })
 	        ));
 		}
-		children = new Elements(children).inject(that.selected);
-		if (that.options.thumb) (function(){
-		    new Thumbs(children.getElements('.thumbnail'), that.options.thumb);
-		}).delay(100);
+		children = new Elements(children).inject(this.selected);
+		if (this.options.thumb) (function(){
+		    new Thumbs(children.getElements('.thumbnail'), this.options.thumb);
+		}).delay(100, this);  
 	},
 	
-	onPhotoDblClick: function(layer){
+	createSelected: function(vector){
+	    return new Element('li').adopt(
+	        new Element('a', {
+	            'href': 'javascript:void(0)',
+	            'title': vector.data.title
+	        }).adopt(
+	            new Element('img').set({
+	                'id': vector.fid,
+	                'class': 'thumbnail',
+	                'src': vector.data.img_url,
+	                'alt': vector.data.description || 'Reported Photo'
+	            })
+	        )
+	    )
+	},
+	
+	onPhotoDblClick: function(features){
 		var bounds = new OpenLayers.Bounds();
-		layer.cluster.each(function(point){
+		features.each(function(point){
 			bounds.extend(point.geometry);
 		});
 		this.map.zoomToExtent(bounds, 1);
@@ -305,7 +312,24 @@ var Map = new Class({
     },
     
     configureCali: function(){
-        this.cali = new Cali('cali');
+        this.events.cali = {
+            attach: this.onAttach,
+            remove: this.onRemove,
+            click: this.onClick.bind(this)
+        };
+        this.cali = new Cali('cali').addEvents(this.events.cali);
+    },
+    
+    onAttach: function(cell){
+        cell.retrieve('map:vectors', []).push(cell.retrieve('map:vector'));
+    },
+    
+    onRemove: function(cell){
+        cell.store('map:vectors', []);
+    },
+    
+    onClick: function(cell){
+        this.select(cell.retrieve('map:vectors'));
     }
 
 });
