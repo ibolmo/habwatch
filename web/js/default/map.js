@@ -326,28 +326,28 @@ var Map = new Class({
     
     configureCali: function(){
         this.events.cali = {
-            attach: this.onAttach,
-            remove: this.onRemove,
-            click: this.onClick.bind(this),
-            dblclick: this.onDblClick.bind(this)
+            attach: this.onCaliAttach,
+            remove: this.onCaliRemove,
+            click: this.onCaliClick.bind(this),
+            dblclick: this.onCaliDblClick.bind(this)
         };
         this.cali = new Cali('cali').addEvents(this.events.cali);
     },
     
-    onAttach: function(cell){
+    onCaliAttach: function(cell){
         cell.retrieve('map:vectors', []).push(cell.retrieve('map:vector'));
     },
     
-    onRemove: function(cell){
+    onCaliRemove: function(cell){
         cell.store('map:vectors', []);
     },
     
-    onClick: function(cell){
+    onCaliClick: function(cell){
         this.selectedTD = cell;
         this.select(cell.retrieve('map:vectors'));
     },
     
-    onDblClick: function(cell){
+    onCaliDblClick: function(cell){
         this.zoomToFeatures(cell.retrieve('map:vectors'));
     }
 
