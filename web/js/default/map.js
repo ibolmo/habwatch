@@ -239,7 +239,7 @@ var Map = new Class({
 		            'title': 'See more',
 		            'html': 'See more',
 		            'events': {
-		                'click': this.onPhotoDblClick.pass(features, this)
+		                'click': this.zoomToFeatures.pass(features, this)
 		            }
 		        })
 	        ));
@@ -266,7 +266,11 @@ var Map = new Class({
 	    )
 	},
 	
-	onPhotoDblClick: function(features){
+	onPhotoDblClick: function(layer){
+		this.callbacks.scope.zoomToFeatures(layer.cluster);
+	},
+	
+	zoomToFeatures: function(features){
 		var bounds = new OpenLayers.Bounds();
 		features.each(function(point){
 			bounds.extend(point.geometry);
@@ -315,7 +319,8 @@ var Map = new Class({
         this.events.cali = {
             attach: this.onAttach,
             remove: this.onRemove,
-            click: this.onClick.bind(this)
+            click: this.onClick.bind(this),
+            dblclick: this.onDblClick.bind(this)
         };
         this.cali = new Cali('cali').addEvents(this.events.cali);
     },
@@ -330,6 +335,10 @@ var Map = new Class({
     
     onClick: function(cell){
         this.select(cell.retrieve('map:vectors'));
+    },
+    
+    onDblClick: function(cell){
+        this.zoomToFeatures(cell.retrieve('map:vectors'));
     }
 
 });

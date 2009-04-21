@@ -15,7 +15,8 @@ var Cali = new Class({
         this.days = [];
         this.selected = false;
         this.events = {
-            click: this.onClick.bind(this)
+            click: this.onClick.bind(this),
+            dblclick: this.onDblClick.bind(this)
         };
     },
     
@@ -52,6 +53,11 @@ var Cali = new Class({
         if (this.selected) this.selected.removeClass('selected');
         this.selected = e.target.addClass('selected');
         this.fireEvent('click', e.target);
+    },
+    
+    onDblClick: function(e){
+        this.fireEvent('dblclick', e.target);
+        return false;
     }
     
 });
