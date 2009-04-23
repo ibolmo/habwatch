@@ -234,7 +234,6 @@ var Map = new Class({
 	},
 	
 	select: function(features){
-		this.selected.empty();
 	    var children = features.reverse().map(this.createSelected);
 		if (children.length && this.options.thumb && children.length == this.options.thumb.count){
 		    children.push(new Element('li').adopt(
@@ -248,15 +247,14 @@ var Map = new Class({
 		        })
 	        ));
 		}
-		children = new Elements(children).inject(this.selected);
+		children = new Elements(children).inject(this.selected.empty());
 		if (this.options.thumb) (function(){
 		    new Thumbs(children.getElements('.thumbnail'), this.options.thumb);
 		}).delay(100, this);  
 	},
 	
 	deselect: function(){
-	    this.selected.empty();
-	    this.selected.set('html', this.selected.retrieve('map:default'));
+	    this.selected.empty().set('html', this.selected.retrieve('map:default'));
 	},
 	
 	createSelected: function(vector){
@@ -329,7 +327,9 @@ var Map = new Class({
             attach: this.onCaliAttach,
             remove: this.onCaliRemove,
             click: this.onCaliClick.bind(this),
-            dblclick: this.onCaliDblClick.bind(this)
+            dblclick: this.onCaliDblClick.bind(this),
+            mouseenter: this.onCaliMouseEnter.bind(this),
+            mouseleave: this.onCaliMouseLeave.bind(this)
         };
         this.cali = new Cali('cali').addEvents(this.events.cali);
     },
@@ -343,15 +343,46 @@ var Map = new Class({
     },
     
     onCaliClick: function(cell){
-        this.selectedTD = cell;
         this.select(cell.retrieve('map:vectors'));
     },
     
     onCaliDblClick: function(cell){
         this.zoomToFeatures(cell.retrieve('map:vectors'));
+    },
+    
+    onCaliMouseEnter: function(cell){
+        var vectors = cell.retrieve('map:vectors');
+        var layer = this.strategies.cluster.clusters.find(function(item){
+            return item.cluster.indexOf(vectors[0]) != -1;
+        });
+        
+        if (!layer) return;
+        
+        cell.store('map:hovering', layer);
+        this.controls.hover.overFeature(layer);
+    },
+    
+    onCaliMouseLeave: function(cell){
+        var layer;
+        if ((layer = cell.retrieve('map:hovering'))){
+            this.controls.hover.outFeature(layer);
+            cell.store('map:hovering', null);
+        }
     }
 
 });
+
+Array.implement({
+   
+    find: function(fn, bind){
+        for (var i = 0, l = this.length; i < l; i++){
+            if (fn.call(bind || this, this[i], i, this) !== false) return this[i];
+        }
+        return null;
+    } 
+    
+});
+
 
 window.addEvent('load', function(){
     habmap = new Map('map', {

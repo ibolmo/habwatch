@@ -16,7 +16,9 @@ var Cali = new Class({
         this.selected = false;
         this.events = {
             click: this.onClick.bind(this),
-            dblclick: this.onDblClick.bind(this)
+            dblclick: this.onDblClick.bind(this),
+            mouseenter: this.onMouseEnter.bind(this),
+            mouseleave: this.onMouseLeave.bind(this)
         };
     },
     
@@ -67,6 +69,14 @@ var Cali = new Class({
     onDblClick: function(e){
         this.fireEvent('dblclick', e.target);
         return false;
+    },
+    
+    onMouseEnter: function(e){
+        this.fireEvent('mouseenter', e.target);   
+    },
+    
+    onMouseLeave: function(e){
+        this.fireEvent('mouseleave', e.target);   
     }
     
 });
