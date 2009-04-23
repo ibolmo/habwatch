@@ -92,7 +92,7 @@ var Map = new Class({
 	
 	configure: function(){
 	    this.filter = this.getFilterBy('none');
-	    ['map', 'loading', 'tips', 'photos', 'selected', 'cali'].each(function(item){
+	    ['map', 'loading', 'photos', 'selected', 'cali'].each(function(item){
 	        this['configure' + item.capitalize()].call(this);
 	    }, this);
 	},
@@ -130,10 +130,6 @@ var Map = new Class({
 	    	new Element('h3', {'class': 'text', 'html': 'Loading'}),
 	    	new Element('div', {'class': 'background'}).setOpacity(this.options.loading.opacity)
 	    );	
-	},
-	
-	configureTips: function(){
-		this.tip = new Tips(this.options.tips);
 	},
 	
 	configurePhotos: function(){
@@ -214,17 +210,28 @@ var Map = new Class({
 	},
 	
 	onPhotoMouseEnter: function(event){
-		var count = event.feature.attributes.count, position = this.element.getPosition();
+	    if (!this.tips) this.tips = {};
+	    this.tips[event.feature.id] = this.createTip(event);
+	},
+	
+	createTip: function(event){
+		var tip = new Tips(this.options.tips), count = event.feature.attributes.count, position = this.element.getPosition();
 		var element = new Element('div').store('tip:title', 'Count').store('tip:text', count + ' report' + ((count > 1) ? 's' : ''));
 		
 		event.page = this.getPixelFromGeometry(event.feature.geometry);
 		event.page.x += position.x;
 		event.page.y += position.y;
-		this.tip.elementEnter(event, element);
+		tip.elementEnter(event, element);
+		return tip;
+	},
+	
+	destroyTips: function(){
+	    if (this.tips) for (var id in this.tips) this.tips[id].elementLeave(), delete this.tips[id];
 	},
 	
 	onPhotoMouseLeave: function(event){
-	    this.tip.elementLeave();
+	    var id = event.feature.id;
+	    if (this.tips && (id in this.tips)) this.tips[id].elementLeave(), delete this.tips[id];
 	},
 	
 	onPhotoClick: function(feature){
@@ -286,7 +293,7 @@ var Map = new Class({
 	},
 	
 	onMoveEnd: function(event){
-	    this.tip.elementLeave();
+	    this.destroyTips();
 	    this.cali.set(event.object.features.filter(function(feature){
 	        return !(feature.id in event.object.unrenderedFeatures);
 	    }));
@@ -391,7 +398,6 @@ Array.implement({
     } 
     
 });
-
 
 window.addEvent('load', function(){
     habmap = new Map('map', {
