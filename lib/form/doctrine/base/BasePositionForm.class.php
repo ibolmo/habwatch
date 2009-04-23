@@ -19,8 +19,8 @@ class BasePositionForm extends BaseFormDoctrine
       'vertical_accuracy'   => new sfWidgetFormInput(),
       'longitude'           => new sfWidgetFormInput(),
       'horizontal_accuracy' => new sfWidgetFormInput(),
-      'g_p_s_id'            => new sfWidgetFormDoctrineSelect(array('model' => 'GPS', 'add_empty' => true)),
-      'storage_id'          => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
+      'g_p_s_id'            => new sfWidgetFormDoctrineChoice(array('model' => 'GPS', 'add_empty' => true)),
+      'storage_id'          => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
     ));

@@ -16,7 +16,7 @@ class BaseCoordinateForm extends BaseFormDoctrine
       'file'       => new sfWidgetFormTextarea(),
       'latitude'   => new sfWidgetFormTextarea(),
       'longitude'  => new sfWidgetFormTextarea(),
-      'report_id'  => new sfWidgetFormDoctrineSelect(array('model' => 'Report', 'add_empty' => true)),
+      'report_id'  => new sfWidgetFormDoctrineChoice(array('model' => 'Report', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));

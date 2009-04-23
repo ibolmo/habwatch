@@ -14,7 +14,7 @@ class BasePreferenceForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'enabled'    => new sfWidgetFormInputCheckbox(),
-      'datum_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Datum', 'add_empty' => true)),
+      'datum_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Datum', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));

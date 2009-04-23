@@ -17,7 +17,7 @@ class BaseMessageForm extends BaseFormDoctrine
       'from'              => new sfWidgetFormInput(),
       'to'                => new sfWidgetFormInput(),
       'message'           => new sfWidgetFormTextarea(),
-      'storage_id'        => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
+      'storage_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'type'              => new sfWidgetFormInput(),
       'carbon_copy'       => new sfWidgetFormTextarea(),
       'blind_carbon_copy' => new sfWidgetFormTextarea(),

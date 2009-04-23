@@ -5,18 +5,18 @@
  */
 abstract class BaseEmailAddress extends sfDoctrineRecord
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('email_address');
-    $this->hasColumn('address', 'string', 100, array('type' => 'string', 'length' => 100, 'unique' => true, 'notnull' => true, 'nospace' => true));
-    $this->hasColumn('disabled', 'boolean', null, array('type' => 'boolean', 'default' => false));
-    $this->hasColumn('profile_id', 'integer', null, array('type' => 'integer'));
-  }
+    public function setTableDefinition()
+    {
+        $this->setTableName('email_address');
+        $this->hasColumn('address', 'string', 100, array('type' => 'string', 'length' => 100, 'unique' => true, 'notnull' => true, 'nospace' => true));
+        $this->hasColumn('disabled', 'boolean', null, array('type' => 'boolean', 'default' => false));
+        $this->hasColumn('profile_id', 'integer', null, array('type' => 'integer'));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Profile', array('local' => 'profile_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
-  }
+    public function setUp()
+    {
+        $this->hasOne('Profile', array('local' => 'profile_id',
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
+    }
 }

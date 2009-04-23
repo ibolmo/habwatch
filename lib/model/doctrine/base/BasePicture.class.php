@@ -5,22 +5,22 @@
  */
 abstract class BasePicture extends Datum
 {
-  public function setTableDefinition()
-  {
-    parent::setTableDefinition();
-    $this->setTableName('picture');
-    $this->hasColumn('file as still', 'blob', null, array('type' => 'blob'));
-    $this->hasColumn('resolution', 'integer', null, array('type' => 'integer'));
-    $this->hasColumn('quality', 'string', 10, array('type' => 'string', 'length' => 10));
-    $this->hasColumn('format', 'string', 25, array('type' => 'string', 'length' => 25));
-    $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
-  }
+    public function setTableDefinition()
+    {
+        parent::setTableDefinition();
+        $this->setTableName('picture');
+        $this->hasColumn('file as still', 'blob', null, array('type' => 'blob'));
+        $this->hasColumn('resolution', 'integer', null, array('type' => 'integer'));
+        $this->hasColumn('quality', 'string', 10, array('type' => 'string', 'length' => 10));
+        $this->hasColumn('format', 'string', 25, array('type' => 'string', 'length' => 25));
+        $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
+    }
 
-  public function setUp()
-  {
-    parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
     $this->hasOne('Storage', array('local' => 'storage_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
-  }
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
+    }
 }

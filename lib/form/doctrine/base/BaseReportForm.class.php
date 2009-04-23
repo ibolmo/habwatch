@@ -18,8 +18,8 @@ class BaseReportForm extends BaseFormDoctrine
       'condition'  => new sfWidgetFormTextarea(),
       'subject'    => new sfWidgetFormTextarea(),
       'location'   => new sfWidgetFormTextarea(),
-      'message_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Message', 'add_empty' => true)),
-      'storage_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
+      'message_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Message', 'add_empty' => true)),
+      'storage_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));

@@ -17,7 +17,7 @@ class BasePictureForm extends BaseFormDoctrine
       'resolution' => new sfWidgetFormInput(),
       'quality'    => new sfWidgetFormInput(),
       'format'     => new sfWidgetFormInput(),
-      'storage_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
+      'storage_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));

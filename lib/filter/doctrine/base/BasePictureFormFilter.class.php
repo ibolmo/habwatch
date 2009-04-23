@@ -14,7 +14,7 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'still'       => new sfWidgetFormFilterInput(),
+      'still'      => new sfWidgetFormFilterInput(),
       'resolution' => new sfWidgetFormFilterInput(),
       'quality'    => new sfWidgetFormFilterInput(),
       'format'     => new sfWidgetFormFilterInput(),
@@ -24,7 +24,7 @@ class BasePictureFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'still'       => new sfValidatorPass(array('required' => false)),
+      'still'      => new sfValidatorPass(array('required' => false)),
       'resolution' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'quality'    => new sfValidatorPass(array('required' => false)),
       'format'     => new sfValidatorPass(array('required' => false)),

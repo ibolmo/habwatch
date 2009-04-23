@@ -15,8 +15,8 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'file'              => new sfWidgetFormFilterInput(),
-      'from'             => new sfWidgetFormFilterInput(),
-      'to'               => new sfWidgetFormFilterInput(),
+      'from'              => new sfWidgetFormFilterInput(),
+      'to'                => new sfWidgetFormFilterInput(),
       'message'           => new sfWidgetFormFilterInput(),
       'storage_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'type'              => new sfWidgetFormFilterInput(),
@@ -29,8 +29,8 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'file'              => new sfValidatorPass(array('required' => false)),
-      'from'             => new sfValidatorPass(array('required' => false)),
-      'to'               => new sfValidatorPass(array('required' => false)),
+      'from'              => new sfValidatorPass(array('required' => false)),
+      'to'                => new sfValidatorPass(array('required' => false)),
       'message'           => new sfValidatorPass(array('required' => false)),
       'storage_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Storage', 'column' => 'id')),
       'type'              => new sfValidatorPass(array('required' => false)),

@@ -20,8 +20,8 @@ class BaseSatellitesForm extends BaseFormDoctrine
       'time'            => new sfWidgetFormInput(),
       'satellites'      => new sfWidgetFormInput(),
       'time_dop'        => new sfWidgetFormInput(),
-      'g_p_s_id'        => new sfWidgetFormDoctrineSelect(array('model' => 'GPS', 'add_empty' => true)),
-      'storage_id'      => new sfWidgetFormDoctrineSelect(array('model' => 'Storage', 'add_empty' => true)),
+      'g_p_s_id'        => new sfWidgetFormDoctrineChoice(array('model' => 'GPS', 'add_empty' => true)),
+      'storage_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'Storage', 'add_empty' => true)),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));

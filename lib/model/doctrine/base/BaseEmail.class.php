@@ -5,11 +5,11 @@
  */
 abstract class BaseEmail extends Message
 {
-  public function setUp()
-  {
-    parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
     $this->hasOne('Storage', array('local' => 'storage_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
-  }
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
+    }
 }

@@ -13,7 +13,7 @@ class BaseStorageForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'sf_guard_user_id' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => false)),
+      'sf_guard_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
     ));
 
     $this->setValidators(array(

@@ -15,7 +15,7 @@ class BasePhoneNumberForm extends BaseFormDoctrine
       'id'         => new sfWidgetFormInputHidden(),
       'number'     => new sfWidgetFormInput(),
       'disabled'   => new sfWidgetFormInputCheckbox(),
-      'profile_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Profile', 'add_empty' => true)),
+      'profile_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Profile', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(

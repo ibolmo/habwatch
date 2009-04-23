@@ -5,28 +5,28 @@
  */
 abstract class BasePosition extends Datum
 {
-  public function setTableDefinition()
-  {
-    parent::setTableDefinition();
-    $this->setTableName('position_table');
-    $this->hasColumn('latitude', 'float', null, array('type' => 'float'));
-    $this->hasColumn('altitude', 'float', null, array('type' => 'float'));
-    $this->hasColumn('vertical_accuracy', 'float', null, array('type' => 'float'));
-    $this->hasColumn('longitude', 'float', null, array('type' => 'float'));
-    $this->hasColumn('horizontal_accuracy', 'float', null, array('type' => 'float'));
-    $this->hasColumn('g_p_s_id', 'integer', null, array('type' => 'integer'));
-    $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
-  }
+    public function setTableDefinition()
+    {
+        parent::setTableDefinition();
+        $this->setTableName('position_table');
+        $this->hasColumn('latitude', 'float', null, array('type' => 'float'));
+        $this->hasColumn('altitude', 'float', null, array('type' => 'float'));
+        $this->hasColumn('vertical_accuracy', 'float', null, array('type' => 'float'));
+        $this->hasColumn('longitude', 'float', null, array('type' => 'float'));
+        $this->hasColumn('horizontal_accuracy', 'float', null, array('type' => 'float'));
+        $this->hasColumn('g_p_s_id', 'integer', null, array('type' => 'integer'));
+        $this->hasColumn('storage_id', 'integer', null, array('type' => 'integer'));
+    }
 
-  public function setUp()
-  {
-    parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
     $this->hasOne('Storage', array('local' => 'storage_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
 
-    $this->hasOne('GPS', array('local' => 'g_p_s_id',
-                               'foreign' => 'id',
-                               'owningSide' => true));
-  }
+        $this->hasOne('GPS', array('local' => 'g_p_s_id',
+                                   'foreign' => 'id',
+                                   'owningSide' => true));
+    }
 }
