@@ -347,25 +347,34 @@ var Map = new Class({
     },
     
     onCaliDblClick: function(cell){
+        this.onCaliMouseLeave(cell);
         this.zoomToFeatures(cell.retrieve('map:vectors'));
     },
     
     onCaliMouseEnter: function(cell){
-        var vectors = cell.retrieve('map:vectors');
-        var layer = this.strategies.cluster.clusters.find(function(item){
-            return item.cluster.indexOf(vectors[0]) != -1;
-        });
+        var vectors = cell.retrieve('map:vectors'), layers = [];
         
-        if (!layer) return;
+        vectors.forEach(function(vector){
+            var layer = this.strategies.cluster.clusters.find(function(item){
+                return item.cluster.indexOf(vector) != -1;
+            });
+            if (layer) layers.include(layer);
+        }, this);
         
-        cell.store('map:hovering', layer);
-        this.controls.hover.overFeature(layer);
+        if (!layers.length) return;
+        
+        cell.store('map:hovering', layers);
+        layers.forEach(function(layer){
+            this.controls.hover.overFeature(layer);
+        }, this);
     },
     
     onCaliMouseLeave: function(cell){
-        var layer;
-        if ((layer = cell.retrieve('map:hovering'))){
-            this.controls.hover.outFeature(layer);
+        var layers;
+        if ((layers = cell.retrieve('map:hovering'))){
+            layers.forEach(function(layer){
+                this.controls.hover.outFeature(layer);
+            }, this);
             cell.store('map:hovering', null);
         }
     }
